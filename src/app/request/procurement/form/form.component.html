@@ -1,0 +1,564 @@
+<form [formGroup]="formgroup" *ngIf="!plan">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-md-12">
+                <div class="card-header mt-2">
+                    Procurement Request
+                </div>
+                <div class="card mt-2">
+                    
+                    <div class="card-body mainCard">
+                        <div class="form-header accordion mb-4" (click)="BasicForm.toggle()">
+                            <span translate>Basic Information</span>
+                            <span
+                            style="float: right !important; cursor: pointer; color: white"
+                            [attr.aria-expanded]="isBasicCollapsed"
+                            aria-controls="collapseExample"
+                            >
+                            <em class="fas fa-angle-down" *ngIf="isBasicCollapsed"></em>
+                            <em class="fas fa-angle-up" *ngIf="!isBasicCollapsed"></em>
+                            </span>
+                        </div>
+                        <div #BasicForm="ngbCollapse" class="mb-4" [(ngbCollapse)]="isBasicCollapsed">
+                            <div class="form-group mb-4">
+                                <ckeditor 
+                                [editor]="Editor" 
+                                [config]="{ toolbar: toolbar,placeholder: 'Write Your Description Here ...' }"
+                                id="descriptionEditor"
+                                formControlName="description"
+                                ></ckeditor>
+
+                                <span *ngIf="formSubmitted && GC('description').hasError('required')" class="error">
+                                    <small> * required</small>
+                                </span>
+                            </div>
+                        </div>
+                     
+                        <div class="form-header accordion mb-4" (click)="ItemForm.toggle()">
+                            <span translate>Product Information</span>
+                            <span
+                            style="float: right !important; cursor: pointer; color: white"
+                            [attr.aria-expanded]="isItemFormCollapsed"
+                            aria-controls="collapseExample"
+                            >
+                            <em class="fas fa-angle-down" *ngIf="isItemFormCollapsed"></em>
+                            <em class="fas fa-angle-up" *ngIf="!isItemFormCollapsed"></em>
+                            </span>
+                        </div>
+                        <div #ItemForm="ngbCollapse" class="mb-4" [(ngbCollapse)]="isItemFormCollapsed">
+                            <div class="field-container">
+                                <button
+                                    *ngIf="((!GA().controls.length && arrayData?.length) || !GA().controls.length)"
+                                    type="button" class="btn btn-success" (click)="editRow(null, 0)"
+                                    translate>
+                                    <i class="fa fa-plus"></i> Add product
+                                </button>
+                            </div>
+                            <div class="" *ngIf="GA().controls.length">
+                                <div class="card-body" formArrayName="detail">
+                                    <div class="mb-2" *ngFor="let ot of GA().controls; let i = index; let l = last;"
+                                        [formGroupName]="i">
+                                        <div class="row mb-2">
+                                            <div class="pr-1 pl-1 col-md-4 mb-2 col-xs-12 col-sm-12 mb-4">
+                                                <label translate>Select product category</label>
+                                                <select class="form-control form-control-sm" formControlName="product_category_id"
+                                                    (change)="load_product($event.target.value,i)">
+                                                    <option *ngFor="let cat of category" value="{{ cat.value }}">
+                                                        {{ cat.text }}
+                                                    </option>
+                                                </select>
+                                                <span
+                                                    *ngIf="formSubmitted && GG(i).get('product_category_id').hasError('required') && !this.arrayData.length"
+                                                    class="error">
+                                                    <small> * required</small>
+                                                </span>
+                                            </div>
+                                            <div class="pr-1 pl-1 col-md-4 mb-2 col-xs-12 col-sm-12 mb-4">
+                                                <label translate>Select product</label>
+                                                <select class="form-control form-control-sm" formControlName="product_id"
+                                                    (change)="load_specification($event.target.value,i)">
+                                                    <option *ngFor="let pro of product" value="{{ pro.value }}">
+                                                        {{ pro.text }}
+                                                    </option>
+                                                    <!-- <option value="other">Other</option> -->
+                                                </select>
+                                                <span
+                                                    *ngIf="formSubmitted && GG(i).get('product_id').hasError('required') && !this.arrayData.length"
+                                                    class="error">
+                                                    <small> * required</small>
+                                                </span>
+                                            </div>
+                                            <div *ngIf="isProductOther" class="pr-1 pl-1 col-md-4 mb-2 col-xs-12 col-sm-12 mb-4">
+                                                <label translate>Product name</label>
+                                                <input class="form-control form-control-sm" formControlName="product_name"
+                                                    placeholder="" />
+                                                <span
+                                                    *ngIf="formSubmitted && GG(i).get('product_name').hasError('required')  && !this.arrayData.length"
+                                                    class="error">
+                                                    <small> * required</small>
+                                                </span>
+                                            </div>
+                                        
+                                            
+                                            
+                                            <div class="pr-1 pl-1 col-md-4 mb-2 col-xs-12 col-sm-12 mb-4" *ngIf="showUnit">
+                                                <label translate>Unit</label>
+                                                <select class="form-control form-control-sm" formControlName="unit">
+                                                    <option *ngFor="let fil of filter_data['unit']"
+                                                        value="{{ fil.text }}">
+                                                        {{ fil.text }}
+                                                    </option>
+                                                </select>
+                                                <span *ngIf="formSubmitted && GG(i).get('unit').hasError('required')  && !this.arrayData.length"
+                                                    class="error">
+                                                    <small> * required</small>
+                                                </span>
+                                            </div>
+                                            <div class="pr-1 pl-1 col-md-4 mb-2 col-xs-12 col-sm-12 mb-4" *ngIf="!showUnit">
+                                                <label translate>Unit</label>
+                                                <div class="form-control">
+                                                  {{ GG(0).get('unit').value }}
+                                                </div>
+                                            </div>
+                                            <div class="pr-1 pl-1 col-md-4 mb-2 col-xs-12 col-sm-12 mb-4">
+                                                <label translate>Quantity</label>
+                                                <input type="number" min="1" class="form-control form-control-sm"
+                                                    formControlName="quantity"  oninput="this.value = Math.abs(this.value)"
+                                                    (change)="budgetAmountUpdate()"/>
+                                                <span
+                                                    *ngIf="formSubmitted && GG(i).get('quantity').hasError('required')  && !this.arrayData.length"
+                                                    class="error">
+                                                    <small> * required</small>
+                                                </span>
+                                            </div>
+                                            <div class="pr-1 pl-1 col-md-4 mb-2 col-xs-12 col-sm-12 mb-4">
+                                                <label translate>Estimated cost</label>
+                                                <input type="number" min="1" class="form-control form-control-sm"
+                                                    formControlName="estimated_cost"  oninput="this.value = Math.abs(this.value)"
+                                                    (change)="budgetAmountUpdate()"/>
+                                                <span
+                                                    *ngIf="formSubmitted && GG(i).get('estimated_cost').hasError('required')  && !this.arrayData.length"
+                                                    class="error">
+                                                    <small> * required</small>
+                                                </span>
+                                            </div>
+                                                        <div class="pr-1 pl-1 col-md-4 mb-2 col-xs-12 col-sm-12 mb-4">
+                                                <label translate>Budget amount</label>
+                                                    <div class="form-control form-control-sm">
+                            {{ GG(0).get('budget_amount').value|number }}
+                            </div>
+                                                <span
+                                                    *ngIf="formSubmitted && GG(i).get('budget_amount').hasError('required') && !this.arrayData.length"
+                                                    class="error">
+                                                    <small> * required</small>
+                                                </span>
+                                            </div>
+                                            <div class="pr-1 pl-1 col-md-4 mb-2 col-xs-12 col-sm-12 mb-4">
+                                                <label translate>Budget source</label>
+                                                <select class="form-control form-control-sm" formControlName="budget_source">
+                                                    <option *ngFor="let sou of filter_data['budget_source']"
+                                                        value="{{ sou.text }}">
+                                                        {{ sou.text }}
+                                                    </option>
+                                                </select>
+                                                <span
+                                                    *ngIf="formSubmitted && GG(i).get('budget_source').hasError('required')  && !this.arrayData.length"
+                                                    class="error">
+                                                    <small> * required</small>
+                                                </span>
+                                            </div>
+                                    
+                                            <div class="pr-1 pl-1 col-md-4 mb-2 col-xs-12 col-sm-12 mb-4">
+                                                <label translate>Estimated Delivery Date</label>
+                                                <input type="date" class="form-control form-control-sm"
+                                                    formControlName="estimated_delivery_date" />
+                                                <span
+                                                    *ngIf="formSubmitted && GG(i).get('estimated_delivery_date').hasError('required')  && !this.arrayData.length"
+                                                    class="error">
+                                                    <small> * required</small>
+                                                </span>
+                                            </div>
+                                    
+                                            <div class="pr-1 pl-1 col-md-4 mb-2 col-xs-12 col-sm-12 mb-4">
+                                                <label translate>Select currency</label>
+                                                <select class="form-control form-control-sm" formControlName="currency">
+                                                    <option *ngFor="let cur of filter_data['currency']"
+                                                        value="{{ cur.text }}">
+                                                        {{ cur.text }}
+                                                    </option>
+                                                </select>
+                                                <span
+                                                    *ngIf="formSubmitted && GG(i).get('currency').hasError('required')  && !this.arrayData.length"
+                                                    class="error">
+                                                    <small> * required</small>
+                                                </span>
+                                            </div>
+                                        </div>
+    
+                                        <div class="row mb-4">
+                                            <div class="col-md-12 col-xs-12 col-sm-12">
+                                                <div class="mb-4" *ngIf="specLength()">
+                                                    <ul class="list-group">
+                                                        <label *ngIf="specLength" style="margin-left: -12px !important;"
+                                                            translate>
+                                                            Select Specifications
+                                                        </label>
+                                                        <div class="specList">
+                                                            <li
+                                                              class="list-group-item"
+                                                              *ngFor="let spec of specification; let i = index"
+                                                              (click)="setRadio(i)"
+                                                              style="cursor: pointer !important;">  
+                                                            <div class="row">
+                                                              <div class="col-md-1 col-sm-1 col-xs-1" style="max-width: 10px !important;">
+                                                                <input
+                                                                  class="rad"
+                                                                  type="radio"
+                                                                  [id] = "i"
+                                                                  [value]="spec.value"
+                                                                  formControlName="specification_id"
+                                                                />
+                                                              </div>
+                                                              <div class="col-md-11 col-sm-12 col-xs-12">
+                                                                <label [for]="i" class="spec_label">
+                                                                  <strong>
+                                                                    <span [innerHTML]="spec.text | htmlSanitaizer" style="text-transform: capitalize !important;"> ...
+                                                                    </span>
+                                                                  </strong>                         
+                                                                </label>  
+                                                                <div *ngIf="spec.showReadmore">
+                                                                  <span *ngIf="!spec.readmore">
+                                                                    <button type="button" class="btn btn-light btn-sm" (click)="readMore(i,1)">
+                                                                      read more
+                                                                    </button>
+                                                                  </span>
+                                                                  <span *ngIf="spec.readmore">
+                                                                    <button type="button" class="btn btn-light btn-sm" (click)="readMore(i,0)">
+                                                                      read less
+                                                                    </button>
+                                                                  </span>
+                                                                </div>                             
+                                                              </div>
+                                                            </div>    
+                                                            </li>
+                                                          </div>
+                                                    </ul>
+                                                    <span
+                                                        *ngIf="formSubmitted && GG(i).get('specification_id').hasError('required')  && !this.arrayData.length"
+                                                        class="error">
+                                                        <small> * required</small>
+                                                    </span>
+                                                </div>
+                                                
+                                                <div class="form-check mb-4">
+                                                    <input class="form-check-input" type="checkbox" value=""
+                                                        [checked]="other[i]" id="other_spec"
+                                                        (change)="change_specification($event.target.checked,i)">
+                                                    <label class="form-check-label" for="other_spec" translate>
+                                                        Other Specification
+                                                    </label>
+                                                </div>
+
+                                                <div>                                 
+                                                    <ckeditor 
+                                                    [editor]="Editor" 
+                                                    [config]="{ toolbar: toolbar,placeholder: 'Please Describe Your Specification Here ...' }"
+                                                    id="specEditor"
+                                                    formControlName="other"
+                                                    ></ckeditor>
+                                                    <span
+                                                        *ngIf="formSubmitted && GG(i).get('other').hasError('required')  && !this.arrayData.length"
+                                                        class="error">
+                                                        <small> * required</small>
+                                                    </span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="row mb-2">
+                                            <div class="col-md-8 col-xs-12 col-sm-12" style="margin-left: -12px;">
+                                                <label translate>Attachment</label>
+                                                <div class="custom-file">
+                                                    <input style="display: none;" type="text" class="custom-file-input"
+                                                        id="customFile" formControlName="document">
+                                                    <input type="file" class="custom-file-input" id="customFile"
+                                                        accept="application/pdf"
+                                                        (change)="fileChangeEvent($event.target.files, i)">
+                                                    <label class="custom-file-label"
+                                                        for="customFile">{{((file_info.length > 0) && file_info[i]) ?
+                                                        file_info[i].name : "Choose file"}} </label>
+                                                    <div *ngIf="file_info.length > 0">
+                                                        <span *ngIf="file_info[i]">
+                                                            <label class="file-info"> Size:
+                                                                {{file_info[i].size.toString().length > 6 ?
+                                                                file_info[i].size/1000000 + " mb" :
+                                                                file_info[i].size/1000 + " kb" }}</label><br>
+                                                            <label class="file-info">Type:
+                                                                {{file_info[i].type}}</label>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            
+                                                <span *ngIf="attachments[i]"
+                                                    class="view_document btn btn-outline-light btn-sm mt-2">
+                                                    <a [href]="isBase64(i)" target="_blank" translate>View attachment</a>
+                                                </span>
+                                            </div>
+                                            <div class="col-md-4 col-xs-12 col-sm-12">
+                                                <span style="float: right; margin-top: 30px;">
+                                                    
+                                                    <button ejs-button *ngIf="ot.valid && !editing && !requestStatus"
+                                                    id="addButton"
+                                                    type="button" 
+                                                    cssClass="e-success btn btn-success btn-sm my_add"
+                                                        (click)="add(ot.getRawValue(),i)" [disabled]="disable">
+                                                        <span class="add">
+                                                            <i class="fa fa-plus"></i> Add to List
+                                                        </span>
+                                                    </button>
+                                                    <button *ngIf="(editing && ot.valid) && !requestStatus"
+                                                        id="add-button" type="button" class="multi btn btn-success"
+                                                        (click)="updateRow()">
+                                                        <i class="fas fa-pen-square"></i> Update 
+                                                    </button>
+                                                    <button *ngIf="arrayData.length" id="add-button" type="button"
+                                                        id="remove-button" class="multi btn btn-danger"
+                                                        (click)="deleteArray()">
+                                                        <i class="far fa-trash-alt"></i> Remove 
+                                                    </button>
+                                                    <!--  <button [disabled]="GA().length === 1"
+                                                        class="multi btn btn-danger mr-2"
+                                                        (click)="remove(GG(i).get('id').value,i)">
+                                                        <i class="far fa-trash-alt"></i>
+                                                    </button> -->
+                                                </span>
+                                            </div>
+    
+                                        </div>
+                                    </div>
+    
+    
+                              
+    
+    
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-header accordion mb-4" (click)="ItemList.toggle()">
+                            <span translate>Product Item List</span>
+                            <span
+                            style="float: right !important; cursor: pointer; color: white"
+                            [attr.aria-expanded]="isItemListCollapsed"
+                            aria-controls="collapseExample"
+                            >
+                            <em class="fas fa-angle-down" *ngIf="isItemListCollapsed"></em>
+                            <em class="fas fa-angle-up" *ngIf="!isItemListCollapsed"></em>
+                            </span>
+                        </div>
+                        <div #ItemList="ngbCollapse" class="mb-4" [(ngbCollapse)]="isItemListCollapsed">
+                            <div class="row">
+                                <div class="col-12">
+                             
+                                    <div class='fixTableHead'> 
+                                
+                                    <table class="table fixed_header table-striped width=100% table-bordered table-sm">
+                                        <thead>
+                                            <tr>
+                                                <th class="productID">#</th>
+                                                <th class="productCat" translate>Product category</th>
+                                                <th class="productInfo" translate>Product</th>
+                                                <th class="productQuantity" translate>Quantity</th>
+                                                <th class="productUnit" translate>Unit</th>
+                                                <th class="budgetSource" translate>Budget source</th>
+                                                <th class="budgetAmount" translate>Budget amount</th>
+                                
+                                                <th class="productAttachment" translate>Attachment</th>
+                                                <th class="action" translate>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody *ngIf="arrayData.length" [ngClass]="arrayData.length?'height2':'height1'">
+                                            <tr *ngFor="let row of arrayData; let i = index"
+                                                [ngStyle]="i === editing ? {'background-color': '#13294833'} : null">
+                                                <td class="productID" scope="row">{{i + 1}}</td>
+                                                <td class="productCat">{{ getText(category, row.product_category_id)}}</td>
+                                                <td class="productInfo">{{ getText(tableProduct[i], row.product_id)}}</td>
+                                                <td class="productQuantity">{{row.quantity}}</td>
+                                                <td class="productUnit">{{row.unit}}</td>
+                                                <td class="budgetSource" >{{row.budget_source}}</td>
+                                                <td class="budgetAmount">{{row.budget_amount}}</td>
+                                
+                                                <td class="attachment" translate>
+                                                    <ng-container *ngIf="row.document">
+                                                        <a *ngIf="!row.document.includes('data:application/pdf;base64')"
+                                                            [attr.href]="baseUrl + '/' + row.document"
+                                                            target="_blank">Uploaded file</a>
+                                                        <b
+                                                            *ngIf="row.document.includes('data:application/pdf;base64')">
+                                                            File attached </b>
+                                                    </ng-container>
+                                                </td>
+                                                <td class="action" ><i (click)="editRow(row, i)"
+                                                        class="fas fa-edit"></i><i *ngIf="!requestStatus"
+                                                        (click)="deleteRow(i)" class="fas fa-trash-alt"></i>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <tbody *ngIf="!arrayData.length">
+                                            <tr>
+                                                <td colspan="12" style="color: gray !important; text-align: center !important;">
+                                                  <span>no record found</span>
+                                                </td>
+                                            </tr>
+                                        </tbody>    
+                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div *ngIf="id">
+                            <div class="form-header accordion mb-4" (click)="Comment.toggle()">
+                                <span translate>Comment & Remarks</span>
+                                <span
+                                style="float: right !important; cursor: pointer; color: white"
+                                [attr.aria-expanded]="isCommentCollapsed"
+                                aria-controls="collapseExample"
+                                >
+                                <em class="fas fa-angle-down" *ngIf="isCommentCollapsed"></em>
+                                <em class="fas fa-angle-up" *ngIf="!isCommentCollapsed"></em>
+                                </span>
+                            </div>
+                            <div #Comment="ngbCollapse" class="mb-4" [(ngbCollapse)]="isCommentCollapsed">
+                                <span style="color: gray !important; padding: 10px !important;">
+                                    {{ this.comment ? this.comment : '-- not specified --' }}
+                                </span>
+                            </div>
+                        </div>
+
+                        
+                        <div class="form-group mt-4">
+                            <button *ngIf="!requestStatus" type="button" class="btn btn-primary mr-2"
+                                (click)="Submit()" [disabled]="requestStatus || sending" translate>
+                                {{ !id ? 'Submit' : 'Save Changes' | translate }}
+                                <i class="fas fa-spinner fa-spin fa-fw" *ngIf="sending"></i>
+                            </button>
+                            <button type="button" class="btn btn-danger" (click)="cancel()"
+                                translate>Cancel</button>
+                                
+                            <div *ngIf="!requestStatus" [ngSwitch]="this.GC('status').value"
+                                style="float: right;">
+                                <span *ngSwitchCase="1" class="status" style="background-color: greenyellow;">
+                                    Approved
+                                </span>
+                                <span *ngSwitchCase="0" class="status" style="background-color: crimson;">
+                                    Rejected
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+
+<div class="container" *ngIf="plan && planData">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="col-12">
+                        <span class="plan-text"><u>Plan detail</u>
+                        </span>
+                    </div>
+                    <div class="col-12 plan-text">
+                        <span class="plan-text">Procurement reference number : - {{
+                            planData.procurement_reference_number
+                            }}
+                        </span>
+                    </div>
+                    <div class="col-12 plan-text">
+                        <span class="plan-text">Procurement method : - {{ planData.procurement_method }} </span>
+                    </div>
+                    <div class="col-12 plan-text">
+                        <span class="plan-text">Product category : - {{ planData.category }} </span>
+                    </div>
+                    <div class="col-12 plan-text">
+                        <span class="plan-text">Budget year : - {{ planData.budget_year }} </span>
+                    </div>
+                    <div class="col-12 plan-text">
+                        <span class="plan-text">Bid preparation date : - {{ planData.bid_preparation_date }}
+                        </span>
+                    </div>
+                    <div class="col-12 plan-text">
+                        <span class="plan-text">Bid announcement date : - {{ planData.bid_announcement_date }}
+                        </span>
+                    </div>
+                    <div class="col-12 plan-text">
+                        <span class="plan-text">Bid approval data : - {{ planData.bid_approval_date }}
+                        </span>
+                    </div>
+                    <div class="col-12 plan-text">
+                        <span class="plan-text">Bid opening date : - {{ planData.bid_opening_date }}
+                        </span>
+                    </div>
+                    <div class="col-12 plan-text">
+                        <span class="plan-text">Bid closing date : - {{ planData.bid_closing_date }}
+                        </span>
+                    </div>
+                    <div class="col-12 plan-text">
+                        <span class="plan-text">Bid evaluation report completion : - {{
+                            planData.bid_evaluation_report_completion
+                            }}
+
+                        </span>
+                    </div>
+                    <div class="col-12 plan-text">
+                        <span class="plan-text">Bid evaluation report approval completion : - {{
+                            planData.bid_evaluation_report_approval_completion }}
+                        </span>
+                    </div>
+                    <div class="col-12 plan-text">
+                        <span class="plan-text">Award notification disclosure date : - {{
+                            planData.award_notif_disclosure_date }}
+                        </span>
+                    </div>
+                    <div class="col-12 plan-text">
+                        <span class="plan-text">Contract type : - {{ planData.type_of_contract }}
+                        </span>
+                    </div>
+                    <div class="col-12 plan-text">
+                        <span class="plan-text">Contract signing date : - {{ planData.contract_signing_date }}
+                        </span>
+                    </div>
+                    <div class="col-12 plan-text">
+                        <span class="plan-text">Contract end date : - {{ planData.contract_end_date }}
+                        </span>
+                    </div>
+                    <div class="col-12 plan-text">
+                        <span class="plan-text">Purchase order start date : - {{ planData.purchase_order_start_date }}
+                        </span>
+                    </div>
+                    <div class="col-12 plan-text">
+                        <span class="plan-text">Estimated delivery date : - {{ planData.estimated_delivery_date }}
+                        </span>
+                    </div>
+                    <div class="col-12 plan-text">
+                        <span class="plan-text">Last payment date by receiving office : - {{
+                            planData.last_payment_date_by_the_receiving_office }}
+                        </span>
+                    </div>
+                    <div class="col-3 btn-cont">
+                        <button type="button" class="btn btn-success" (click)="cancel()" translate>Back</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

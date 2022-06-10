@@ -1,0 +1,26 @@
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="formgroup" (ngSubmit)="onSubmit()">
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          formControlName="certificationCode"
+          placeholder="{{ 'Certification Code' | translate }}"
+          class="form-control"
+          [ngClass]="{
+            'not-invalid':
+              invalidClass && formgroup.controls.certificationCode.invalid
+          }"
+        />
+        <div class="input-group-append">
+          <button type="submit" class="btn btn-primary" translate>verifay</button>
+        </div>
+      </div>
+      <div *ngIf="certifiCode.errors">
+        <p *ngIf="formSubmitted && certifiCode.hasError('required')">
+          <font color="red" size="2" translate>* Certification Code is required</font>
+        </p>
+      </div>
+    </form>
+  </div>
+</div>

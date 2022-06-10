@@ -1,0 +1,16 @@
+.not-invalid {
+  border: 1px solid rgba(255, 0, 0, 0.692);
+}
+
+.card {
+  margin-top: 20%;
+}
+
+
+.btn.btn-primary {
+  background: #004085;
+  padding-top: 5px;
+  border: #004085;
+  font-size: 14px;
+  font-weight: 800;
+}

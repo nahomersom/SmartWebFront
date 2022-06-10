@@ -1,0 +1,250 @@
+.container {
+    margin-top: 1%;
+    padding: 1%;
+}
+
+body {
+    background-color: #1d1d1d !important;
+    font-family: "Asap", sans-serif;
+    color: #989898;
+    margin: 10px;
+    font-size: 16px;
+}
+
+.social-icon {
+    color: #555 !important;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.card {
+    text-align: center;
+    padding: 5px;
+}
+
+.card-body {
+    padding: 0px;
+}
+
+.name {
+    height: 50px;
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+p {
+    margin-bottom: 0;
+}
+
+.other-info {
+    font-size: 12px;
+}
+
+.social-icon :hover {
+    color: dodgerblue !important;
+}
+
+.btn.btn-outline-primary.my-2.my-sm-0 {
+    line-height: 0.8;
+    font-size: 12px;
+}
+
+.pagination {
+    height: 38px;
+}
+
+.page-link {
+    font-size: 12px;
+}
+
+.item-page.all {
+    width: 40px;
+}
+
+.item-page {
+    width: 26px;
+    list-style: none;
+    float: left;
+}
+
+.members {
+    padding-top: 10px;
+}
+
+ul {
+    padding: 0px;
+}
+
+@media only screen and (min-width: 501px) and (max-width: 575px) {
+    .top-bar {
+        margin-top: 5px;
+        height: 30px;
+    }
+    .social-icon {
+        padding-left: 5px;
+        padding-right: 5px;
+        font-size: medium;
+    }
+    .card {
+        flex-direction: row;
+    }
+    .card-img {
+        width: 50%;
+        float: left;
+    }
+    .card-body {
+        width: 50%;
+        float: left;
+        padding: 0.5rem;
+        line-height: 0.5;
+    }
+    img {
+        height: 100px !important;
+        width: 100px !important;
+    }
+    .name {
+        font-size: 14px;
+    }
+    .other-info {
+        font-size: 12px;
+        margin-bottom: 0.5rem;
+    }
+    .btn.btn-outline-primary.my-2.my-sm-0 {
+        margin-bottom: 0 !important;
+        margin-top: 0 !important;
+        height: 30px;
+        font-size: 12px;
+    }
+    h3 {
+        font-size: 1.5rem;
+    }
+    .paging {
+        margin-top: 5px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .top-bar {
+        top: 0px;
+    }
+    .social-icon {
+        padding-left: 2px;
+        padding-right: 2px;
+        font-size: small;
+    }
+    .card {
+        flex-direction: row;
+    }
+    .card-img {
+        width: 50%;
+        float: left;
+    }
+    .card-body {
+        width: 50%;
+        float: left;
+        line-height: 0.5;
+    }
+    img {
+        height: 87px !important;
+        width: 87px !important;
+    }
+    .name {
+        font-size: 13px;
+        margin-top: 0px;
+        height: 35px;
+    }
+    .other-info {
+        font-size: 12px;
+        margin-bottom: 0.5rem;
+    }
+    .btn.btn-outline-primary.my-2.my-sm-0 {
+        margin-bottom: 0 !important;
+        margin-top: 0 !important;
+        height: 22px;
+        font-size: 12px;
+    }
+    .col-sm-4.col-md-3.col-lg-2.ng-star-inserted {
+        line-height: 0.5;
+    }
+    h3 {
+        font-size: 1.5rem;
+    }
+    .paging {
+        margin-top: 5px;
+    }
+}
+
+@media only screen and (min-width: 501px) and (max-width: 575px) {
+    .card {
+        flex-direction: row;
+    }
+    .card-img {
+        width: 50%;
+        float: left;
+    }
+    .card-body {
+        width: 50%;
+        float: left;
+        padding: 0.5rem;
+        line-height: 0.5;
+    }
+    img {
+        height: 100px !important;
+        width: 100px !important;
+    }
+    .name {
+        font-size: 14px;
+        margin-top: 0px;
+    }
+    .other-info {
+        font-size: 12px;
+        margin-bottom: 0.5rem;
+    }
+    .btn.btn-outline-primary.my-2.my-sm-0 {
+        margin-bottom: 0 !important;
+        margin-top: 0 !important;
+        height: 30px;
+        font-size: 12px;
+    }
+    h3 {
+        font-size: 1.5rem;
+    }
+    .paging {
+        margin-top: 5px;
+    }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+    .card-img {
+        width: 100%;
+    }
+    .card-body {
+        width: 100%;
+        padding: 0.5rem;
+        line-height: 0.5;
+    }
+    img {
+        height: 100px !important;
+        width: 100px !important;
+    }
+    .name {
+        font-size: 12px;
+        margin-top: 0px;
+    }
+    .other-info {
+        font-size: 12px;
+        margin-bottom: 0.5rem;
+    }
+    .btn.btn-outline-primary.my-2.my-sm-0 {
+        margin-bottom: 0 !important;
+        margin-top: 0 !important;
+        height: 30px;
+        font-size: 12px;
+    }
+    h3 {
+        font-size: 1.5rem;
+    }
+    .paging {
+        margin-top: 5px;
+    }
+}

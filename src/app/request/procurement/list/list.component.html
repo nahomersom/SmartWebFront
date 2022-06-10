@@ -1,0 +1,83 @@
+<div class="container">
+  <div class="row">
+    <hr />
+    <div class="col-md-12">
+
+        <div class="row">
+          <div class="col-md-10 col-sm-12 col-xs-12 mb-4">
+            <label translate>Procurement requests</label>
+          </div>
+          <div class="col-md-2 col-sm-12 col-xs-12 mb-4">
+            <button type="button" class="btn btn-outline-secondary"
+              (click)="router.navigateByUrl('request/procurement/create')" translate>
+              New request
+            </button>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-hover table-striped table-bordered table-sm">
+            <thead align="center">
+              <tr>
+                <th *ngFor="let columen of columens" scope="row" translate>{{ columen }}</th>
+              </tr>
+            </thead>
+            <tbody align="center" *ngIf="data.length === 0">
+              <tr>
+                <td colspan="9" translate>No data available</td>
+              </tr>
+            </tbody>
+            <tbody *ngIf="data.length > 0">
+              <tr *ngFor="let d of data; let i = index">
+                <td><span><p [innerHTML]="d.description  | titlecase "></p></span></td>
+                <td><span>{{ d.budget_year | titlecase }}</span></td>
+                <td><span>{{ d.created_at | date:'medium' }}</span></td>
+                <td>
+                  <ng-container>
+            
+                      <span class="mr-4" (click)="edit(d.id)">
+                        <i class="icon far fa-edit"></i>
+                      </span>
+                
+            
+                    <span class="mr-4" (click)="delete(d.id)" *ngIf="d.status !== '1'">
+                      <i class="icon far fa-trash-alt"></i>
+                    </span>
+                    <span class="ml-2" (click)="generateReport(d.id)" *ngIf="d.status !== '1'">
+                      <i class="icon fa fa-print"></i>
+                    </span>
+                    <span class="ml-2" (click)="seePlan(d.id)" *ngIf="d.status === '1'">
+                      <i class="icon fas fa-clipboard-list"></i>
+                    </span>
+                  </ng-container>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+ 
+    </div>
+  </div>
+</div>
+<div class="printable">
+  <table class="table table-hover table-striped table-bordered table-sm">
+    <thead align="center">
+      <tr>
+        <th *ngFor="let c of printCols" scope="row" translate>{{ c }}</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="printData">
+      <tr *ngFor="let d of printData; let i = index">
+        <td>{{ d.budget_year }}</td>
+        <td>{{ d.title }}</td>
+        <td>{{ d.quantity }}</td>
+        <td>{{ d.unit }}</td>
+        <td>{{ d.budget_amount }}</td>
+        <td>{{ d.budget_source }}</td>
+        <td>{{ d.estimated_delivery_date }}</td>
+        <!-- <td><span>{{ d.created_at | date:'medium' }}</span></td> -->
+      </tr>
+    </tbody>
+  </table>
+</div>

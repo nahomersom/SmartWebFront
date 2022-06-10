@@ -1,0 +1,521 @@
+<div [ngStyle]="{ cursor: sending ? 'progress' : null }">
+  <div class="row header">
+    <div class="row coc-top-bar" [ngStyle]="{ display: topBar }">
+      <div
+        class="col-lg-1 col-md-1 col-sm-4 col-4 sub-col icon-cont"
+        *ngIf="contactusInfo"
+      >
+        <a
+          *ngIf="contactusInfo[0].twitter !== ''"
+          href=" {{ contactusInfo[0].twitter }}"
+          class="social-icon"
+          target="_blank"
+          ><i class="fab fa-twitter"></i
+        ></a>
+        <a
+          *ngIf="contactusInfo[0].facebook !== ''"
+          href="{{ contactusInfo[0].facebook }}"
+          class="social-icon"
+          target="_blank"
+          ><i class="fab fa-facebook-f"></i
+        ></a>
+        <a
+          *ngIf="contactusInfo[0].linkedin !== ''"
+          href="{{ contactusInfo[0].linkedin }}"
+          class="social-icon"
+          target="_blank"
+          ><i class="fab fa-telegram"></i
+        ></a>
+      </div>
+      <div
+        class="col-lg-5 col-md-5 col-sm-1 col-1 sub-col"
+        *ngIf="!smallLanguage"
+      >
+        <p class="comp-name" translate *ngIf="!smallLanguage">Company info</p>
+        <p class="comp-name" translate *ngIf="smallLanguage">
+          Company info short
+        </p>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-3 col-3 language sub-col">
+        <ng-template #popContentLang>
+          <div>
+            <a class="dropdown-item" (click)="changeLanguage(1)" translate
+              >EN</a
+            >
+            <a class="dropdown-item" (click)="changeLanguage(4)" translate
+              >ሃረሪ</a
+            >
+            <a class="dropdown-item" (click)="changeLanguage(3)" translate
+              >Oro</a
+            >
+            <a class="dropdown-item" (click)="changeLanguage(2)" translate
+              >አማርኛ</a
+            >
+          </div>
+        </ng-template>
+        <button
+          *ngIf="smallLanguage || !smallLanguage"
+          type="button"
+          class="btn btn-outline-light small-lang-btn"
+          [ngbPopover]="popContentLang"
+        >
+          <b><span translate></span>{{ smallCurrentLang }}</b>
+          <span class="dropdown-toggle ng-tns-c98-0"></span>
+        </button>
+        <!-- <ul *ngIf="!smallLanguage">
+        <li class="lang-list" (click)="changeLanguage(1)">English</li>
+        <li class="lang-list" (click)="changeLanguage(4)">ሃረሪ</li>
+        <li class="lang-list" (click)="changeLanguage(3)">Afaan Oromoo</li>
+        <li class="lang-list" (click)="changeLanguage(2)">አማርኛ</li>
+      </ul> -->
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-5 col-5 usr-setting">
+        <ng-template #popContent>
+          <div *ngIf="userLoggedIn">
+            <a
+              class="dropdown-item"
+              (click)="navigateUser('index/editProfile')"
+              translate
+              >Edit Profile</a
+            >
+            <!-- <div class="dropdown-divider"></div> -->
+            <!-- <a class="dropdown-item" (click)="navigateUser('request/disposal')" translate>Disposal Request</a>
+          <a class="dropdown-item" (click)="navigateUser('request/procurement')" translate>Procurement
+            Request</a> -->
+            <!-- <a class="dropdown-item" (click)="navigateUser('feedback')" translate>FeedbackAndComplain</a> -->
+          </div>
+          <!-- <div class="dropdown-divider"></div> -->
+          <a class="dropdown-item" (click)="logout()" translate>Logout</a>
+        </ng-template>
+        <button
+          type="button"
+          class="btn btn-outline-light"
+          [ngbPopover]="popContent"
+          *ngIf="userLoggedIn"
+        >
+          <b><span translate></span>{{ buttonText | titlecase }}</b>
+          <span class="dropdown-toggle ng-tns-c98-0"></span>
+        </button>
+        <button
+          class="btn btn-primary"
+          type="button"
+          (click)="navigateUser('login')"
+          *ngIf="!userLoggedIn"
+        >
+          <b class="login-text" translate>Login</b>
+        </button>
+      </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" #navbar>
+      <a class="navbar-brand" href="/index">
+        <img class="img img-circle" src="assets/image/logo.jpeg" />
+      </a>
+      <a class="navbar-brand logo-text" href="/index">
+        <b class="logo-text">{{ logoText }}</b>
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+        (click)="toggleNavbar()"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div
+        class="collapse navbar-collapse"
+        id="navbarNav"
+        [ngClass]="{ show: navbarOpen }"
+      >
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              [ngClass]="
+                url === 'index' || url === '/index' || url === '/'
+                  ? 'active'
+                  : ''
+              "
+              (click)="navigateUser('index')"
+              translate
+              ><i class="fas fa-home icon"></i>&nbsp;<span class="icon">Home</span></a
+            >
+          </li>
+
+          <li class="nav-item" *ngFor="let menu of menus">
+            <a
+              *ngIf="!menu.child.length"
+              class="nav-link"
+              [ngClass]="url === '/pages/' + menu.id ? 'active' : ''"
+              (click)="navigateUser('/pages/' + menu.id)"
+              ><i class="{{ menu.icon }}"></i>&nbsp;{{ menu.title }}</a
+            >
+            <div class="btn-group" *ngIf="menu.child.length">
+              <div ngbDropdown>
+                <button class="dropdownMenu" ngbDropdownToggle translate>
+                  {{ menu.title }}
+                </button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                  <button
+                    *ngFor="let ch of menu.child"
+                    ngbDropdownItem
+                    (click)="
+                      ch.type === 'Media'
+                        ? navigateUser(
+                            '/medias/' + ch.categoryId + '/' + ch.title
+                          )
+                        : ch.type === 'Document'
+                        ? navigateUser('/documentation/' + ch.categoryId)
+                        : navigateUser('/pages/' + ch.id)
+                    "
+                  >
+                    <span size="2" translate>{{ ch.title }}</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </li>
+          <!-- <li class="nav-item">
+          <a class="nav-link" (click)="navigateUser('/osmap')" translate><i class="fas fa-align-justify"></i> &nbsp;OS
+            Map</a>
+        </li> -->
+          <!-- <li class="nav-item">
+          <a *ngIf="!userLoggedIn" class="nav-link" (click)="navigateUser('/application')" translate>
+            <i class="fas fa-chalkboard-teacher"></i> &nbsp;Candidate Application</a>
+        </li> -->
+          <!--  <li class="nav-item">
+          <a class="nav-link" [ngClass]="url === '/bid' ? 'active' : ''" (click)="navigateUser('/bidz')" translate>
+            <i class="fa fa-envelope-o"></i>&nbsp;Bids</a>
+        </li> -->
+          <li class="nav-item">
+            <div class="btn-group">
+              <div ngbDropdown>
+                <button class="dropdownMenu" ngbDropdownToggle translate>
+                  <i class="fas fa-book-open"></i> Bid
+                </button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                  <button
+                    ngbDropdownItem
+                    (click)="
+                      navigateUser('/bid/Procurement-bid-invitation-notice')
+                    "
+                  >
+                    <span size="2" translate
+                      >Procurement bid invitation notice</span
+                    >
+                  </button>
+                  <button
+                    ngbDropdownItem
+                    (click)="navigateUser('/bid/Procurement-award-information')"
+                  >
+                    <span size="2" translate
+                      >Procurement award information</span
+                    >
+                  </button>
+                  <button
+                    ngbDropdownItem
+                    (click)="
+                      navigateUser('/bid/Disposal-bid-invitation-notice')
+                    "
+                  >
+                    <span size="2" translate
+                      >Disposal bid invitation notice</span
+                    >
+                  </button>
+                  <button
+                    ngbDropdownItem
+                    (click)="navigateUser('/bid/Disposal-award-information')"
+                  >
+                    <span size="2" translate>Disposal award information</span>
+                  </button>
+                  <button
+                    ngbDropdownItem
+                    (click)="navigateUser('/bid/Disposal-bid-disclosure')"
+                  >
+                    <span size="2" translate>Disposal bid Disclosure</span>
+                  </button>
+                  <button
+                    ngbDropdownItem
+                    (click)="navigateUser('/bid/Procurement-bid-disclosure')"
+                  >
+                    <span size="2" translate>Procurement bid Disclosure</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              [ngClass]="url === '/ourteam' ? 'active' : ''"
+              (click)="navigateUser('/ourteam')"
+              translate
+            >
+              <i class="fas fa-users icon"></i>&nbsp;<span class="icon">Our Team</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              [ngClass]="url === '/contact' ? 'active' : ''"
+              medias
+              (click)="navigateUser('/contact')"
+              translate
+            >
+              <i class="fas fa-map-marked-alt icon"></i>&nbsp;<span class="icon">Contact Us</span></a
+            >
+          </li>
+          <li class="nav-item" *ngIf="userLoggedIn">
+            <a
+              class="nav-link"
+              [ngClass]="url === 'feedback' ? 'active' : ''"
+              (click)="navigateUser('feedback')"
+              translate
+            >
+              <i class="fas fa-comments icon"></i>&nbsp;<span class="icon">Feedback</span></a
+            >
+          </li>
+          <li class="nav-item" *ngIf="userLoggedIn">
+            <div class="btn-group">
+              <div ngbDropdown>
+                <button class="dropdownMenu" ngbDropdownToggle translate>
+                  <i class="fas fa-laptop-code"></i> E–filling service
+                </button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                  <button
+                    ngbDropdownItem
+                    (click)="navigateUser('request/procurement')"
+                  >
+                    <span size="2" translate>Procurement Requisition</span>
+                  </button>
+                  <button
+                    ngbDropdownItem
+                    (click)="navigateUser('request/disposal')"
+                  >
+                    <span size="2" translate>Disposal Requisition</span>
+                  </button>
+                  <button
+                    ngbDropdownItem
+                    (click)="navigateUser('/complain/procurement-complain')"
+                  >
+                    <span size="2" translate>Procurement complain</span>
+                  </button>
+                  <button
+                    ngbDropdownItem
+                    (click)="navigateUser('/complain/disposal-complain')"
+                  >
+                    <span size="2" translate>Disposal complain</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item" *ngFor="let menu of membersOnlyMenu">
+            <a
+              class="nav-link"
+              (click)="navigateUser('/pages/' + menu.id)"
+              *ngIf="!menu.child"
+              ><i class="{{ menu.icon }}"></i>&nbsp;{{ menu.title }}</a
+            >
+            <div class="btn-group" *ngIf="menu.child">
+              <div ngbDropdown>
+                <button id="dropdownBasic2" ngbDropdownToggle>
+                  {{ menu.title }}
+                </button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                  <button
+                    ngbDropdownItem
+                    [ngClass]="url === '/pages/' + child.id ? 'active' : ''"
+                    *ngFor="let child of menu.child"
+                    (click)="navigateUser('/pages/' + child.id)"
+                  >
+                    <span size="2">{{ child.title }}</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <div class="target-content">
+    <br />
+    <main [@routeAnimations]="o.isActivated ? o.activatedRoute : ''">
+      <router-outlet #o="outlet"></router-outlet>
+    </main>
+  </div>
+
+  <div class="row footer">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 footer-top">
+      <!-- <div class="col-md-2 col-sm-12 col-xs-12 col-cont-logo">
+      <img class="foot-img" src="assets/image/logo.jpeg" />
+      <br>
+      <b style="
+          padding-top: 10px;
+          font-size: 2rem;
+          color: aliceblue;
+      ">HPPPDSO
+      </b>
+    </div> -->
+      <div class="col-md-3 col-xs-12 col-sm-12 col-cont">
+        <div class="foot-title">
+          <h4 class="foot-menu-title">
+            <u>Office</u>
+          </h4>
+        </div>
+        <div class="footer-contact">
+          <ul class="link-cont">
+            <li class="footer-links">
+              <a (click)="navigateUser('index')" translate>Home</a>
+            </li>
+            <!-- <li class="footer-links"><a *ngIf="env.footerMenus.gallery" (click)="navigateUser('/medias')"
+              translate>Gallery</a></li> -->
+            <li class="footer-links">
+              <a
+                *ngIf="env.footerMenus.contactUs"
+                (click)="navigateUser('/contact')"
+                translate
+                >Contact Us</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-3 col-xs-12 col-sm-12 col-cont">
+        <div class="foot-title">
+          <h4 class="foot-menu-title">
+            <u>Information</u>
+          </h4>
+        </div>
+        <div class="footer-contact">
+          <ul class="link-cont" *ngFor="let menu of menus; let i = index">
+            <ng-container *ngIf="menu.child.length">
+              <li
+                class="footer-links"
+                *ngFor="let ch of menu.child; let ii = index"
+              >
+                <a
+                  (click)="
+                    ch.type === 'Media'
+                      ? navigateUser('/medias/' + ch.categoryId / ch.title)
+                      : ch.type === 'Document'
+                      ? navigateUser('/documentation/' + ch.categoryId)
+                      : navigateUser('/pages/' + ch.id)
+                  "
+                  *ngIf="
+                    ii < 4 && ((i > 0 && !menus[i - 1].child.length) || i === 0)
+                  "
+                  >&nbsp;{{ ch.title }}
+                </a>
+              </li>
+            </ng-container>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-3 col-xs-12 col-sm-12 col-cont">
+        <h4 (click)="navigateUser('/contact')" class="foot-menu-title" style="cursor:pointer">
+          <u>Contact</u>
+        </h4>
+
+        <div class="footer-contact" *ngIf="contactusInfo">
+          <ul id="contact">
+            <li>
+              <i class="fas fa-map-marker-alt fic"></i
+              >{{ contactusInfo[0].street }}
+            </li>
+            <li>
+              <i class="fas fa-phone-square fic"></i
+              >{{ contactusInfo[0].phone }}
+            </li>
+            <li><i class="fas fa-at fic"></i>{{ contactusInfo[0].email }}</li>
+            <li><i class="fas fa-fax fic"></i>{{ contactusInfo[0].fax }}</li>
+            <li>
+              <i class="fas fa-envelope fic"></i>{{ contactusInfo[0].pobox }}
+            </li>
+            <li></li>
+          </ul>
+          <div class="links">
+            <a
+              *ngIf="contactusInfo[0].twitter !== ''"
+              href="{{ contactusInfo[0].twitter }}"
+              class="social-icon-f"
+              target="_blank"
+              ><i class="fab fa-twitter"></i
+            ></a>
+            <a
+              *ngIf="contactusInfo[0].facebook !== ''"
+              href="{{ contactusInfo[0].facebook }}"
+              class="social-icon-f"
+              target="_blank"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a
+              *ngIf="contactusInfo[0].linkedin !== ''"
+              href="{{ contactusInfo[0].linkedin }}"
+              class="social-icon-f"
+              target="_blank"
+              ><i class="fab fa-telegram"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-12 col-xs-12 col-cont-subs">
+        <div class="subs-cont">
+          <app-subscription *ngIf="env.viewNewsSubscription"></app-subscription>
+        </div>
+      </div>
+      <!-- <div class="col-12 footer-navs"> -->
+
+      <!-- <a class="footer-links" (click)="navigateUser('index')" translate>Home</a>
+      <a *ngIf="env.gallery" class="footer-links" (click)="navigateUser('/medias')" translate>Gallery</a> -->
+      <!-- <a class="footer-links" (click)="navigateUser('/osmap')" translate>OS Map</a> -->
+      <!-- <a *ngIf="env.contactUs" class="footer-links" (click)="navigateUser('/contact')" translate>Contact Us</a> -->
+
+      <!-- <a *ngIf="env.colleges" class="footer-links" (click)="navigateUser('members/view')" translate>Colleges</a>
+      <b *ngFor="let menu of menus">
+        <a class="footer-links" (click)="navigateUser('/pages/' + menu.id)" *ngIf="!menu.child"><i
+            class="{{ menu.icon }}"></i>&nbsp;{{ menu.title }}</a>
+        <div class="btn-group" *ngIf="menu.child">
+          <div ngbDropdown>
+            <button id="dropdownBasic3" class="footer-links" ngbDropdownToggle>{{ menu.title }}</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic3">
+              <button ngbDropdownItem *ngFor="let child of menu.child" (click)="navigateUser('/pages/' + child.id)">
+                <font size="2">{{ child.title }}</font>
+              </button>
+            </div>
+          </div>
+        </div>
+      </b> -->
+      <!-- </div> -->
+      <!-- <div class="col-12 footer-social-links" *ngIf="contactusInfo !== undefined">
+      <a *ngIf="contactusInfo[0].twitter !== ''" href="{{contactusInfo[0].twitter}}" class="social-icon"
+        target="_blank"><i class="fab fa-twitter"></i></a>
+      <a *ngIf="contactusInfo[0].facebook !== ''" href="{{contactusInfo[0].facebook}}" class="social-icon"
+        target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a *ngIf="contactusInfo[0].linkedin !== ''" href="{{contactusInfo[0].linkedin}}" class="social-icon"
+        target="_blank"><i class="fab fa-telegram"></i></a>
+    </div> -->
+    </div>
+    <div class="col-12 footer-bottom">
+      <small
+        >Copyright &copy; {{ currentYear }} AppDiv System Development</small
+      >
+    </div>
+  </div>
+
+  <button
+    [ngClass]="{ 'show-scroll': showScroll }"
+    (click)="scrollToTop()"
+    class="scroll-to-top"
+    iconCSS="fas fa-sort-up"
+  >
+    <i class="fas fa-sort-up"></i>
+  </button>
+</div>

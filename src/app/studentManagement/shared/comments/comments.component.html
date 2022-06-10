@@ -1,0 +1,61 @@
+<div class="comment-section">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <form [formGroup]="formgroup" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <textarea class="form-control" formControlName="comment" placeholder=" Write you comment here."
+                class="form-control" [ngClass]="{
+                  'not-invalid':
+                    invalidClass && formgroup.controls.comment.invalid
+                }" rows="2"></textarea>
+            </div>
+            <div class="d-flex justify-content-start lower">
+              <input type="submit" value="Post Comment" class="btn btn-outline-primary" [disabled]=isEmpety(userId) />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <hr />
+  </div>
+  <br />
+
+  <p>
+    <button *ngIf="isCollapsed === true && comments.length > 0" type="button" class="btn btn-outline-primary btn-block"
+      (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+      Show Comments
+    </button>
+    <button *ngIf="isCollapsed === false && comments.length > 0" type="button" class="btn btn-outline-primary btn-block"
+      (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+      Hide Comments
+    </button>
+  </p>
+  <div id="collapseExample" [ngbCollapse]="isCollapsed" *ngIf="comments.length > 0">
+    <div class="card">
+      <div class="card-body">
+        <div class="card card-body">
+          <div class="row">
+            <div class="col-12">
+              <div *ngFor="let co of comments">
+                <div class="list-group list-group-flush">
+                  <div class="list-group-item list-group-item-action flex-column align-items-end">
+                    <p class="mb-1">{{ co.comment }}</p>
+                    <div class="d-flex w-100 justify-content-between">
+                      <small><b>{{ co.commentBy }}</b></small>
+                    </div>
+                    <div class="d-flex w-100 justify-content-between">
+                      <small class="date">( {{ co.updated_date | date }} )</small>
+                    </div>
+                  </div>
+                </div>
+                <br />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

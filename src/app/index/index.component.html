@@ -1,0 +1,109 @@
+<div class="section-one">
+    <div class="carousel-img">
+        <div class="row">
+            <div class="col-xl-12">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section-two container">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <!-- <ngb-carousel [interval]="5000" *ngIf="slidderData" [animation]="true">
+                <ng-template ngbSlide *ngFor="let image of slidderData">
+                    <img src="{{ mediaService.original_url + image.media }}" style="width:2000px;height:500px;"
+                        alt="image.title" />
+                    <div class="carousel-caption">
+                        <p>{{ image.desc }}</p>
+                    </div>
+                </ng-template>
+            </ngb-carousel> -->
+            <div class="head-section text-center" *ngIf="isLoading">  
+            </div>
+            <ngb-carousel [interval]="5000"  [animation]="true" *ngIf="!isLoading">
+                <ng-template ngbSlide *ngFor="let image of images; let i= index">
+                    <img src="{{image}}" style="width:2000px;height:500px;"
+                        alt="image.title" />
+                    <div class="carousel-caption">
+            
+                    </div>
+                </ng-template>
+            </ngb-carousel>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-8 news" *ngIf="!isLoading">
+            <div *ngFor="let news of featuredNews">
+                <div class="col-12 news-image" *ngIf="news.thumbnail !== 'null'">
+                    <!-- <img src="{{ indexService.original_url + '/' + news.thumbnail }}" style="width:100%;height:400px;"
+                        alt={{news.title}} title="{{news.title | titlecase}}" /> -->
+                        <img src="{{images[0]}}" style="width:100%;height:400px;"
+                        alt={{news.title}} title="{{news.title | titlecase}}" />
+                </div>
+                <p></p>
+                <div class="col-12 news-title">
+                    <h3 [innerHTML]="news.title"></h3>
+                </div>
+                <div class="col-12 news-paragraph">
+                    <div [innerHTML]="news.abstract"></div>
+                </div>
+                <div class="col-12 news-paragraph" *ngIf="showDetail">
+                    <div [innerHTML]="news.body | htmlSanitaizer"></div>
+                </div>
+                <p align="right" class="article_author" *ngIf="showDetail">
+                    <font size="2.5">{{ news.author | titlecase }}</font>
+                </p>
+                <p align="right" class="article_author" *ngIf="showDetail">
+                    <font size="2.5">{{ news.updated_date | date }}</font>
+                </p>
+                <button *ngIf="featuredNews.length > 0 && !showDetail" type="button" class="btn btn-primary"
+                    (click)="readMore(news.id)" translate>Read More</button>
+                <button *ngIf="showDetail" type="button" class="btn btn-success" (click)="back()"
+                    translate>Back</button>
+                <hr />
+            </div>
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-8 news" *ngIf="isLoading">
+            <ng-container *ngFor="ske of skeleton">
+                <div class="col-12 news-image">
+                    <div class="bottom-section text-center">  
+                    </div>
+                </div>
+                <div class="text1"></div>
+                <div class="text2"></div>
+            </ng-container>
+        
+        
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 quick-links">
+            <div class="card" *ngIf="events.length > 0">
+                <div class="card-header">
+                    <h6 align="center" translate>Up Coming Events</h6>
+                </div>
+                <div class="list-group" *ngFor="let event of events">
+                    <p class="list-group-item list-group-item-action">
+                        <a (click)="event_detail(event)" routerLink="">{{ event.title }}</a><br />
+                        <span style="float: left;">On, {{ event.date | date }}</span>
+                    </p>
+                </div>
+            </div>
+            <hr />
+            <div class="card" *ngIf="env.viewQuickLinks && QuickLink.length > 0">
+                <div class="card-header">
+                    <h5 align="center" translate>Quick Links</h5>
+                </div>
+                <div class="list-group">
+                    <a class="list-group-item list-group-item-action" *ngFor="let link of QuickLink"
+                        href="{{ link.address }}" target="_blank">
+                        {{ link.title }}
+                    </a>
+                </div>
+            </div>
+            <hr />
+            <app-verification *ngIf="env.viewVerificationCode"></app-verification>
+            <app-subscription *ngIf="env.viewNewsSubscription"></app-subscription>
+        </div>
+    </div>
+</div>

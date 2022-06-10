@@ -1,0 +1,190 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-6">
+      <form [formGroup]="formgroup">
+        <div class="card">
+            <div class="card-body">
+              <div class="form-group">
+                  <label for=""><font size="2" translate>Location</font></label>
+                  <select placeholder="location" class="form-control" formControlName="location" >
+                    <option *ngFor="let l of location" value="{{ l.location }}">
+                      <font size="2">{{ l.location | titlecase }}</font>
+                    </option>
+                  </select>
+                  <p></p>
+                  <label for=""><font size="2" translate>Sector</font></label>
+                  <select
+                    placeholder="sector"  class="form-control" formControlName="sector" (change)="loadingSubSector()"
+                    [ngClass]="{'not-invalid':invalidClass && get_controls('sector').invalid }">
+                    <option *ngFor="let s of sector" value="{{ s.sector_code }}">
+                      <font size="2">{{ s.sector_name | titlecase }}</font></option>                   
+                  </select>
+                    <p
+                      *ngIf="formSubmitted && get_controls('sector').hasError('required')"
+                      style="color:rgba(255, 0, 0, 0.671)"
+                    >
+                      <font size="2" translate>* Sector is required</font>
+                    </p>
+                  <p></p>
+                  <label for=""><font size="2" translate>Sub Sector</font></label>
+                  <select
+                    placeholder="Sub Sector"
+                    class="form-control"
+                    formControlName="subSector"
+                    (change)="loadingOccupation()"
+                    [ngClass]="{
+                      'not-invalid':
+                        invalidClass && get_controls('subSector').invalid
+                    }"
+                  >
+                    <option
+                      *ngFor="let ss of subsector"
+                      value="{{ ss.sector_code }}"
+                      ><font size="2">{{
+                        ss.sector_name | titlecase
+                      }}</font></option
+                    >
+                  </select>
+                    <p
+                      *ngIf="formSubmitted && get_controls('subSector').hasError('required')"
+                      style="color:rgba(255, 0, 0, 0.671)"
+                    >
+                      <font size="2" translate>* Sub Sector is required</font>
+                    </p>
+                  <p></p>
+                  <label for=""><font size="2" translate>Occupation</font></label>
+                  <select
+                    (change)="loadingUC()"
+                    class="form-control"
+                    formControlName="occupation"
+                    [ngClass]="{
+                      'not-invalid':
+                        invalidClass && get_controls('occupation').invalid
+                    }"
+                  >
+                    <option
+                      *ngFor="let occ of occupations"
+                      value="{{ occ.occ_code }}"
+                      ><font size="2">{{ occ.occ_name | titlecase }}</font></option
+                    >
+                  </select>
+                    <p
+                      *ngIf="formSubmitted && get_controls('occupation').hasError('required')"
+                      style="color:rgba(255, 0, 0, 0.671)"
+                    >
+                      <font size="2" translate>* Occupation is required</font>
+                    </p>
+                  <p></p>
+                  <input
+                    type="checkbox"
+                    id="unitCompetency"
+                    (change)="uniOfCompetencyChanged()"
+                  />
+                  <label for="" style="margin-left: 5px"
+                    ><font size="2.5"><b translate>Apply for Unit Competency ?</b></font></label
+                  >
+                  <p></p>
+    
+                  <angular2-multiselect
+                    *ngIf="showUnitOfCompetency"
+                    formControlName="unitOfCompetency"
+                    [data]="dataForMultiSelection"
+                    [settings]="settings"
+                  >
+                  </angular2-multiselect>
+                  <p></p>
+                  <div class="row">
+                    <div class="col-md-8 sm-4">
+                      <label for="amount" translate>Amount</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="amount"
+                        [ngClass]="{
+                          'not-invalid':
+                            invalidClass && get_controls('amount').invalid
+                        }"
+                      />
+                    </div>
+                    <div class="col-md-4 sm-2">
+                      <label for="amountRequired"> *</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="amountRequired"
+                        readonly
+                          />
+                    </div>
+                  </div>
+                                  <p
+                      *ngIf="formSubmitted && get_controls('amount').hasError('required')"
+                      style="color:rgba(255, 0, 0, 0.671)"
+                    >
+                      <font size="2" translate>* Amount is required</font>
+                    </p>
+                  <div *ngIf="get_controls('amount').touched || get_controls('amount').dirty">
+                    <p
+                      *ngIf="formSubmitted && get_controls('amount').value !== requiredPrice && get_controls('amount').value.length > 0"
+                      style="color:rgba(255, 0, 0, 0.671)"
+                    >
+                      <font size="2" translate>* Please Enter the Required Amount Only</font>
+                    </p>
+                  </div>
+                  <fieldset>
+                    <legend><font size="3" translate>Invoice</font></legend>
+                    <ejs-uploader  id="Invoice" name="Invoice" (change)="onFileChangeInvoice(Invoice)" 
+                       allowedExtensions = '.jpeg,.jpg' [multiple]="false" maxFileSize = 10485760 
+                       (removing)="get_controls('Invoice').setValue('')" [autoUpload]='false' #Invoice>
+                    </ejs-uploader>  
+                    <p>
+                      <span *ngIf="formSubmitted && get_controls('Invoice').hasError('required')"style="color:rgba(255, 0, 0, 0.671)">
+                        <font size="2">* Invoice is required</font>
+                      </span>
+                      <span *ngIf="get_controls('Invoice').value" style="float: left;color: green; font-weight: bolder;">Attached</span>
+                    </p>                 
+                  </fieldset>                  
+                  <fieldset>
+                    <legend><font size="3" translate>Certificate</font></legend>
+                    <ejs-uploader  id="Certificate" name="Certificate" (change)="onFileChangeCertificate(Certificate)" 
+                       allowedExtensions = '.jpeg,.jpg' [multiple]="false" maxFileSize = 10485760 
+                       (removing)="get_controls('Certificate').setValue('')" [autoUpload]='false' #Certificate>
+                    </ejs-uploader> 
+                    <p>
+                      <span *ngIf="formSubmitted && get_controls('Certificate').hasError('required')"style="color:rgba(255, 0, 0, 0.671)">
+                        <font size="2">* Certificate is required</font>
+                      </span>
+                      <span *ngIf="get_controls('Certificate').value" style="float: left;color: green; font-weight: bolder;">Attached</span>
+                    </p>                 
+                  </fieldset>         
+                  <p></p>
+                  <label for="invoiceNumber" translate>Invoice Number</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="invoiceNumber"
+                    [ngClass]="{
+                      'not-invalid':
+                        invalidClass && get_controls('invoiceNumber').invalid
+                    }"
+                  />
+                    <p
+                      *ngIf="formSubmitted && get_controls('invoiceNumber').hasError('required')"
+                      style="color:rgba(255, 0, 0, 0.671)"
+                    >
+                      <font size="2" translate>* Invoice Number is required</font>
+                    </p>
+                  <p></p>
+                  <button type="button" class="btn btn-primary" (click)="onSubmit()">
+                    Apply <i class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i>
+                  </button>
+              </div>
+            </div>
+          </div>
+    </form>
+
+
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>

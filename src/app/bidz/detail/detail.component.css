@@ -1,0 +1,67 @@
+.container {
+    margin-top: 5%;
+  }
+
+  .card-body {
+    font-family: "Ubuntu";
+    font-size: 12px;
+  }
+
+  .card-header {
+    font-family: "Ubuntu";
+    font-size: medium;
+    color: #133355;
+  }
+
+  p {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #133355;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  label {
+    font-family: ubuntu;
+    font-weight: bolder;
+  }
+
+  .btn.btn {
+    background: #fff;
+    padding-top: 5px;
+    border: #37b07d solid 1px;
+    font-size: 0.75rem;
+    font-weight: 200;
+    color: #1755a5;
+    font-family: "UbuntuRegular";
+  }
+
+  .btn-cont {
+      padding-bottom: 10px;
+  }
+
+  .table, thead, th {
+    vertical-align: bottom;
+    border-bottom: 0 !important;
+}
+
+th {
+    padding: 5px;
+    font-size: 12px;
+    font-weight: 500;
+    font-family: ubuntu;
+}
+
+table {
+    /* display: block !important; */
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+}
+
+td {
+  font-size: 13px;
+}
+
+.head-name {
+  font-weight: lighter;
+}

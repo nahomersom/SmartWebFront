@@ -1,0 +1,264 @@
+.container {
+    margin-top: 3%;
+    padding: 1%;
+}
+
+.fa-file{
+    color:#E7E8EC;
+    font-size:250px;
+   
+}
+.fileIcon{
+
+    position:relative !important;
+}
+.searchIcon{
+  
+    position:absolute;
+    top:80px;
+    right: 420px;
+}
+@media (max-width: 450px) {
+    .searchIcon{
+  
+        position:absolute;
+        top:75px;
+        right: 40px;
+    }
+}
+@media only screen and (max-device-width: 540px){
+    .searchIcon{
+  
+        position:absolute;
+        top:75px;
+        right: 150px;
+    }
+}
+.fa-search{
+
+    color:#344563;
+    font-size: 200px;
+
+    
+}
+.noRecord{
+    position: relative;
+    top:15px;
+    font-weight: bold;
+    color:#344563;
+    font-size: 25px;
+}
+#newsContainer {
+    height: auto;
+    /* overflow-y: scroll; */
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* gallery  */
+
+body {
+    background-color: #1d1d1d !important;
+    font-family: "Asap", sans-serif;
+    color: #989898;
+    margin: 10px;
+    font-size: 16px;
+}
+
+#demo {
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.green {
+    background-color: #6fb936;
+}
+
+.thumb {
+    margin-bottom: 30px;
+}
+
+.page-top {
+    margin-top: 85px;
+}
+
+img.zoom {
+    width: 100%;
+    height: 200px;
+    border-radius: 5px;
+    object-fit: cover;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+}
+
+.transition,
+.zoom:hover {
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    transform: scale(1.2);
+}
+
+.modal-header {
+    border-bottom: none;
+}
+
+.modal-title {
+    color: #000;
+}
+
+.modal-footer {
+    display: none;
+}
+
+p {
+    font-size: 1rem;
+    font-family: "Ubunturegular";
+    color: rgb(0, 0, 0);
+}
+
+h4 {
+
+    color: #1755a5;
+    font-size: 1rem;
+    font-family: "UbuntuRegular";
+    font-weight: bold;
+
+
+}
+
+.btn.btn-primary,
+.btn.btn-success {
+    background: #fff;
+    padding-top: 5px;
+    border: #37b07d solid 1px;
+    font-size: 14px;
+    font-weight: 200;
+    margin-left: 2%;
+    margin-top: 2%;
+    color: #1755a5;
+    font-family: "UbuntuRegular";
+}
+
+img {
+    height: 300px;
+    width: 100%
+}
+
+.alert.alert-primary {
+    background: #D4E6F122;
+    cursor: pointer;
+    margin-bottom: 0rem;
+    border-color: #00000012;
+}
+
+.forum-text {
+    margin-bottom: -0.5rem !important;
+    font-family: "Ubuntu";
+    font-size: 0.2rem !important;
+    font-weight: normal;
+    text-align: left;
+}
+.forum-text ::ng-deep h2{
+    font-size: 1.5rem !important;
+}
+
+.forum-title {
+    margin-bottom: 0;
+    font-size: 0.75rem;
+    font-family: "UbuntuRegular";
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    color: #056dbd;
+
+}
+
+.forum-footer {
+    font-weight: lighter;
+    font-size: 0.75rem;
+    margin-top: 10px;
+    color: #056dbd;
+    margin-bottom: -0.5rem !important;
+}
+
+.btn.btn-outline-primary {
+    border-color: #555;
+    color: #555;
+    font-size: 0.75rem;
+    font-weight: 800;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.btn.btn-outline-primary:hover {
+    background: none;
+    color: #004085;
+    border-color: #004085;
+}
+
+.header-text {
+    font-size: x-large;
+    font-weight: 700;
+    padding-bottom: 10px;
+}
+
+@media screen and (max-width: 500px) {
+    img {
+        height: 150px !important;
+    }
+    h3 {
+        font-size: 16px;
+    }
+}
+
+@media only screen and (min-width: 501px) and (max-width: 1023px) {
+    h3 {
+        font-size: 18px;
+    }
+    img {
+        height: 250px !important;
+    }
+}
+
+.list-group-item.list-group-item-action {
+    background: #1b6da2;
+    color: #e6ebee;
+    font-weight: 600;
+    font-size: 12px;
+    font-family: sans-serif;
+    margin: 0;
+}
+
+.forum-cont {
+    cursor: pointer;
+}
+
+.limitTextHeight {
+    max-height: 50px;
+    overflow: hidden;
+}
+
+a {
+    color: #e6ebee;
+}
+
+.card, .card-header {
+    background-color: #1b6da2 !important;
+    color: #e6ebee;
+}
+
+.fab.fa-searchengin {
+    font-weight: bolder;
+    font-size: 2rem;
+    color: #c11b2b;
+}
+
+.no-record {
+    font-size: 14px !important;
+    text-align: center !important;
+}

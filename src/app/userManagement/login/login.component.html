@@ -1,0 +1,55 @@
+<div class="container">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+            <div class = "card">
+                    <div class="card-header" translate>Login Form</div>
+                    <div class="card-body">
+                        <form [formGroup]="formgroup" (ngSubmit)="onSubmit()">                                                     
+                            <ngb-alert type="danger" *ngIf="closeErrorAlert" [dismissible]="true" (close)="closeErrorAlert = false">
+                                <font size="2" translate>Email or Password is not Correct !</font>
+                            </ngb-alert>
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <span class="fa fa-envelope-o"></span>
+                                    </span> 
+                                </div>
+                                <input type="email" formControlName="email" placeholder="{{'Email' | translate }}" class="form-control" [ngClass]="{'not-invalid' : invalidClass && formgroup.controls.email.invalid}" />                         
+                            </div>
+                            <div *ngIf="email.errors">
+                                <p *ngIf="formSubmitted && email.hasError('required')"><font color="red" size="2" translate>* Email is required</font></p>
+                                <p *ngIf="formSubmitted && email.hasError('email')"><font color="red" size="2" translate>* Invalid Email</font></p>
+                            </div>
+                            <p></p>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <span class="fa fa-key"></span>
+                                    </span> 
+                                </div>
+                                
+                                <input type="password" formControlName="password" placeholder="{{'Password' | translate }}" class="form-control" [ngClass]="{'not-invalid' : invalidClass && formgroup.controls.password.invalid}" />
+                            </div>
+
+                            <div *ngIf="password.errors">
+                                <p *ngIf="formSubmitted && password.hasError('required')" style="color:rgba(255, 0, 0, 0.658)"><font color="red" size="2" translate>* Password is required</font></p>
+                                <p *ngIf="formSubmitted && password.hasError('minlength')" style="color:rgba(255, 0, 0, 0.658)"><font color="red" size="2" translate>* Password Should be atleast 5 character</font></p>
+                                <p *ngIf="formSubmitted && password.hasError('maxlength')" style="color:rgba(255, 0, 0, 0.658)"><font color="red" size="2" translate>* Password Should be no more than 8 character</font></p>
+                            </div>
+                            <br />
+                            <button type="submit" class="btn btn-primary" translate>
+                                Login <i class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i>
+                            </button>
+                            <!-- <a [routerLink]="['/signup']" translate>  Or register for this site ?</a> -->
+                            <p></p>
+                            <p align="center"><a [routerLink]="['/passwordreset']" translate>Forgot your password ?</a></p>
+                           
+                        </form>  
+                    </div>
+                </div>       
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+</div>

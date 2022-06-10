@@ -1,0 +1,175 @@
+#carousel-img {
+    margin-top: 0px;
+}
+
+.section-two {
+    margin-top: 15px;
+    padding: 5px;
+}
+
+.news {
+    height: auto;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.nav-link {
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    text-transform: capitalize;
+    font-family: "UbuntuBold";
+}
+
+.sr-only {
+    color: black;
+}
+
+.btn.btn-primary {
+    background: #fff;
+    padding-top: 5px;
+    border: #37b07d solid 1px;
+    font-size: 0.75rem;
+    font-weight: 200;
+    margin-left: 2%;
+    margin-top: 2%;
+    color: #1755a5;
+    font-family: "UbuntuRegular";
+}
+
+.btn.btn-success {
+    background: #fff;
+    padding-top: 5px;
+    border: #37b07d solid 1px;
+    font-size: 0.75rem;
+    font-weight: 200;
+    margin-left: 2%;
+    margin-top: 2%;
+    color: #1755a5;
+    font-family: "UbuntuRegular";
+}
+
+.news-paragraph {
+    font-size: 1rem;
+    color: rgb(0, 0, 0);
+    text-align: justify;
+    font-family: "UbuntuRegular";
+}
+
+h3 {
+    color: #1755a5;
+    font-size: 1rem;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+.list-group-item.list-group-item-action {
+    background: #1b6da2;
+    color: #dddfe2;
+    font-size: 14px;
+    font-family: "UbuntuRegular";
+}
+
+img {
+    height: 400px;
+    width: 100% !important;
+}
+
+@media screen and (max-width: 500px) {
+    img {
+        height: 150px !important;
+    }
+    h3 {
+        font-size: 16px;
+    }
+}
+
+@media only screen and (min-width: 501px) and (max-width: 1023px) {
+    h3 {
+        font-size: 18px
+    }
+    img {
+        height: 250px !important;
+    }
+}
+
+.article_author {
+    margin-bottom: 0rem;
+}
+
+ngb-carousel {
+    margin-bottom: 10px;
+}
+
+.divisions-cont {
+    height: 140px;
+}
+
+.division-sub-cont {
+    text-align: center;
+    padding: 15px;
+    font-family: "UbuntuBold";
+    font-weight: 600;
+    color: #14436b;
+}
+
+.ic {
+    font-size: 40px;
+}
+
+.carousel-caption {
+    position: absolute;
+    right: 15%;
+    bottom: 20px;
+    left: 15%;
+    z-index: 10;
+    padding-top: 20px !important;
+    padding-bottom: 0px !important;
+    color: rgb(0, 0, 0);
+    background: #ffffff87;
+    text-align: center;
+    font-family: "UbuntuRegular";
+}
+
+.card {
+    background-color: #1b6da2 !important;
+}
+
+.card-header {
+    color: rgb(219, 204, 204);
+}
+
+
+.head-section{
+
+    height: 500px;
+}
+.text1, .text2{
+    margin-top:10px;
+    margin-left:14px;
+    height: 20px;
+    border-radius: 20px;
+    width: 80%;
+}
+.bottom-section{
+    height:400px;
+    margin-top: 20px;
+}
+.head-section:empty, .bottom-section:empty, .text1:empty, .text2:empty, .text3:empty, .text4:empty{
+    animation: loading 2.1s infinite linear;
+    background: #dedfe1;
+    
+    background-image: linear-gradient(to right, #dedfe1 0%, #f2f3f5 25%, #dedfe1 75%, #dedfe1 100%);
+    background-repeat: no-repeat;
+}
+
+@keyframes loading {
+    0% {
+      background-position: -1000px;
+    }
+    100% {
+    background-position: 1000px;
+    }
+  }

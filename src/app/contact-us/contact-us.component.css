@@ -1,0 +1,88 @@
+.not-invalid {
+    border: 1px solid rgba(255, 0, 0, 0.692);
+}
+
+agm-map {
+    height: 400px;
+}
+
+.form-control
+{
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    border-radius: 2px;
+}
+
+textarea,input
+{
+    border: none;
+}
+
+#keepIntouch {
+    background-color: whitesmoke;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+.btn.btn-primary {
+    background: #004085;
+    padding-top: 5px;
+    border: #004085;
+    font-size: 14px;
+    font-weight: 800;
+    padding: 10px;
+}
+
+.contact {
+    text-align: center;
+}
+
+.icon {
+    font-size: xx-large;
+    color: #555;
+}
+
+.text {
+    color: #555;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.phone-no,
+.email {
+    padding-top: 30px;
+}
+
+i,
+b {
+    cursor: pointer;
+}
+
+@media screen and (max-width: 500px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+    agm-map {
+        height: 250px;
+    }
+    .email {
+        padding-top: 10px;
+    }
+    .phone-no {
+        padding-top: 10px;
+    }
+}
+
+@media only screen and (min-width: 501px) and (max-width: 1023px) {
+    agm-map {
+        height: 300px;
+    }
+    h1 {
+        font-size: 1.5rem;
+    }
+    .email {
+        padding-top: 10px;
+    }
+    .phone-no {
+        padding-top: 10px;
+    }
+}

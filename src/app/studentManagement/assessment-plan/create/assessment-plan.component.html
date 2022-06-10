@@ -1,0 +1,86 @@
+<br />
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h6 translate>Assessment Plan</h6>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="formGroup">
+                        <p>
+                            <label for="full_name" translate>Student Full Name</label>
+                            <input class="form-control" type="text" formControlName="full_name" />
+                            <span *ngIf="formSubmitted && getControls('full_name').hasError('required')" style="color:rgba(255, 0, 0, 0.671)">
+                                <small>* full name is required</small>
+                            </span>
+                        </p>
+                  <p></p>
+                  <label for=""><font size="2" translate>Sector</font></label>
+                  <select
+                    placeholder="sector"  class="form-control" formControlName="sector" (change)="loadingSubSector()"
+                    [ngClass]="{'not-invalid':invalidClass && get_controls('sector').invalid }">
+                    <option *ngFor="let s of sector" value="{{ s.sector_code }}">
+                      <font size="2">{{ s.sector_name | titlecase }}</font></option>                   
+                  </select>
+                    <p
+                      *ngIf="formSubmitted && get_controls('sector').hasError('required')"
+                      style="color:rgba(255, 0, 0, 0.671)">
+                      <font size="2" translate>* Sector is required</font>
+                    </p>
+                  <p></p>
+                  <label for=""><font size="2" translate>Sub Sector</font></label>
+                  <select
+                    placeholder="Sub Sector"
+                    class="form-control"
+                    formControlName="subSector"
+                    (change)="loadingOccupation()"
+                    [ngClass]="{
+                      'not-invalid': invalidClass && get_controls('subSector').invalid
+                    }"
+                  >
+                    <option
+                      *ngFor="let ss of subSector"
+                      value="{{ ss.sector_code }}"
+                      ><font size="2">{{
+                        ss.sector_name | titlecase
+                      }}</font></option
+                    >
+                  </select>
+                    <p
+                      *ngIf="formSubmitted && get_controls('subSector').hasError('required')"
+                      style="color:rgba(255, 0, 0, 0.671)">
+                      <font size="2" translate>* Sub Sector is required</font>
+                    </p>
+                  <p></p>
+                        <p>
+                            <label for="occ_code" translate>Occupation</label>
+                            <select class="form-control" formControlName="occ_code">
+                                <option *ngFor="let oc of occupations" value="{{ oc.occ_code }}">{{ oc.occ_name }}</option>
+                            </select>
+                            <span *ngIf="formSubmitted && getControls('occ_code').hasError('required')" style="color:rgba(255, 0, 0, 0.671)">
+                                <small>* occupation is required</small>
+                            </span>
+                        </p>
+                        <p>
+                            <label for="date" translate>Date</label>
+                            <input class="form-control" type="date" formControlName="date" />
+                            <span *ngIf="formSubmitted && getControls('date').hasError('required')" style="color:rgba(255, 0, 0, 0.671)">
+                                <small>* date is required</small>
+                            </span>
+                        </p>
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <span style="float: right;">
+                        <button class="btn btn-danger btn-sm mr-2" (click)="cancel()" translate>Cancel</button>
+                        <button class="btn btn-primary btn-sm" (click)="Submit()" translate>
+                            {{ id === undefined ? 'Submit':'Save Changes' }}</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>

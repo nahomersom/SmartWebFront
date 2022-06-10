@@ -1,0 +1,138 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <!-- map -->
+      <agm-map [latitude]="lat" [longitude]="lng">
+        <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+      </agm-map>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div id="keepIntouch">
+        <h1 align="center"><font translate>KEEP IN TOUCH WITH US</font></h1>
+      </div>
+    </div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-3 contact">
+      <div class="col-md-12 address">
+        <div class="icon">
+          <i class="fas fa-map-marker-alt"></i>
+        </div>
+        <div class="text" *ngIf="contactusInfo !== undefined">
+          <b>{{contactusInfo[0].street}}</b>
+        </div>
+      </div>
+      <div class="col-md-12 phone-no">
+        <div class="icon">
+          <i class="fas fa-phone-alt"></i>
+        </div>
+        <div class="text" *ngIf="contactusInfo !== undefined">
+          <b>{{contactusInfo[0].phone}}</b>
+        </div>
+      </div>
+      <div class="col-md-12 email">
+        <div class="icon">
+          <i class="fas fa-envelope"></i>
+        </div>
+        <div class="text" *ngIf="contactusInfo !== undefined">
+          <b>{{contactusInfo[0].email}}</b>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5">
+        <ngb-alert *ngIf="closeErrorAlert" type="danger" (close)="closeErrorAlert = false">
+          <font size="2" translate>message_alert</font>
+        </ngb-alert>
+        <ngb-alert *ngIf="closeAlert" type="success" (close)="closeAlert = false">
+            <font size="2" translate>message_success</font>
+        </ngb-alert>
+      <form [formGroup]="formgroup" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="col-md-12">
+            <!-- full name -->
+            <input
+              type="text"
+              formControlName="fullname"
+              placeholder="{{'Full Name' | translate}}"
+              class="form-control"
+              [ngClass]="{
+                'not-invalid':
+                  invalidClass && formgroup.controls.fullname.invalid
+              }"
+            />
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col-md-12">
+            <!-- email -->
+            <input
+              type="email"
+              formControlName="email"
+              placeholder="{{'Email' | translate}}"
+              class="form-control"
+              [ngClass]="{
+                'not-invalid': invalidClass && formgroup.controls.email.invalid
+              }"
+            />
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col-md-12">
+            <!-- subject -->
+            <input
+              type="text"
+              formControlName="subject"
+              placeholder="{{'Subject' | translate}}"
+              class="form-control"
+              [ngClass]="{
+                'not-invalid':
+                  invalidClass && formgroup.controls.subject.invalid
+              }"
+            />
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col-md-12">
+            <!-- message -->
+            <textarea
+              rows="6"
+              formControlName="message"
+              placeholder="{{'Your Message' | translate}}"
+              class="form-control"
+              [ngClass]="{
+                'not-invalid':
+                  invalidClass && formgroup.controls.message.invalid
+              }"
+            >
+            </textarea>
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col-md-12">
+            <!-- button -->
+            <div class="d-flex justify-content-end lower">
+              <button
+                type="submit"
+                class="btn btn-primary"
+                [disabled]="disable"
+              >
+              {{'Send Your Message' | translate}}
+            <i class="fas fa-spinner fa-spin fa-fw" *ngIf="disable"></i>
+            </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="col-md-2"></div>
+  </div>
+</div>

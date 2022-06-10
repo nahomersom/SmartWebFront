@@ -1,0 +1,32 @@
+.not-invalid {
+  border: 1px solid rgba(255, 0, 0, 0.692);
+}
+
+.card {
+  margin-top: 5%;
+  background: #D4E6F122;
+}
+
+.card-body {
+  padding: 2%;
+}
+
+.lower {
+  margin-top: 2%;
+}
+
+.btn.btn-primary {
+  background: #37b07d;
+  padding-top: 5px;
+  border: #37b07d;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.btn.btn-success {
+  background: #37b07d99;
+  padding-top: 5px;
+  border: #37b07d;
+  font-size: 14px;
+  font-weight: 800;
+}

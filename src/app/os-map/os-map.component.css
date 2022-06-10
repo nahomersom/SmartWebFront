@@ -1,0 +1,46 @@
+.card {
+  margin-top: 5%;
+}
+
+.list-group {
+  margin-top: 3%;
+  overflow: scroll;
+}
+
+.result-container {
+  margin-top: 25px;
+  overflow: scroll;
+}
+
+.card-body {
+  overflow: scroll;
+}
+
+#ResultOutPutContainer {
+  margin-top: -15px;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.container {
+  margin-top: 3%;
+  min-height: 600px;
+  margin-top: 0px;
+}
+
+.form-control.ng-untouched.ng-pristine.ng-invalid,
+.form-control.ng-untouched.ng-pristine.ng-valid,
+li,
+font {
+  background: #fff;
+  font-size: 14px;
+  font-family: "Open Sans",
+    sans-serif;
+  color: #555;
+}
+
+.unit-of-competency {
+  margin-top: 0px;
+}

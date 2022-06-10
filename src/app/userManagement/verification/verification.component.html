@@ -1,0 +1,25 @@
+<div class="container">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">        
+            <div class = "card">
+                    <div class="card-header" translate>Verification</div>
+                    <div class="card-body">
+                        <form [formGroup]="formgroup" (ngSubmit)="checkCode()">                           
+                            <input type="text" formControlName="code" placeholder="{{'Enter Code Here' | translate}}" class="form-control" [ngClass]="{'not-invalid' : invalidClass && formgroup.controls.code.invalid}" />                          
+                            <div *ngIf="getcode.errors && formSubmitted">
+                                <p *ngIf="getcode.hasError('required')" style="color:rgba(255, 0, 0, 0.521)"><font size="2" translate>Code is Required</font></p>
+                            </div>
+                            <div *ngIf="invalidCode">
+                                <p style="color:rgba(255, 0, 0, 0.692)"><font size="2" translate>Code is Not valid. Please insert the correct one !</font></p>
+                            </div>
+                            <p></p>
+                            <button type="submit" class="btn btn-primary" translate>Verifay</button>
+                        </form>
+                    </div>
+                </div> 
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+    

@@ -1,0 +1,36 @@
+<br />
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                       <td><button class="btn btn-success btn-sm" (click)="onAdd()">Add New</button></td>
+                       <td colspan="3"></td>
+                       <td colspan="2">
+                           <input type="search" class="form-control" placeholder="search ..." #search (keyup)="filter(search.value)" />
+                        </td>
+                    </tr>
+                    <tr align="center">
+                        <th>#</th>
+                        <th translate>Candidate</th>
+                        <th translate>Date</th>
+                        <th translate>Submission Date</th>
+                        <th colspan="2" translate>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let ass of filterd; let i = index" align="center">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ ass.full_name }}</td>
+                        <td>{{ ass.date }}</td>
+                        <td>{{ ass.created_at | date }}</td>
+                        <td><button class="btn btn-link" (click)="onEdit(ass.id)">Edit</button></td>
+                        <td><button class="btn btn-link" (click)="onDelete(ass.id)">Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>

@@ -1,0 +1,148 @@
+.container {
+    margin-top: 1%;
+    padding: 1%;
+}
+
+body {
+    background-color: #1d1d1d !important;
+    font-family: "Asap", sans-serif;
+    color: #989898;
+    margin: 10px;
+    font-size: 16px;
+}
+
+.social-icon {
+    color: #555 !important;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.social-icon :hover {
+    color: dodgerblue !important;
+}
+
+.card-body {
+    padding: 0.5rem;
+    text-align: center;
+    line-height: 0.5;
+}
+
+@media only screen and (min-width: 501px) and (max-width: 767px) {
+    .top-bar {
+        margin-top: 5px;
+        height: 30px;
+    }
+    .social-icon {
+        padding-left: 5px;
+        padding-right: 5px;
+        font-size: medium;
+    }
+    h3 {
+        font-size: 1.85rem;
+        line-height: 1.2;
+    }
+    h4 {
+        font-size: 1.2rem;
+        line-height: 0.8;
+    }
+    .card {
+        flex-direction: row;
+    }
+    .card-img {
+        width: 50%;
+        float: left;
+    }
+    .card-body {
+        width: 50%;
+        float: left;
+        padding: 0.8rem;
+        text-align: center;
+        line-height: 0.8;
+    }
+    img {
+        height: 200px !important;
+    }
+    .other-info {
+        font-size: 12px;
+    }
+    .btn.btn-outline-success.my-2.my-sm-0 {
+        margin-bottom: 0 !important;
+        margin-top: 0 !important;
+        height: 30px;
+        font-size: 12px;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+    .member-name {
+        font-size: 16px;
+        line-height: 1;
+    }
+    img {
+        height: 150px !important;
+    }
+    h4 {
+        font-size: 1.2rem;
+        line-height: 0.8;
+    }
+    img {
+        height: 200px !important;
+    }
+    .other-info {
+        font-size: 12px;
+    }
+    .btn.btn-outline-success.my-2.my-sm-0 {
+        margin-bottom: 0 !important;
+        margin-top: 0 !important;
+        height: 30px;
+        font-size: 12px;
+    }
+    p {
+        margin-bottom: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .top-bar {
+        top: 0px;
+    }
+    .social-icon {
+        padding-left: 2px;
+        padding-right: 2px;
+        font-size: small;
+    }
+    h3 {
+        font-size: 1.55rem;
+        line-height: 1;
+    }
+    h4 {
+        font-size: 1rem;
+        line-height: 0.4;
+    }
+    .card {
+        flex-direction: row;
+    }
+    .card-img {
+        width: 50%;
+        float: left;
+    }
+    .card-body {
+        width: 50%;
+        float: left;
+        padding: 0.5rem;
+        text-align: center;
+        line-height: 0.5;
+    }
+    img {
+        height: 150px !important;
+    }
+    .other-info {
+        font-size: 12px;
+    }
+    .btn.btn-outline-success.my-2.my-sm-0 {
+        margin-bottom: 0 !important;
+        margin-top: 0 !important;
+        height: 30px;
+        font-size: 12px;
+    }
+}

@@ -1,0 +1,48 @@
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="formgroup" (ngSubmit)="onSubmit()">
+      <p align="center">
+        <b>
+          <font color="#0A75E5" size="3" translate id="header">NEWS LETTER</font>
+        </b>
+      </p>
+      <p>
+        <font size="2" color="#0A75E5" translate>subscription_message</font>
+      </p>
+      <div class="input-group mb-3">
+        <input type="email" formControlName="email" class="form-control"
+          placeholder="{{'Enter your email address' | translate}}" [ngClass]="{
+            'not-invalid': invalidClass && formgroup.controls.email.invalid
+          }" />
+        <div class="input-group-append">
+          <select formControlName="language" class="btn btn-primary"
+            [ngClass]="{'not-invalid': invalidClass && formgroup.controls.language.invalid}">
+            <option value="" disabled selected hidden translate>Language</option>
+            <option id="dropdownBasic1" value="English" translate>English</option>
+            <option id="dropdownBasic1" value="Amharic" translate>Amharic</option>
+            <option id="dropdownBasic1" value="Oromifa" translate>Oromifa</option>
+            <option id="dropdownBasic1" value="Hareri" translate>Harari</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1" (click)="isChecked()">
+        <label class="form-check-label" for="exampleCheck1" translate>Subscribe for bid</label>
+      </div>
+      <div class="input-group">
+        <button type="submit" class="btn btn-primary" translate>Subscribe</button>
+      </div>
+      <div *ngIf="email.errors">
+        <p *ngIf="formSubmitted && email.hasError('required')">
+          <font color="red" size="2" translate class="error">* Email is required *</font>
+        </p>
+        <p *ngIf="formSubmitted && email.hasError('email')">
+          <font color="red" size="2" translate class="error">* Invalid Email *</font>
+        </p>
+      </div>
+      <p *ngIf="formSubmitted && language.hasError('required')">
+        <font color="red" size="2" translate class="error">* select language *</font>
+      </p>
+    </form>
+  </div>
+</div>

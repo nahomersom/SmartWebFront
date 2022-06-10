@@ -1,0 +1,101 @@
+<!-- <div class="container">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-7">
+        <form [formGroup]="formgroup" (ngSubmit)="onSubmit()">
+            <ngb-tabset>
+                <ngb-tab>
+                  <ng-template ngbTabTitle><b translate>Personal Info</b></ng-template>
+                  <ng-template ngbTabContent>
+                      <div class="card">
+                          <div class="card-body">
+                              <label for="fullName" translate>Student Full Name</label>
+                              <input type="text" readonly class="form-control" formControlName="fullName" />
+                              <br />
+                              <label for="gender" translate>Gender</label>
+                              <input type="text" readonly class="form-control" formControlName="gender" />
+                              <br />
+                              <label for="nationality" translate>Nationality</label>
+                              <input type="text" readonly class="form-control" formControlName="nationality" />                     
+                              <br />
+                              <label for="institute" translate>Institute</label>
+                              <input type="text" readonly class="form-control" formControlName="institute" />                        
+                              <br />
+                              <label for="modeOfTraining" translate>Mode Of Training</label>
+                              <input type="text" readonly class="form-control" formControlName="modeOfTraining" />                      
+                              <br />
+                              <label for="occupationTrainedOn" translate>Occupation Trained On</label>
+                              <input type="text" readonly class="form-control" formControlName="occupationTrainedOn" />
+                              <br />
+                          </div>
+                        </div>
+                  </ng-template>
+                </ngb-tab>
+
+                <ngb-tab>
+                    <ng-template ngbTabTitle><b translate>Address</b></ng-template>
+                    <ng-template ngbTabContent>
+                        <div class="card">
+                            <div class="card-body">
+                                <label for="subcity" translate>Sub city</label>
+                                <input type="text" class="form-control" formControlName="subcity" [ngClass]="{'not-invalid' : invalidClass && formgroup.controls.subcity.invalid}"/>
+                                <div *ngIf="getsubcity.errors">
+                                  <p *ngIf="formSubmitted && getsubcity.hasError('required')" style="color:rgba(255, 0, 0, 0.671)"><font size="2" translate>* Subcity is required</font></p>
+                                </div>
+                                <br />
+                                <label for="wereda" translate>Wereda</label>
+                                <input type="text" class="form-control" formControlName="wereda" [ngClass]="{'not-invalid' : invalidClass && formgroup.controls.wereda.invalid}"/>
+                                <div *ngIf="getwereda.errors">
+                                  <p *ngIf="formSubmitted && getwereda.hasError('required')" style="color:rgba(255, 0, 0, 0.671)"><font size="2" translate>* Wereda is required</font></p>
+                                </div>
+                                <br />
+                                <label for="homePhone" translate>Home Phone</label>
+                                <input type="text" class="form-control" formControlName="homePhone" [ngClass]="{'not-invalid' : invalidClass && formgroup.controls.homePhone.invalid}"/>
+                                <div *ngIf="gethomePhone.errors">
+                                  <p *ngIf="formSubmitted && gethomePhone.hasError('required')" style="color:rgba(255, 0, 0, 0.671)"><font size="2" translate>* Home Phone is required</font></p>
+                                </div>
+                                <br />
+                                <label for="officephone" translate>Office Phone</label>
+                                <input type="text" class="form-control" formControlName="officephone" [ngClass]="{'not-invalid' : invalidClass && formgroup.controls.officephone.invalid}"/>
+                                <div *ngIf="getofficephone.errors">
+                                  <p *ngIf="formSubmitted && getofficephone.hasError('required')" style="color:rgba(255, 0, 0, 0.671)"><font size="2" translate>* Office Phone is required</font></p>
+                                </div>
+                                <br />
+                                <label for="martialStatus" translate>Martial Status</label>
+                                <select class="form-control" formControlName="martialStatus" [ngClass]="{'not-invalid' : invalidClass && formgroup.controls.martialStatus.invalid}" >
+                                  <option value="single" translate>Single</option>
+                                  <option value="marrid" translate>Married</option>
+                                </select>
+                                <div *ngIf="getmartialStatus.errors">
+                                  <p *ngIf="formSubmitted && getmartialStatus.hasError('required')" style="color:rgba(255, 0, 0, 0.671)"><font size="2"> *Martial Status is required</font></p>
+                                </div>
+                                <br />
+                                <label for="disability" translate>Are you physically Disable ?</label>
+                                <select (change)="setValidation()" placeholder="Disability" class="form-control" formControlName="disability" [ngClass]="{'not-invalid' : invalidClass && formgroup.controls.disability.invalid}" >
+                                  <option value="yes" translate>Yes</option>
+                                  <option value="no" translate>No</option>
+                                </select>
+                                <div *ngIf="getDisability.errors">
+                                  <p *ngIf="formSubmitted && getDisability.hasError('required')" style="color:rgba(255, 0, 0, 0.671)"><font size="2"> *Disability is required</font></p>
+                                </div>
+                                <br />
+                                <label for="natureOfDisability" translate>Nature Of Disability</label>
+                                <input type="text" class="form-control"  formControlName="natureOfDisability" [ngClass]="{'not-invalid' : invalidClass && formgroup.controls.natureOfDisability.invalid && getDisability.value === 'yes'}" />
+                                <div *ngIf="getNatureOfDisability.errors && getDisability.value === 'yes'">
+                                  <p *ngIf="formSubmitted && getNatureOfDisability.hasError('required')" style="color:rgba(255, 0, 0, 0.671)"><font size="2" translate>* Nature of Disability is required</font></p>
+                                </div>
+                                <br />
+                                <input type="submit" class="btn btn-primary" value="{{'Create' | translate}}" *ngIf="hideCreateButton" />
+                                <input type="submit" class="btn btn-success" value="{{'Save' | translate}}" *ngIf="hideSaveChangesButton" />
+        
+                            </div>
+                        </div>
+                    </ng-template>
+                </ngb-tab>
+            </ngb-tabset>
+        </form>
+    </div>
+    <div class="col-md-2"></div>
+    
+  </div>
+</div> -->

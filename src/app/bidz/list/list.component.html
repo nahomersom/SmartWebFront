@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row top">
+                <div class="col-3 title"><label translate> {{method === 'procurement' ? "Procurement" : "Disposal" }} bids</label></div>
+                <div class="col-5 title">
+                    <form [formGroup]="fg">
+                        <select class="form-control" formControlName="category" name="category" (change)="filter($event.target.value)">
+                            <option value="" translate> Select category </option>
+                            <option *ngFor="let cat of categories" value="{{ cat.value }}">
+                                {{ cat.text }}
+                            </option>
+                        </select>
+                      <!--   <button type="button" class="btt btn btn-outline-success my-2 my-sm-0" (click)="filter()">
+                            <i class="fas fa-filter"></i>
+                        </button> -->
+                    </form>
+                </div>
+                <div class="col-4 title">
+                    <form (ngSubmit)="onSubmit($event)">
+                        <div class="form-group">
+                            <input type="text" name="search" class="form-control" id="search" placeholder="Search..."
+                                aria-describedby="emailHelp" autocomplete="off">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="card" *ngIf="!data.length">
+                <p>
+                    No record found!
+                </p>
+            </div>
+            <ng-container *ngFor="let da of data">
+                <div class="card">
+                <div class="card-header">
+                    <div class="col-9 head-l">
+                        <u><b>{{ da.title }}</b></u> <br>
+                        <p>Open on : {{ da.bid_opening_date }}</p>
+                        <p>Will be closed on : {{ da.bid_closing_date }}</p>
+                    </div>
+                </div>
+                <div class="card-body" [ngClass]="{'limitTextHeight': isReadMore}"
+                    [innerHTML]="da.description | htmlSanitaizer">
+                </div>
+                <div class="col-3 btn-cont">
+                    <button type="button" class="btn btn-success" (click)="showText(da)" translate>
+                        {{ isReadMore ? 'Read More': 'Read Less' }}
+                    </button>
+                </div>
+            </div>
+             <div class="mt-2"></div>
+        </ng-container>
+        </div>
+    </div>
+</div>

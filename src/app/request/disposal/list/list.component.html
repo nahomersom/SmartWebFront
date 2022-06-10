@@ -1,0 +1,89 @@
+<div class="container">
+  <div class="row">
+    <hr />
+    <div class="col-md-12">
+
+        <div class="row">
+          <div class="col-md-10 col-sm-12 col-xs-12 mb-4">
+            <label translate>Disposal requests</label>
+          </div>
+          <div class="col-md-2 col-sm-12 col-xs-12 mb-4">
+            <button type="button" class="btn btn-outline-secondary" (click)="add()" translate>
+              New request
+            </button>
+          </div>
+        </div>
+
+
+        <div class="table-responsive">
+          <table class="table table-hover table-striped table-bordered table-sm">
+            <thead align="center">
+              <tr>
+                <th *ngFor="let columen of columens" scope="row" translate>{{ columen }}</th>
+              </tr>
+            </thead>
+            <tbody align="center" *ngIf="data.length === 0">
+              <tr>
+                <td colspan="9">No data available</td>
+              </tr>
+            </tbody>
+            <tbody *ngIf="data.length > 0">
+              <tr *ngFor="let d of data; let i = index">
+                <td width="55%"><span><p [innerHTML]="d.description  | titlecase "></p></span></td>
+                <td width="10%"><span>{{ d.budget_year | titlecase }}</span></td>
+                <td width="20%"><span>{{ d.created_at | date:'medium' }}</span></td>
+                <td width="10%">
+                  <ng-container>
+                    <span class="mr-4" (click)="edit(d.id)">
+                      <i class="icon far fa-edit" style="color:rgba(0, 255, 0, 0.671)"></i>
+                    </span>
+                    <span class="mr-4" (click)="delete(d.id)" *ngIf="d.status !== '1'"
+                      style="color:rgba(255, 0, 0, 0.671)">
+                      <i class="icon far fa-trash-alt"></i>
+                    </span>
+                    <span class="ml-2" (click)="generateReport(d.id)" *ngIf="d.status !== '1'">
+                      <i class="icon fa fa-print" style="color:rgba(0, 0, 255, 0.671)"></i>
+                    </span>
+                    <span class="ml-2" (click)="seePlan(d.id)" *ngIf="d.status === '1'">
+                      <i class="icon fas fa-clipboard-list" style="color: purple"></i>
+                    </span>
+                  </ng-container>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      
+    </div>
+  </div>
+</div>
+<div class="printable">
+  <table class="table table-hover table-striped table-bordered table-sm">
+    <thead align="center">
+      <tr>
+        <th *ngFor="let c of printCols" scope="row">{{ c }}</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="printData">
+      <tr *ngFor="let d of printData; let i = index">
+        <td>{{ d.budget_year }}</td>
+        <td>{{ d.title }}</td>
+        <td>{{ d.quantity }}</td>
+        <td>{{ d.unit }}</td>
+        <td>{{ d.code }}</td>
+        <td>{{ d.current_price }}</td>
+        <td>{{ d.property_condition }}</td>
+        <td [innerHTML]="d.property_condition_desc"></td>
+        <td>{{ d.plate_number }}</td>
+        <td>{{ d.shansi }}</td>
+        <td>{{ d.country_made }}</td>
+        <td>{{ d.date_of_purchase }}</td>
+        <td>{{ d.manufacturer }}</td>
+        <td>{{ d.model }}</td>
+        <td>{{ d.motor_number }}</td>
+        <td>{{ d.vehicle_current_place }}</td>
+        <td>{{ d.owner }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

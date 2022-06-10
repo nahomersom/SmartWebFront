@@ -1,0 +1,39 @@
+.not-invalid {
+    border: 1px solid rgba(255, 0, 0, 0.692);
+  }
+  
+  .card {
+    margin-top: 2%;
+  }
+  
+  .container {
+    margin-top: 3%;
+  }
+  
+  .form-inline>* {
+    margin: 2px 1px;
+  }
+  
+  .btn.btn-primary {
+    background: #004085;
+    padding-top: 5px;
+    border: #004085;
+    font-size: 14px;
+    font-weight: 800;
+  }
+
+  .btn.btn-success {
+    padding-top: 5px;
+    font-size: 14px;
+    font-weight: 800;
+  }
+  .btn.btn-secondary {
+    padding-top: 5px;
+    font-size: 14px;
+    font-weight: 800;
+    border: #004085;
+  }
+ 
+  .buttonBox {
+    margin-top: 2%;
+  }

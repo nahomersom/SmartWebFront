@@ -1,0 +1,18 @@
+.list-group-item.list-group-item-action {
+    background: #1b6da2;
+    color: #e6ebee;
+    font-weight: 600;
+    font-size: 12px;
+    font-family: sans-serif;
+}
+
+a {
+    cursor: pointer;
+    color: #e6ebee;
+}
+
+
+.card, .card-header {
+    background-color: #1b6da2 !important;
+    color: #e6ebee;
+}

@@ -1,0 +1,10 @@
+.container {
+    margin-top: 4%;
+  }
+  h2 {
+    font-family: 'Times New Roman', Times, serif;
+    align-items: center
+  }
+  .card {
+    padding: 1%;
+  }

@@ -1,0 +1,76 @@
+.card-body {
+  padding: 2%;
+}
+
+.btn.btn-primary {
+  background: #004085;
+  padding-top: 5px;
+  border: #004085;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.form-control {
+    font-size: 0.75rem; 
+}
+
+.form-control.ng-dirty.ng-valid.ng-touched {
+  background: #fff;
+  font-size: 0.75rem;
+  font-family: "Open Sans",
+    sans-serif;
+  color: #555;
+}
+
+#collapseExample {
+  border: none !important;
+}
+
+.not-invalid {
+  border: 1px solid rgba(255, 0, 0, 0.692);
+}
+
+
+.btn.btn-outline-primary {
+  border-color: #555;
+  color: #555;
+  font-size: 0.75rem;
+  font-weight: 800;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.btn.btn-outline-primary:hover {
+  background: none;
+  color: #004085;
+  border-color: #004085;
+}
+
+.btn.btn-outline-primary.btn-block {
+  width: auto;
+}
+
+.d-flex.justify-content-start.lower {
+  float: right;
+}
+
+.list-group-item.list-group-item-action.flex-column.align-items-end {
+    padding: 0 !important;
+    font-size: 0.75rem;
+    font-family: "Ubuntu";
+}
+
+small, .footer-navs {
+    font-size: 13px !important;
+    font-family: "UbuntuRegular" !important;
+    padding: 0 !important;
+}
+
+b {
+      color: cadetblue;
+}
+
+.date {
+  font-weight: lighter !important;
+  font-size: 0.6rem !important;
+  font-style: italic !important;
+}

@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../../../../../var/www/html/smart_web_api"
+		}
+	],
+	"settings": {}
+}

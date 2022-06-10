@@ -1,0 +1,99 @@
+<div class="container">
+  <div class="row" *ngIf="!allowCommenting">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+      [ngClass]="{'col-lg-8 col-md-8 col-sm-12 col-xs-12 news-paragraph': show_events && events.length, 'col-lg-12 col-md-12 col-sm-12 col-xs-12 news-paragraph': !show_events && !events.length}">
+      <div id="newsContainer">
+        <div *ngFor="let article of articles">
+          <!-- show if  -->
+          <div>
+            <img src="{{ indexService.original_url + '/' + article.thumbnail }}" *ngIf="article.thumbnail !== 'null'"
+              title="{{article.title}}" style="width:100%;height:400px;" />
+            <p></p>
+            <h4 [innerHTML]="article.title"></h4>
+            <hr />
+            <p></p>
+            <div class="col-12 news-paragraph" *ngIf="!showDetail && articles.length > 1">
+              <div [innerHTML]="article.abstract"></div>
+            </div>
+            <div class="col-12 news-paragraph" *ngIf="showDetail || articles.length==1">
+              <p [innerHTML]="article.body | htmlSanitaizer"></p>
+            </div>
+
+            <p align="right" class="article_author" *ngIf="showDetail">
+              <font size="2.5">{{ article.author | titlecase }}</font>
+            </p>
+            <p align="right" class="article_author" *ngIf="showDetail">
+              <font size="2.5">{{ article.updated_date | date }}</font>
+            </p>
+            <br />
+            <button *ngIf="articles.length > 1 && !showDetail" type="button" class="btn btn-primary"
+              (click)="readMore(article.id)" translate>Read More</button>
+            <button *ngIf="showDetail" type="button" class="btn btn-success" (click)="back()" translate>Back</button>
+          </div>
+          <br />
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+      <div class="card" *ngIf="show_events && events.length">
+        <div class="card-header">
+          <h6 align="center" translate>Up Coming Events</h6>
+        </div>
+        <div class="list-group" *ngFor="let event of events">
+          <p class="list-group-item list-group-item-action">
+            <a (click)="event_detail(event)" routerLink="">{{ event.title }}</a><br />
+            <span style="float: left;">On, {{ event.date | date }}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!articles?.length" class="no-record" translate>
+    <div class="fileIcon">
+      <i class="fa fa-file" aria-hidden="true"></i>
+      <div class="searchIcon">
+        <i class="fa fa-search"></i><br>
+      </div>
+      <p class="noRecord">No record found, Come back another time !</p>
+    </div>
+
+ 
+   
+  </div>
+
+  <!-- forum layout -->
+  <div *ngIf="allowCommenting">
+    <div class="row">
+      <div class="col-1"></div>
+      <div class="col-11 header-text">
+        Forum
+      </div>
+      <div class="col-1"></div>
+      <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+        <input *ngIf="articles.length === 1 && showDetail" type="button" value="Back to forums"
+          class="btn btn-outline-primary" (click)="back()" />
+        <p></p>
+        <div *ngFor="let article of articles">
+          <hr />
+          <span class="forum-cont" *ngIf="true" type="primary" [dismissible]="false" (click)="readMore(article.id)">
+            <p class="forum-title">{{article.title}}</p>
+            <p [ngClass]="{'limitTextHeight': isReadMore}" [innerHTML]=" article.body | htmlSanitaizer" align="center"
+              class="forum-text"></p>
+            <p class="forum-footer">{{article.created_date}}</p>
+          </span>
+          <hr />
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-1"></div>
+      <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+        <div *ngIf="articleIsDetail">
+          <app-comments [articleId]="currentArticleId"></app-comments>
+        </div>
+        <br />
+      </div>
+    </div>
+  </div>
+</div>

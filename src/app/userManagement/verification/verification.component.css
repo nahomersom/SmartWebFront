@@ -1,0 +1,9 @@
+.not-invalid{
+    border: 1px solid rgba(255, 0, 0, 0.692);
+  }
+  div.message{
+    text-align: center;
+  }
+  .card {
+    margin-top: 20%;
+  }

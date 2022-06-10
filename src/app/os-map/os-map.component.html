@@ -1,0 +1,98 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header" translate>OS Map</div>
+        <div class="card-body">
+          <div class="form-group">
+            <form [formGroup]="formgroup">
+              <label for=""><font size="2" translate>Sector</font></label>
+              <select
+                placeholder="sector"
+                class="form-control"
+                formControlName="sector"
+                (change)="loadingSubSector()"
+                [ngClass]="{
+                  'not-invalid':
+                    invalidClass && formgroup.controls.sector.invalid
+                }"
+              >
+                <option *ngFor="let s of sector" value="{{ s.sector_code }}"
+                  ><font size="2">{{ s.sector_name | titlecase }}</font></option>
+              </select>
+              <br />
+              <label for=""><font size="2" translate>Sub Sector</font></label>
+              <select
+                placeholder="Sub Sector"
+                class="form-control"
+                formControlName="subSector"
+                (change)="loadingOccupation()"
+                [ngClass]="{
+                  'not-invalid':
+                    invalidClass && formgroup.controls.subSector.invalid
+                }">
+                <option
+                  *ngFor="let ss of subsector"
+                  value="{{ ss.sector_code }}"
+                  ><font size="2">{{
+                    ss.sector_name | titlecase
+                  }}</font></option
+                >
+              </select>
+
+              <br />
+              <label for=""><font size="2" translate>Occupation</font></label>
+              <select
+                (change)="loadingUC(this.getoccupation.value)"
+                class="form-control"
+                formControlName="occupation"
+                [ngClass]="{
+                  'not-invalid':
+                    invalidClass && formgroup.controls.occupation.invalid
+                }"
+              >
+                <option *ngFor="let occ of occupations" value="{{ occ.occ_code }}">
+                  <font size="2">{{ occ.occ_name | titlecase }} Level {{occ.level | titlecase}}</font>
+                </option>
+              </select>
+              <br />
+              <p *ngIf="showAmount && amount_for_uc === null" translate>
+                Amount Required For unit Of competency:
+                <b><U><span style="color:red;" translate>NOT AVAILABLE</span></U></b>
+              </p>
+              <p *ngIf="showAmount && amount_for_uc !== null" translate>
+                Amount Required For unit Of competency:
+                <b><u>{{ amount_for_uc }}</u></b>
+                Birr
+              </p>
+              <p *ngIf="showAmount && amount_for_level === null" translate>
+                Amount Required For Level:
+                <b><U><span style="color:red;" translate>NOT AVAILABLE</span></U></b>
+              </p>
+              <p *ngIf="showAmount && amount_for_level !== null" translate>
+                Amount Required For Level:
+                <b><u>{{ amount_for_level }}</u></b> Birr
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 result-container">
+      <div *ngIf="showAmount" class="card unit-of-competency">
+        <div class="card-header" translate>Unit of competency</div>
+        <div class="card-body">
+          <div id="ResultOutPutContainer">
+            <ul class="list-group">
+              <li
+                *ngFor="let uc of unitOfCompetency"
+                class="list-group-item list-group-item-warning d-flex justify-content-between align-items-center">
+                {{ uc.uc_name }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

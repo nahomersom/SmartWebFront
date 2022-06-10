@@ -1,0 +1,62 @@
+.modal-header {
+    background: #004085;
+    color: white;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.modal-footer {
+    padding-top: 1%;
+    padding-bottom: 2%;
+}
+
+.modal-body {
+    background: #D4E6F122
+}
+
+.close {
+    color: #fff;
+    border: none;
+}
+
+.card {
+    text-align: center;
+}
+
+.name {
+    margin-top: 25px;
+}
+
+.btn.btn-danger {
+    font-size: 14px;
+    font-family: sans-serif;
+    font-weight: 800;
+}
+
+.img-thumbnail {
+    height: 150px !important;
+}
+
+.biography {
+    max-height: 400px;
+    overflow: overlay;
+}
+
+@media screen and (max-width: 500px) {
+    .img-thumbnail {
+        height: 100px !important;
+    }
+    h4 {
+        font-size: 1rem;
+    }
+    .name {
+        margin-top: 10px;
+    }
+    .biography {
+        font-size: 12px;
+        max-height: 200px;
+    }
+    .card-body {
+        padding: 0.5rem;
+    }
+}

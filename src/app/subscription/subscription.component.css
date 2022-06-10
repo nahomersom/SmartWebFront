@@ -1,0 +1,100 @@
+.not-invalid {
+  border: 1px solid rgba(255, 0, 0, 0.692);
+}
+
+.card {
+  margin-top: 5%;
+  background-color: #D4E6F122;
+}
+
+.card-body {
+  padding: 2%;
+}
+
+.lower {
+  margin-top: 2%;
+}
+
+p {
+  LINE-HEIGHT: 20px;
+  color: #37b07d;
+}
+#exampleCheck1:hover{
+  cursor: pointer;
+}
+.btn.btn-primary {
+  background: #ffffff;
+  padding-top: 5px;
+  border: #37b07d;
+  font-size: 14px;
+  color: #2155a5;
+  align-items: center;
+  border: 1px solid #2155a5;
+  font-family: "UbuntuBold";
+  height: auto;
+  margin-left: 0;
+}
+
+.btn.btn-success {
+  background: #37b07d99;
+  padding-top: 5px;
+  border: #37b07d;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+font {
+  color: #ccd5df;
+}
+
+#errorText {
+  color: red;
+}
+
+#dropdownBasic1,
+.dropdown-item {
+  /* width: auto; */
+  font-size: 13px;
+  font-weight: 600;
+  background: #fff !important;
+  border: none;
+  color: #555;
+  margin-left: 2%
+}
+
+.dropdown-item {
+  cursor: pointer;
+  color: #555;
+  font-weight: 900;
+}
+
+.dropdown-item:hover {
+  color: #3f729b !important;
+}
+.languageButton {
+  background-color: #37b07d;
+  color: #fff;
+  font-size: 13px;
+padding: 1%;
+  font-weight: 600;
+  border: none;
+}
+.btn {
+width: 100%
+}
+
+.form-group.form-check {
+  text-align: left;
+  color: rgb(255, 253, 253);
+}
+
+
+.card {
+    background-color: #1b6da2;
+}
+.error{
+  color:#f5d76e;
+}
+select:hover{
+  cursor: pointer;
+}

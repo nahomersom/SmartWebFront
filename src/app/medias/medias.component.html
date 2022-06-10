@@ -1,0 +1,54 @@
+<div class="container page-top">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="title" translate>
+                {{category}}
+            </div>
+            <div class="form-inline my-2 my-lg-0">
+                <button class="btn btn-outline-success my-2 my-sm-0" (click)="filterMedia('Images')" translate>
+                    Images
+                </button>
+                <button class="btn btn-outline-success my-2 my-sm-0" (click)="filterMedia('Video')" translate>
+                    Videos
+                </button>
+                <button class="btn btn-outline-success my-2 my-sm-0" (click)="ngOnInit()" translate>
+                    All Media
+                </button>
+            </div>
+        </div>
+    </div>
+    <hr />
+
+    <div class="row images" *ngIf="mediaType === 'Images'">
+        <div class="col-lg-3 col-md-4 col-xs-4 thumb" *ngFor="let media of medias">
+            <a class="e2e-trusted-url" *ngIf="media.mediaType === 'Images'"
+                href="{{ media.mediaName ? mediaService.original_url + media.media : media.media }}"
+                data-fancybox="images" class="fancybox" rel="ligthbox">
+                <img src="{{ media.mediaName ? mediaService.original_url + media.media : media.media }}"
+                    class="zoom img-fluid" alt="{{ media.title }}" title="{{media.title}}" />
+            </a>
+            <a class="e2e-trusted-url" *ngIf="media.mediaType === 'Video'"
+                href="{{ mediaService.original_url + media.media }}" title="{{media.title}}" data-fancybox="images"
+                class="fancybox" rel="ligthbox">
+                <!-- <div class="zoom img-fluid play-cont"> -->
+                <i class="fas fa-play zoom img-fluid"></i>
+                <!-- </div> -->
+                <video width="250" height="200" class="zoom vid">
+                    <source src="{{ mediaService.original_url + media.media }}#t=0.5" type="video/mp4" />
+                </video>
+            </a>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="mediaType === 'Video'">
+        <div class="col-lg-3 col-md-4 col-xs-6 thumb" *ngFor="let media of medias">
+            <a class="e2e-trusted-url" data-fancybox href="{{ mediaService.original_url + media.media }}"
+                data-fancybox="images" class="fancybox" rel="ligthbox">
+                <img src="/assets/image/video-thumbnail-default.png" class="zoom img-fluid " alt="{{ media.title }}"
+                    title="{{media.title}}" />
+
+            </a>
+            <p>{{ media.title }}</p>
+        </div>
+    </div>
+</div>

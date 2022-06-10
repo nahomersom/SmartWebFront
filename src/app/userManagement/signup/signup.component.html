@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class = "card"> 
+                <div class="card-header" translate>Sign Up Form</div>
+                <div class="card-body">
+                    <form [formGroup]="formgroup" (ngSubmit)="onSubmit()">
+                        <input type="text" formControlName="fullName" placeholder="{{'Full Name' | translate }}" class="form-control" [ngClass]="{'not-invalid' : invalidClass && formgroup.controls.fullName.invalid}" />                              
+                        <div *ngIf="getfullname.errors">
+                            <p *ngIf="formSubmitted && getfullname.hasError('required')" style="color:rgba(255, 0, 0, 0.671)"><font size="2" translate>* Full Name is required</font></p>
+                        </div>
+                        <p></p>
+                        <select class="form-control" formControlName="gender" [ngClass]="{'not-invalid' : invalidClass && formgroup.controls.gender.invalid}" >
+                            <option value="" disabled selected hidden translate>Gender</option>
+                            <option value="Female" translate>Female</option>
+                            <option value="Male" translate>Male</option>
+                        </select>
+                        <div *ngIf="getgender.errors">
+                            <p *ngIf="formSubmitted && getgender.hasError('required')" style="color:rgba(255, 0, 0, 0.671)"><font size="2" translate>* Gender is required</font></p>
+                        </div>
+                        <p></p>
+                        <input type="email" formControlName="email" placeholder="{{'Email' | translate }}" class="form-control" [ngClass]="{'not-invalid' : invalidClass && formgroup.controls.email.invalid}" />
+                        <div *ngIf="getemail.errors">
+                            <p *ngIf="formSubmitted && getemail.hasError('required')" style="color:rgba(255, 0, 0, 0.671)"><font size="2" translate>* Email is required</font></p>
+                            <p *ngIf="formSubmitted && getemail.hasError('email')" style="color:rgba(255, 0, 0, 0.671)"><font size="2" translate>* invalid email</font></p>
+                        </div>
+                        <p></p>
+                        <input type="password" formControlName="password" placeholder="{{'Password' | translate }}" class="form-control" [ngClass]="{'not-invalid' : invalidClass && formgroup.controls.password.invalid}" />
+                        <div *ngIf="getpassword.errors">
+                            <p *ngIf="formSubmitted && getpassword.hasError('required')" style="color:rgba(255, 0, 0, 0.671)"><font size="2" translate>* Password is required</font></p>
+                            <p *ngIf="formSubmitted && getpassword.hasError('minlength')" style="color:rgba(255, 0, 0, 0.671)"><font size="2" translate>* Password Should be atleast 5 character</font></p>
+                            <p *ngIf="formSubmitted && getpassword.hasError('maxlength')" style="color:rgba(255, 0, 0, 0.671)"><font size="2" translate>* Password Should be no more than 8 character</font></p>
+                        </div>
+                        <p></p>
+                        <input type="password" formControlName="repassword" placeholder="{{'Confirm Password' | translate }}" class="form-control" [ngClass]="{'not-invalid' : invalidClass && formgroup.controls.repassword.invalid}" />
+                        <div *ngIf="getrepassword.errors">
+                            <p *ngIf="formSubmitted && getrepassword.hasError('required')" style="color:rgba(255, 0, 0, 0.671)"><font size="2" translate>* Password not Match</font></p>
+                        </div>
+                        <p></p>                                                               
+                        <button type="submit" class="btn btn-primary" translate>Sign up</button>
+                        <a [routerLink]="['/login']" translate>  Or already have an account ?</a>
+                    </form>
+                </div>
+            </div>
+                        
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>

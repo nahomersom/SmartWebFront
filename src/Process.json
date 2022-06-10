@@ -1,0 +1,1084 @@
+{
+  "user": [
+    {
+      "id": 1,
+      "fullname": "Abebe Kebede",
+      "email": "abekebe@example.com",
+      "password": "abcd1234"
+    },
+    {
+      "id": 2,
+      "fullname": "surafel habte",
+      "email": "sura@example.com",
+      "password": "abcd1234"
+    }
+  ],
+  "admin": [
+    {
+      "id": 1,
+      "fullname": "Surafel Habte",
+      "role": "Admin",
+      "email": "admin@gmail.com",
+      "password": "abcd1234"
+    }
+  ],
+  "verifay": [
+    {
+      "id": 1,
+      "code": 123
+    }
+  ],
+  "category": [
+    {
+      "id": 1,
+      "title": "ContactUs",
+      "desc": "This is the First Category",
+      "language": "English",
+      "defaultCatagoryId": 0,
+      "status": true,
+      "other": [
+        {
+          "Localtitle": "ContactUs",
+          "Localdesc": "This is the First Category",
+          "Locallanguage": "Oromifa",
+          "Localstatus": true
+        },
+        {
+          "Localtitle": "ContactUs",
+          "Localdesc": "This is the First Category",
+          "Locallanguage": "Oromifa",
+          "Localstatus": true
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "News",
+      "desc": "This is News",
+      "language": "English",
+      "defaultCatagoryId": 0,
+      "status": true,
+      "other": [
+        {
+          "Localtitle": "Zena",
+          "Localdesc": "This Is Zena",
+          "Locallanguage": "Amharic",
+          "Localstatus": false
+        },
+        {
+          "Localtitle": "Oddu",
+          "Localdesc": "This Is Oddu",
+          "Locallanguage": "Oromifa",
+          "Localstatus": false
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "AboutUs",
+      "desc": "This is about the company category",
+      "language": "English",
+      "defaultCatagoryId": 0,
+      "status": true,
+      "other": [
+        {
+          "Localtitle": "Selegn",
+          "Localdesc": "Yeha Selegn Category new",
+          "Locallanguage": "Amharic",
+          "Localstatus": true
+        },
+        {
+          "Localtitle": "Akam",
+          "Localdesc": "this is akam",
+          "Locallanguage": "Oromifa",
+          "Localstatus": true
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Media",
+      "desc": "this is media",
+      "language": "English",
+      "defaultCatagoryId": 0,
+      "status": true,
+      "other": []
+    }
+  ],
+  "menu": [
+    {
+      "id": 1,
+      "title": "About Us",
+      "desc": "This is Our First  Menu ",
+      "categoryId": "AboutUs",
+      "language": "English",
+      "defaultmenuId": 0,
+      "status": true,
+      "other": [],
+      "icon": "fas fa-address-card"
+    },
+    {
+      "id": 2,
+      "title": "News",
+      "desc": "This is Our Second Menu",
+      "categoryId": "News",
+      "language": "English",
+      "defaultmenuId": 0,
+      "status": true,
+      "icon": "far fa-newspaper",
+      "other": [
+        {
+          "Localtitle": "Manu torba",
+          "Localdesc": "This is the torba manu",
+          "Locallanguage": "Oromifa",
+          "Localstatus": true
+        },
+        {
+          "Localtitle": "Mawecha 3",
+          "Localdesc": "Yehe Sosetegn Mawech new",
+          "Locallanguage": "Amharic",
+          "Localstatus": true
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Contact Us",
+      "desc": "This is Our Third Menu",
+      "categoryId": "ContactUs",
+      "language": "English",
+      "defaultmenuId": 0,
+      "status": true,
+      "icon": "fas fa-id-card-alt",
+      "other": [
+        {
+          "Localtitle": "mawecha 3",
+          "Localdesc": "yehe mawech 8 new",
+          "LocalcategoryId": "About Us",
+          "Locallanguage": "Amharic",
+          "Localstatus": false
+        },
+        {
+          "Localtitle": "Oddu",
+          "Localdesc": "this is oddu",
+          "LocalcategoryId": "About Us",
+          "Locallanguage": "Oromifa",
+          "Localstatus": true
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Gallery",
+      "desc": "this Is Gallery",
+      "categoryId": "Media",
+      "language": "English",
+      "defaultmenuId": 0,
+      "status": false,
+      "other": []
+    }
+  ],
+  "article": [
+    {
+      "id": 1,
+      "title": "New System Launched Soon",
+      "body": "<p><span><meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\"><span style=\"color: rgb(94, 94, 94); font-family: Lato, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(247, 247, 247); text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\"><strong>Dear James,</strong></span></span></p><p style=\"text-align: left;\"><span style=\"background-color: rgb(247, 247, 247); color: rgb(94, 94, 94); font-family: Lato, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 18px;\">Thank you for visiting us and making your first purchase! We’re glad that you found what you were looking for. It is our goal that you are always happy with what you bought from us, so please let us know if your buying experience was anything short of excellent. We look forward to seeing you again. Have a great day!</span></p><p style=\"box-sizing: border-box; margin: 0px; color: rgb(94, 94, 94); font-family: Lato, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(247, 247, 247); text-decoration-style: initial; text-decoration-color: initial;\">Best Regards,<br style=\"box-sizing: border-box;\">Your friends at (your business)</p><p style=\"box-sizing: border-box; margin: 0px; color: rgb(94, 94, 94); font-family: Lato, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(247, 247, 247); text-decoration-style: initial; text-decoration-color: initial;\"><br></p><table class=\"e-rte-table\" style=\"width: 100%;\"><tbody><tr><td style=\"width: 50%; background-color: rgb(128, 255, 128);\" class=\"\">ghgfh</td><td style=\"width: 50%; background-color: rgb(255, 255, 128);\" class=\"\">gfhgfh</td></tr><tr><td style=\"width: 50%; background-color: rgb(255, 0, 0);\" class=\"\">gfhgf</td><td style=\"width: 50%; background-color: rgb(255, 0, 0);\" class=\"\">ghg</td></tr></tbody></table><p style=\"box-sizing: border-box; margin: 0px; color: rgb(94, 94, 94); font-family: Lato, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(247, 247, 247); text-decoration-style: initial; text-decoration-color: initial;\"><br></p><p style=\"box-sizing: border-box; margin: 0px; color: rgb(94, 94, 94); font-family: Lato, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: right; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(247, 247, 247); text-decoration-style: initial; text-decoration-color: initial;\"></p><div style=\"text-align: right;\"></div><div><br></div>",
+      "categoryId": "News",
+      "language": "English",
+      "defaultArticleId": 0,
+      "status": false,
+      "featured": true,
+      "thumbnail": "https://www.gstatic.com/webp/gallery/2.jpg",
+      "other": []
+    },
+    {
+      "id": 2,
+      "title": "Investement Ownership",
+      "body": "<p><span><meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\"><span style=\"color: rgb(94, 94, 94); font-family: Lato, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(247, 247, 247); text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\"><strong>Dear James,</strong></span></span></p><p style=\"text-align: left;\"><span style=\"background-color: rgb(247, 247, 247); color: rgb(94, 94, 94); font-family: Lato, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 18px;\">Thank you for visiting us and making your first purchase! We’re glad that you found what you were looking for. It is our goal that you are always happy with what you bought from us, so please let us know if your buying experience was anything short of excellent. We look forward to seeing you again. Have a great day!</span></p><p style=\"box-sizing: border-box; margin: 0px; color: rgb(94, 94, 94); font-family: Lato, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: right; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(247, 247, 247); text-decoration-style: initial; text-decoration-color: initial;\">Best Regards,<br style=\"box-sizing: border-box;\">Your friends at (your business)</p><p style=\"box-sizing: border-box; margin: 0px; color: rgb(94, 94, 94); font-family: Lato, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: right; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(247, 247, 247); text-decoration-style: initial; text-decoration-color: initial;\"></p><div style=\"text-align: right;\"></div><div><br></div>",
+      "categoryId": "News",
+      "language": "English",
+      "defaultArticleId": 0,
+      "status": false,
+      "featured": true,
+      "thumbnail": "https://www.gstatic.com/webp/gallery/3.jpg",
+      "other": []
+    },
+    {
+      "id": 3,
+      "title": "Airplan Crash the Company",
+      "body": "<p><span><meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\"><span style=\"color: rgb(0, 0, 0); text-decoration: inherit;\"><strong>Dear James,</strong></span></span></p><p style=\"text-align: left;\"><span style=\"color: rgb(0, 0, 0); text-decoration: inherit;\">know if your buying experience was anything short of excellent. We look forward to seeing you again. Have a great day!</span><span style=\"color: rgb(0, 0, 0); text-decoration: inherit;\">Thank you for visiting us and making your first purchase! We’re glad that you found what you were looking for. It is our goal that you are always happy with what you bought from us, so please let us </span></p><p style=\"box-sizing: border-box; margin: 0px; color: rgb(94, 94, 94); font-family: Lato, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: right; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(247, 247, 247); text-decoration-style: initial; text-decoration-color: initial;\"><span style=\"color: rgb(0, 0, 0); text-decoration: inherit;\"><br style=\"box-sizing: border-box;\"></span>Best Regards,</p><p style=\"box-sizing: border-box; margin: 0px; color: rgb(94, 94, 94); font-family: Lato, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: right; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(247, 247, 247); text-decoration-style: initial; text-decoration-color: initial;\">Your friends at (your business)</p><p style=\"box-sizing: border-box; margin: 0px; color: rgb(94, 94, 94); font-family: Lato, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: right; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(247, 247, 247); text-decoration-style: initial; text-decoration-color: initial;\"></p><div style=\"text-align: right;\"></div><div><br></div>",
+      "categoryId": "News",
+      "language": "English",
+      "defaultArticleId": 0,
+      "status": false,
+      "featured": true,
+      "thumbnail": "https://www.gstatic.com/webp/gallery/5.jpg",
+      "other": []
+    },
+    {
+      "id": 4,
+      "title": "About Us",
+      "body": "<p><span><meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\"></span></p><h2 style=\"font-size: 16px; margin: 20px 0px 4px; color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;\">Welcome to our website, where you'll find a wealth of information in the form of newsletter articles, calculators, and research reports<br></h2><div><br></div><p style=\"border-collapse: collapse; margin: 0px 0px 10px; color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;\">We hope your visit will help you understand the opportunities and potential rewards that are available when you take a proactive approach to your personal financial situation. [Company] created this website to help you gain a better understanding of the financial concepts behind insurance, investing, retirement, estate planning, and wealth preservation. Most importantly, we hope you see the value of working with skilled professionals to pursue your financial goals. We're here to help educate you about the basic concepts of financial planning, to help you learn more about who we are, and to give you fast, easy access to market performance and data. We hope you take advantage of this resource and visit us often. Be sure to add our site to your list of \"favorites\" in your Internet browser. We frequently update our information, and we wouldn't want you to miss any developments in the area of personal finance.</p><p style=\"border-collapse: collapse; margin: 0px 0px 10px; color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;\">Today's investment climate offers unprecedented opportunities. At [Company], our mission is to help clients take advantage of those opportunities by providing them with three key tools:<br></p><ol style=\"border-collapse: collapse; color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;\"><li style=\"border-collapse: collapse; margin-bottom: 5px;\">A clear understanding of their financial goals</li><li style=\"border-collapse: collapse; margin-bottom: 5px;\">A well-defined roadmap for achieving those goals</li><li style=\"border-collapse: collapse; margin-bottom: 5px;\">Ongoing advice to help adjust their roadmap when their needs change</li></ol><br><p></p>",
+      "categoryId": "AboutUs",
+      "language": "English",
+      "defaultArticleId": 0,
+      "status": false,
+      "allowComment": true,
+      "featured": true,
+      "other": []
+    },
+    {
+      "id": 5,
+      "title": "Photo",
+      "body": "<p>thhg</p>",
+      "categoryId": "Media",
+      "language": "English",
+      "defaultArticleId": 0,
+      "status": false,
+      "featured": false,
+      "other": []
+    }
+  ],
+  "link": [
+    {
+      "id": 1,
+      "title": "Link 1",
+      "desc": "this is link 1",
+      "address": "https://www.google.com/images",
+      "language": "English",
+      "status": true,
+      "other": [
+        {
+          "Localtitle": "megenagn 1",
+          "Localdesc": "yrhe megenagn ande new",
+          "Locallanguage": "Amharic"
+        },
+        {
+          "Localtitle": "oddu 1",
+          "Localdesc": "this is oddu teko",
+          "Locallanguage": "Oromifa"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "google",
+      "desc": "this is goog",
+      "address": "http://google.com",
+      "language": "English",
+      "status": true,
+      "other": []
+    }
+  ],
+  "subscription": [
+    {
+      "id": 1,
+      "fullName": "Surafel Habte",
+      "email": "Sura@gmail.com"
+    },
+    {
+      "id": 2,
+      "fullName": "Abebe Kebede",
+      "email": "AbeKebe@gmail.com"
+    },
+    {
+      "id": 3,
+      "fullName": "Yohannes Mekonene",
+      "email": "yo@gmail.com"
+    },
+    {
+      "id": 4,
+      "fullName": "surafel habte",
+      "email": "Suralhabte@gmail.com"
+    },
+    {
+      "id": 5,
+      "fullName": "surafel habte",
+      "email": "abc@gmailc.com"
+    },
+    {
+      "id": 6,
+      "fullName": "",
+      "email": "addis@gmail.lcom"
+    }
+  ],
+  "studentProfile": [
+    {
+      "id": 1,
+      "fullName": "Ababo Guta AduGna",
+      "gender": "female",
+      "nationality": "Ethiopian",
+      "institute": "private",
+      "modeOfTraining": "regular",
+      "occupationTrainedOn": "Clenical Nursing",
+      "subcity": "ghjghjhg",
+      "wereda": "hgjhgjhg",
+      "homePhone": "ghjhgjgh",
+      "officephone": "hgjhgj",
+      "martialStatus": "single",
+      "disability": "yes",
+      "natureOfDisability": "gfhgfhgf",
+      "email": "sura@example.com"
+    },
+    {
+      "id": 2,
+      "fullName": "Ababo Guta AduGna",
+      "gender": "female",
+      "nationality": "Ethiopian",
+      "institute": "private",
+      "modeOfTraining": "regular",
+      "occupationTrainedOn": "Clenical Nursing",
+      "subcity": "fsdfdsf",
+      "wereda": "sdfdsf",
+      "homePhone": "dfdsfdsf",
+      "officephone": "fdsfdsf",
+      "martialStatus": "single",
+      "disability": "no",
+      "natureOfDisability": "",
+      "email": "sura@example.com"
+    },
+    {
+      "id": 3,
+      "fullName": "Ababo Guta AduGna",
+      "gender": "female",
+      "nationality": "Ethiopian",
+      "institute": "private",
+      "modeOfTraining": "regular",
+      "occupationTrainedOn": "Clenical Nursing",
+      "subcity": "fgfdg",
+      "wereda": "fgfgfd",
+      "homePhone": "dfgdfg",
+      "officephone": "fdgfdg",
+      "martialStatus": "marrid",
+      "disability": "yes",
+      "natureOfDisability": "fgdfdgfd",
+      "email": "sura@example.com"
+    }
+  ],
+  "studentschedule": [
+    {
+      "id": 1,
+      "occupation": "clerical nurse",
+      "Group_Number": "7038",
+      "Center": "National College",
+      "Date": "03/05/2019",
+      "Time": "02 : 30 Am"
+    },
+    {
+      "id": 2,
+      "occupation": "clerical nurse",
+      "Group_Number": "7038",
+      "Center": "National College",
+      "Date": "03/05/2019",
+      "Time": "02 : 30 Am"
+    },
+    {
+      "id": 3,
+      "occupation": "clerical nurse",
+      "Group_Number": "7038",
+      "Center": "National College",
+      "Date": "03/05/2019",
+      "Time": "02 : 30 Am"
+    }
+  ],
+  "studentresult": [
+    {
+      "id": 1,
+      "occupation": "clerical nurse",
+      "practical_Result": "satisfactory",
+      "knowledge_Result": "satisfactory",
+      "status": "competent"
+    },
+    {
+      "id": 2,
+      "occupation": "ICT Officer",
+      "practical_Result": "satisfactory",
+      "knowledge_Result": "satisfactory",
+      "status": "competent"
+    },
+    {
+      "id": 3,
+      "occupation": "Junior Accountant",
+      "practical_Result": "satisfactory",
+      "knowledge_Result": "/",
+      "status": "competent"
+    }
+  ],
+  "studentApplication": [
+    {
+      "id": 1,
+      "location": "5",
+      "sector": "CSTM",
+      "subSector": "HAH",
+      "occupation": "HAH CBP3",
+      "unitOfCompetency": "HAH CBP3",
+      "amount": "375",
+      "invoiceNumber": "212333",
+      "email": "sura@example.com"
+    },
+    {
+      "id": 2,
+      "location": "Bole",
+      "sector": "CSTM",
+      "subSector": "HAH",
+      "occupation": "HAH CBP3",
+      "unitOfCompetency": [
+        {
+          "id": "HAH CBP3 04 0912",
+          "itemName": "Coach Others in Job Skills"
+        },
+        {
+          "id": "HAH CBP3 05 0912",
+          "itemName": "Prepare Bakery Products for Patisseries"
+        },
+        {
+          "id": "HAH CBP3 03 0912",
+          "itemName": "Prepare and Produce Yeast Goods"
+        }
+      ],
+      "amount": "375",
+      "invoiceNumber": "211",
+      "email": "sura@example.com"
+    }
+  ],
+  "studentBasicInfo": [
+    {
+      "id": 1,
+      "fullName": "Ababo Guta AduGna",
+      "sex": "female",
+      "nationality": "Ethiopian",
+      "institute": "private",
+      "mode_of_training": "regular",
+      "occupation_trained_on": "Clenical Nursing",
+      "email": "sura@example.com"
+    },
+    {
+      "id": 2,
+      "fullName": "Abebe Kebede",
+      "sex": "Male",
+      "nationality": "Ethiopian",
+      "institute": "Government",
+      "mode_of_training": "regular",
+      "occupation_trained_on": "Labratory Techician",
+      "email": "abekebe@gmail.com"
+    }
+  ],
+  "sector": [
+    {
+      "id": "6",
+      "sector_code": "AGRM",
+      "sector_name": "AGRICULTURE",
+      "parent": null,
+      "sector_name_am": null,
+      "status": "Active"
+    },
+    {
+      "id": "5",
+      "sector_code": "CSTM",
+      "sector_name": "CULTURE, SPORTS AND TURISM",
+      "parent": null,
+      "sector_name_am": null,
+      "status": "Active"
+    },
+    {
+      "id": "4",
+      "sector_code": "EISM",
+      "sector_name": "ECONOMIC INFRASTRUCTURE",
+      "parent": null,
+      "sector_name_am": null,
+      "status": "Active"
+    },
+    {
+      "id": "1",
+      "sector_code": "HLTM",
+      "sector_name": "HEALTH  ",
+      "parent": null,
+      "sector_name_am": null,
+      "status": "Active"
+    },
+    {
+      "id": "2",
+      "sector_code": "INDM",
+      "sector_name": "INDUSTRY DEVELOPMENT",
+      "parent": null,
+      "sector_name_am": null,
+      "status": "Active"
+    },
+    {
+      "id": "3",
+      "sector_code": "LSAM",
+      "sector_name": "LABOR AND SOCIAL AFFAIRS",
+      "parent": null,
+      "sector_name_am": null,
+      "status": "Active"
+    }
+  ],
+  "subsector": [
+    {
+      "id": "16",
+      "sector_code": "FNT",
+      "sector_name": "FINE ARTS",
+      "parent": "CSTM",
+      "sector_name_am": null,
+      "status": "Active"
+    },
+    {
+      "id": "29",
+      "sector_code": "HAH",
+      "sector_name": "HOTEL AND HOSPITALITY",
+      "parent": "CSTM",
+      "sector_name_am": null,
+      "status": "Active"
+    },
+    {
+      "id": "17",
+      "sector_code": "HDB",
+      "sector_name": "Hairdressing",
+      "parent": "CSTM",
+      "sector_name_am": null,
+      "status": "Active"
+    },
+    {
+      "id": "18",
+      "sector_code": "LIS",
+      "sector_name": "LIBRARY AND INFORMATION SERVICES",
+      "parent": "CSTM",
+      "sector_name_am": null,
+      "status": "Active"
+    },
+    {
+      "id": "35",
+      "sector_code": "MNP",
+      "sector_name": "MUSICAL INSTRUMENT PLAYING",
+      "parent": "CSTM",
+      "sector_name_am": null,
+      "status": "Active"
+    },
+    {
+      "id": "15",
+      "sector_code": "SPR",
+      "sector_name": "Sports Running",
+      "parent": "CSTM",
+      "sector_name_am": null,
+      "status": "Active"
+    },
+    {
+      "id": "12",
+      "sector_code": "SPT",
+      "sector_name": "THROWING AND JUMPING",
+      "parent": "CSTM",
+      "sector_name_am": null,
+      "status": "Active"
+    },
+    {
+      "id": "28",
+      "sector_code": "TAT",
+      "sector_name": "TRAVEL AND TOURS",
+      "parent": "CSTM",
+      "sector_name_am": null,
+      "status": "Active"
+    },
+    {
+      "id": "34",
+      "sector_code": "TRA",
+      "sector_name": "THEATRE ARTS  ",
+      "parent": "CSTM",
+      "sector_name_am": null,
+      "status": "Active"
+    },
+    {
+      "id": "36",
+      "sector_code": "VBF",
+      "sector_name": "VOLLEYBALL AND FOOTBALL ",
+      "parent": "CSTM",
+      "sector_name_am": null,
+      "status": "Active"
+    },
+    {
+      "id": "44",
+      "sector_code": "VFM",
+      "sector_name": "Video Film Making",
+      "parent": "CSTM",
+      "sector_name_am": null,
+      "status": "Active"
+    }
+  ],
+  "occupation": [
+    {
+      "occ_code": "HAH CBP3",
+      "occ_name": "Confectionery, Baking and Pastry Making ",
+      "sector_name": "HOTEL AND HOSPITALITY",
+      "sector_code": "HAH",
+      "amount_for_knowledge": null,
+      "level": "3",
+      "amount_for_uc": null,
+      "amount_for_level": "375",
+      "assessor_payment_rate": "0.00",
+      "center_payment_rate": "0.00",
+      "ass_type": "Both"
+    },
+    {
+      "occ_code": "HAH COP3",
+      "occ_name": "Catering Operation",
+      "sector_name": "HOTEL AND HOSPITALITY",
+      "sector_code": "HAH",
+      "amount_for_knowledge": null,
+      "level": "3",
+      "amount_for_uc": null,
+      "amount_for_level": "205",
+      "assessor_payment_rate": "50.00",
+      "center_payment_rate": "80.00",
+      "ass_type": "Both"
+    },
+    {
+      "occ_code": "HAH ECF3",
+      "occ_name": "Ethiopian Cultural Food Preparation",
+      "sector_name": "HOTEL AND HOSPITALITY",
+      "sector_code": "HAH",
+      "amount_for_knowledge": null,
+      "level": "3",
+      "amount_for_uc": null,
+      "amount_for_level": "375",
+      "assessor_payment_rate": "50.00",
+      "center_payment_rate": "250.00",
+      "ass_type": "Both"
+    },
+    {
+      "occ_code": "HAH FBS3",
+      "occ_name": "Food and Beverage Service ",
+      "sector_name": "HOTEL AND HOSPITALITY",
+      "sector_code": "HAH",
+      "amount_for_knowledge": null,
+      "level": "3",
+      "amount_for_uc": null,
+      "amount_for_level": "205",
+      "assessor_payment_rate": "0.00",
+      "center_payment_rate": "0.00",
+      "ass_type": "Both"
+    },
+    {
+      "occ_code": "HAH FBS4",
+      "occ_name": "Food and beverage Service Supervision",
+      "sector_name": "HOTEL AND HOSPITALITY",
+      "sector_code": "HAH",
+      "amount_for_knowledge": null,
+      "level": "4",
+      "amount_for_uc": null,
+      "amount_for_level": "205",
+      "assessor_payment_rate": "0.00",
+      "center_payment_rate": "0.00",
+      "ass_type": "Both"
+    },
+    {
+      "occ_code": "HAH FDC3",
+      "occ_name": "Foreign  Dish Cooking",
+      "sector_name": "HOTEL AND HOSPITALITY",
+      "sector_code": "HAH",
+      "amount_for_knowledge": null,
+      "level": "3",
+      "amount_for_uc": null,
+      "amount_for_level": "375",
+      "assessor_payment_rate": "50.00",
+      "center_payment_rate": "250.00",
+      "ass_type": "Both"
+    },
+    {
+      "occ_code": "HAH FOS3",
+      "occ_name": "Front Office Service",
+      "sector_name": "HOTEL AND HOSPITALITY",
+      "sector_code": "HAH",
+      "amount_for_knowledge": null,
+      "level": "3",
+      "amount_for_uc": null,
+      "amount_for_level": "205",
+      "assessor_payment_rate": "0.00",
+      "center_payment_rate": "0.00",
+      "ass_type": "Both"
+    },
+    {
+      "occ_code": "HAH FOS4",
+      "occ_name": "Front Office Supervision",
+      "sector_name": "HOTEL AND HOSPITALITY",
+      "sector_code": "HAH",
+      "amount_for_knowledge": null,
+      "level": "4",
+      "amount_for_uc": null,
+      "amount_for_level": "205",
+      "assessor_payment_rate": "0.00",
+      "center_payment_rate": "0.00",
+      "ass_type": "Both"
+    },
+    {
+      "occ_code": "HAH FPS4",
+      "occ_name": "Food Production Supervision",
+      "sector_name": "HOTEL AND HOSPITALITY",
+      "sector_code": "HAH",
+      "amount_for_knowledge": null,
+      "level": "4",
+      "amount_for_uc": null,
+      "amount_for_level": "205",
+      "assessor_payment_rate": "0.00",
+      "center_payment_rate": "0.00",
+      "ass_type": "Both"
+    },
+    {
+      "occ_code": "HAH HHM5",
+      "occ_name": "Hotel Management",
+      "sector_name": "HOTEL AND HOSPITALITY",
+      "sector_code": "HAH",
+      "amount_for_knowledge": null,
+      "level": "5",
+      "amount_for_uc": null,
+      "amount_for_level": null,
+      "assessor_payment_rate": null,
+      "center_payment_rate": null,
+      "ass_type": "Both"
+    },
+    {
+      "occ_code": "HAH HKO1",
+      "occ_name": "Hotel Kitchen Operation",
+      "sector_name": "HOTEL AND HOSPITALITY",
+      "sector_code": "HAH",
+      "amount_for_knowledge": null,
+      "level": "1",
+      "amount_for_uc": null,
+      "amount_for_level": "230",
+      "assessor_payment_rate": "50.00",
+      "center_payment_rate": "120.00",
+      "ass_type": "Practical"
+    },
+    {
+      "occ_code": "HAH HKO2",
+      "occ_name": "Hotel Kitchen Operation",
+      "sector_name": "HOTEL AND HOSPITALITY",
+      "sector_code": "HAH",
+      "amount_for_knowledge": null,
+      "level": "2",
+      "amount_for_uc": null,
+      "amount_for_level": "360",
+      "assessor_payment_rate": "50.00",
+      "center_payment_rate": "250.00",
+      "ass_type": "Practical"
+    },
+    {
+      "occ_code": "HAH HKO3",
+      "occ_name": "Housekeeping Operation",
+      "sector_name": "HOTEL AND HOSPITALITY",
+      "sector_code": "HAH",
+      "amount_for_knowledge": null,
+      "level": "3",
+      "amount_for_uc": null,
+      "amount_for_level": "205",
+      "assessor_payment_rate": "0.00",
+      "center_payment_rate": "0.00",
+      "ass_type": "Both"
+    },
+    {
+      "occ_code": "HAH HLS4",
+      "occ_name": "Housekeeping and Laundry Supervision",
+      "sector_name": "HOTEL AND HOSPITALITY",
+      "sector_code": "HAH",
+      "amount_for_knowledge": null,
+      "level": "4",
+      "amount_for_uc": null,
+      "amount_for_level": "205",
+      "assessor_payment_rate": "0.00",
+      "center_payment_rate": "0.00",
+      "ass_type": "Both"
+    },
+    {
+      "occ_code": "HAH HOP1",
+      "occ_name": "Hotel Operation",
+      "sector_name": "HOTEL AND HOSPITALITY",
+      "sector_code": "HAH",
+      "amount_for_knowledge": null,
+      "level": "1",
+      "amount_for_uc": null,
+      "amount_for_level": "210",
+      "assessor_payment_rate": "0.00",
+      "center_payment_rate": "0.00",
+      "ass_type": "Practical"
+    },
+    {
+      "occ_code": "HAH HOP2",
+      "occ_name": "Hotel Operation",
+      "sector_name": "HOTEL AND HOSPITALITY",
+      "sector_code": "HAH",
+      "amount_for_knowledge": null,
+      "level": "2",
+      "amount_for_uc": null,
+      "amount_for_level": "210",
+      "assessor_payment_rate": "0.00",
+      "center_payment_rate": "0.00",
+      "ass_type": "Practical"
+    }
+  ],
+  "unit_of_competency": [
+    {
+      "uc_code": "HAH CBP3 01 0912",
+      "uc_name": "Prepare and Produce Pastries",
+      "occ_code": "HAH CBP3",
+      "id": "2891",
+      "uc_name_am": null,
+      "status": "Active"
+    },
+    {
+      "uc_code": "HAH CBP3 02 0912",
+      "uc_name": "Prepare and Produce Cakes",
+      "occ_code": "HAH CBP3",
+      "id": "2892",
+      "uc_name_am": null,
+      "status": "Active"
+    },
+    {
+      "uc_code": "HAH CBP3 03 0912",
+      "uc_name": "Prepare and Produce Yeast Goods",
+      "occ_code": "HAH CBP3",
+      "id": "2893",
+      "uc_name_am": null,
+      "status": "Active"
+    },
+    {
+      "uc_code": "HAH CBP3 04 0912",
+      "uc_name": "Coach Others in Job Skills",
+      "occ_code": "HAH CBP3",
+      "id": "2894",
+      "uc_name_am": null,
+      "status": "Active"
+    },
+    {
+      "uc_code": "HAH CBP3 05 0912",
+      "uc_name": "Prepare Bakery Products for Patisseries",
+      "occ_code": "HAH CBP3",
+      "id": "2895",
+      "uc_name_am": null,
+      "status": "Active"
+    },
+    {
+      "uc_code": "HAH CBP3 06 0912",
+      "uc_name": "Prepare and Present Gateaux, Torten and Cakes",
+      "occ_code": "HAH CBP3",
+      "id": "2896",
+      "uc_name_am": null,
+      "status": "Active"
+    },
+    {
+      "uc_code": "HAH CBP3 07 0912",
+      "uc_name": "Present Desserts",
+      "occ_code": "HAH CBP3",
+      "id": "2897",
+      "uc_name_am": null,
+      "status": "Active"
+    },
+    {
+      "uc_code": "HAH CBP3 08 0912",
+      "uc_name": "Prepare and Display Petits Fours",
+      "occ_code": "HAH CBP3",
+      "id": "2898",
+      "uc_name_am": null,
+      "status": "Active"
+    },
+    {
+      "uc_code": "HAH CBP3 09 0912",
+      "uc_name": "Prepare and Model Marzipan",
+      "occ_code": "HAH CBP3",
+      "id": "2899",
+      "uc_name_am": null,
+      "status": "Active"
+    },
+    {
+      "uc_code": "HAH CBP3 10 0912",
+      "uc_name": "Prepare Desserts to Meet Special Dietary Requirements",
+      "occ_code": "HAH CBP3",
+      "id": "2900",
+      "uc_name_am": null,
+      "status": "Active"
+    },
+    {
+      "uc_code": "HAH CBP3 11 0912",
+      "uc_name": "Prepare and Display Sugar Work",
+      "occ_code": "HAH CBP3",
+      "id": "2901",
+      "uc_name_am": null,
+      "status": "Active"
+    },
+    {
+      "uc_code": "HAH CBP3 12 0912",
+      "uc_name": "Plan, Prepare and Display Sweet Buffet Showpieces",
+      "occ_code": "HAH CBP3",
+      "id": "2902",
+      "uc_name_am": null,
+      "status": "Active"
+    },
+    {
+      "uc_code": "HAH CBP3 13 0912",
+      "uc_name": "Plan Patisserie Operations",
+      "occ_code": "HAH CBP3",
+      "id": "2903",
+      "uc_name_am": null,
+      "status": "Active"
+    },
+    {
+      "uc_code": "HAH CBP3 14 0912",
+      "uc_name": "Prepare Chocolate and Chocolate Confectionery",
+      "occ_code": "HAH CBP3",
+      "id": "2904",
+      "uc_name_am": null,
+      "status": "Active"
+    },
+    {
+      "uc_code": "HAH CBP3 15 0912",
+      "uc_name": "Monitor Implementation of Work plan / Activities",
+      "occ_code": "HAH CBP3",
+      "id": "2905",
+      "uc_name_am": null,
+      "status": "Active"
+    },
+    {
+      "uc_code": "HAH CBP3 16 0912",
+      "uc_name": "Apply Quality Control",
+      "occ_code": "HAH CBP3",
+      "id": "2906",
+      "uc_name_am": null,
+      "status": "Active"
+    },
+    {
+      "uc_code": "HAH CBP3 17 0912",
+      "uc_name": "Lead Workplace Communication",
+      "occ_code": "HAH CBP3",
+      "id": "2907",
+      "uc_name_am": null,
+      "status": "Active"
+    },
+    {
+      "uc_code": "HAH CBP3 18 0912",
+      "uc_name": "Lead Small Teams",
+      "occ_code": "HAH CBP3",
+      "id": "2908",
+      "uc_name_am": null,
+      "status": "Active"
+    },
+    {
+      "uc_code": "HAH CBP3 19 0912",
+      "uc_name": "Improve Business Practice",
+      "occ_code": "HAH CBP3",
+      "id": "2909",
+      "uc_name_am": null,
+      "status": "Active"
+    },
+    {
+      "uc_code": "HAH CBP3 20 1012",
+      "uc_name": "Maintain Quality System and Continuous Improvement Processes (Kaizen)",
+      "occ_code": "HAH CBP3",
+      "id": "2910",
+      "uc_name_am": null,
+      "status": "Active"
+    }
+  ],
+  "location": [
+    {
+      "id": 1,
+      "location": "Megenagn"
+    },
+    {
+      "id": 2,
+      "location": "Arat Kilo"
+    },
+    {
+      "id": 3,
+      "location": "Piassa"
+    },
+    {
+      "id": 4,
+      "location": "Bole"
+    },
+    {
+      "id": 5,
+      "location": "Sengatera"
+    }
+  ],
+  "media": [
+    {
+      "id": 1,
+      "title": "Image One",
+      "desc": "This is Our First Image",
+      "mediaType": "Images",
+      "featured": true,
+      "album": "Images",
+      "mediaUrl": "/assets/image/1.jpeg"
+    },
+    {
+      "id": 2,
+      "title": "Video One",
+      "desc": "This is Our First Video",
+      "mediaType": "Video",
+      "featured": false,
+      "album": "Video",
+      "mediaUrl": "https://youtu.be/N-CJ6-mruts"
+    },
+    {
+      "id": 3,
+      "title": "Image Two",
+      "desc": "Image Two",
+      "mediaType": "Images",
+      "featured": true,
+      "album": "Images",
+      "mediaUrl": "/assets/image/2.jpeg"
+    },
+    {
+      "id": 4,
+      "title": "Image Three",
+      "desc": "Image three",
+      "mediaType": "Images",
+      "featured": true,
+      "album": "Images",
+      "mediaUrl": "/assets/image/3.jpeg"
+    },
+    {
+      "id": 5,
+      "title": "Image four",
+      "desc": "Image Four",
+      "mediaType": "Images",
+      "featured": true,
+      "album": "Images",
+      "mediaUrl": "/assets/image/4.jpeg"
+    },
+    {
+      "id": 6,
+      "title": "Image Five",
+      "desc": "Image Five",
+      "mediaType": "Images",
+      "featured": true,
+      "album": "Images",
+      "mediaUrl": "/assets/image/5.jpeg"
+    },
+    {
+      "id": 7,
+      "title": "Image Six",
+      "desc": "Image Six",
+      "mediaType": "Images",
+      "featured": true,
+      "album": "Images",
+      "mediaUrl": "/assets/image/6.jpeg"
+    },
+    {
+      "id": 8,
+      "title": "Image Seven",
+      "desc": "Image Seven",
+      "mediaType": "Images",
+      "featured": true,
+      "album": "Images",
+      "mediaUrl": "/assets/image/7.jpeg"
+    },
+    {
+      "id": 9,
+      "title": "Image Eight",
+      "desc": "Image Eight",
+      "mediaType": "Images",
+      "featured": true,
+      "album": "Images",
+      "mediaUrl": "/assets/image/8.jpeg"
+    }
+  ],
+  "comments": []
+}

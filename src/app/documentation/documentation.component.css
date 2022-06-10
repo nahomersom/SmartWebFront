@@ -1,0 +1,150 @@
+.container {
+    margin-top: 3%;
+    padding: 1%;
+  }
+  
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  .fa-file{
+    color:#E7E8EC;
+    font-size:250px;
+   
+}
+.fileIcon{
+
+    position:relative !important;
+}
+.searchIcon{
+  
+    position:absolute;
+    top:80px;
+    right: 420px;
+}
+@media (max-width: 450px) {
+    .searchIcon{
+  
+        position:absolute;
+        top:75px;
+        right: 40px;
+    }
+}
+@media only screen and (max-device-width: 540px){
+    .searchIcon{
+  
+        position:absolute;
+        top:75px;
+        right: 150px;
+    }
+}
+.fa-search{
+
+    color:#344563;
+    font-size: 200px;
+
+    
+}
+.noRecord{
+    position: relative;
+    top:15px;
+    font-weight: bold;
+    color:#344563;
+    font-size: 25px;
+}
+  
+  body {
+    background-color: #1d1d1d !important;
+    font-family: "Asap", sans-serif;
+    color: #989898;
+    margin: 10px;
+    font-size: 16px;
+  }
+  
+  .btn.btn-primary,
+  .btn.btn-success {
+    background: #004085;
+    padding-top: 5px;
+    border: #004085;
+    font-size: 14px;
+    font-weight: 800;
+  }
+  
+  .btn.btn-outline-primary {
+    border-color: #555;
+    color: #555;
+    font-size: 14px;
+    font-weight: 800;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+  
+  .btn.btn-outline-primary:hover {
+    background: none;
+    color: #004085;
+    border-color: #004085;
+  }
+  
+  .card {
+    padding: 1%;
+  }
+  @media screen and (max-width: 500px) {
+    img {
+      height: 150px !important;
+    }
+  }
+  
+  .title,.Description {
+    max-width: 20px !important;
+  }
+
+  .res-card {
+    float: left;
+  }
+
+  .categ {
+    color: #555;
+    font-family: ubuntu;
+    font-size: 0.75rem;
+    font-weight: lighter;
+  }
+
+  .card-title {
+    font-family: ubuntu;
+    color: #065689;
+    font-size: 0.75rem;
+    font-weight: bold;
+    height: auto;
+  }
+
+  .card-desc {
+    font-family: ubuntu;
+    font-size: 0.75rem;
+    font-weight: normal;
+    height: auto;
+  }
+
+  .download {
+    font-weight: bold;
+    font-size: 1rem;
+    text-align: center;
+    background: #17689d;
+  }
+
+  a {
+    color: #fff;
+  }
+
+  p {
+    margin-bottom: 0.5rem !important;
+  }
+
+  .fab.fa-searchengin {
+    font-weight: bolder;
+    font-size: 2rem;
+    color: #c11b2b;
+}
+
+.no-record {
+    font-size: 14px !important;
+    text-align: center !important;
+}

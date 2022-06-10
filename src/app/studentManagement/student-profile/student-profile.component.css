@@ -1,0 +1,84 @@
+nav>.nav.nav-tabs {
+
+  border: none;
+  color: #fff;
+  background: #272e38;
+  border-radius: 0;
+
+}
+
+nav>div a.nav-item.nav-link,
+nav>div a.nav-item.nav-link.active {
+  border: none;
+  padding: 18px 25px;
+  color: #fff;
+  background: #00bfff;
+  border-radius: 0;
+}
+
+nav>div a.nav-item.nav-link.active:after {
+  content: "";
+  position: relative;
+  bottom: -60px;
+  left: -10%;
+  border: 15px solid transparent;
+  border-top-color: #0080ff;
+}
+
+.tab-content {
+  background: #fdfdfd;
+  line-height: 25px;
+  border: 1px solid #ddd;
+  border-top: 5px solid #0080ff;
+  border-bottom: 5px solid #0080ff;
+  padding: 30px 25px;
+}
+
+nav>div a.nav-item.nav-link:hover,
+nav>div a.nav-item.nav-link:focus {
+  border: none;
+  background: #0080ff;
+  color: #fff;
+  border-radius: 0;
+  transition: background 0.20s linear;
+}
+
+.card {
+  padding: 1%;
+}
+
+.container {
+  margin-top: 4%;
+}
+
+.not-invalid {
+  border: 1px solid rgba(255, 0, 0, 0.692);
+}
+
+.card {
+  margin-top: 2%;
+}
+
+.tab-pane {
+  padding: 2%;
+}
+
+.btn.btn-primary,
+.btn.btn-success {
+  background: #004085;
+  padding-top: 5px;
+  border: #004085;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+b {
+  color: #555;
+}
+
+a {
+  color: #004085;
+}
+label {
+  font-size: 90%;
+}

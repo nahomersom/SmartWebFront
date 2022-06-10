@@ -1,0 +1,48 @@
+<div class="container">
+<div class="row">
+<hr />
+<div class="col-md-12">
+   
+    <div class="row">
+        <div class="col-md-10 col-sm-12 col-xs-12 mb-4">
+        <label translate>{{method === 'procurement' ? "Procurement complains" : "Disposal complains"}}</label>
+        </div>
+        <div class="col-md-2 col-sm-12 col-xs-12 mb-4">
+        <button type="button" class="btn btn-outline-secondary" (click)="add()" translate>
+            New complain
+        </button>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-hover table-striped table-bordered table-sm">
+        <thead align="center">
+            <tr>
+            <th *ngFor="let c of columns" translate>{{ c }}</th>
+            </tr>
+        </thead>
+        <tbody align="center" *ngIf="data.length === 0">
+            <tr>
+                <td colspan="9">You have no complain</td>
+            </tr>
+        </tbody>
+        <tbody *ngIf="data.length > 0">
+            <tr *ngFor="let d of data; let i = index">
+            <td>{{ d.title | titlecase }}</td>
+            <td>
+                <p class="see-more">
+                    {{ seeMore[i] ? d.message : d.message.substr(0, max) }}
+                    <ng-container *ngIf="d.message.length > max">
+                        <a class="see" (click)="seeMore[i] = !seeMore[i];"> {{ seeMore[i] ? 'See less' : '...See more'}}</a>
+                    </ng-container>
+                </p>
+            </td>
+            <td>{{ d.updated_at | date:'medium' }}</td>
+            <td>{{ d.status }}</td>
+            </tr>
+        </tbody>
+        </table>
+    </div>
+    
+</div>
+</div>
+</div>

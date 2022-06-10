@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <label translate *ngIf="winner">{{winnerType === 'procurement' ? "Procurement award information" : "Disposal award information"}}</label>
+            <div class="card">
+                <div class="card-header"> <u *ngIf="!winner"><b>{{ data?.title }}</b></u> <br>
+                    <!-- <u *ngIf="winner && data"><b>{{ data[0]?.title }}</b></u> <br> -->
+                    <p *ngIf="!winner">Open on : {{ data?.bid_opening_date }}</p>
+                    <p *ngIf="!winner">Will be closed on : {{ data?.bid_closing_date }}</p>
+                </div>
+                <div *ngIf="!winner" class="card-body" [innerHTML]="data?.description | htmlSanitaizer">
+                </div>
+                <div class="table-responsive">
+                <table class="table table-hover table-striped table-bordered table-sm" *ngIf="winner">
+                    <!-- <thead align="center">
+                        <tr>
+                            <th *ngFor="let c of cols" scope="row" translate>{{ c }}</th>
+                        </tr>
+                    </thead> -->
+                    <tbody>
+                        <ng-container *ngFor="let d of data; let i = index">
+                            <tr>
+                                <th colspan="10">{{ d.title }}({{d.bid_number}})</th>
+                            </tr>
+                            <th class='head-name' *ngFor="let c of cols" scope="row" translate>{{ c }}</th>
+                            <tr *ngFor="let w of d.winners; let i = index">
+                                <td *ngIf="winnerType === 'procurement'">{{ w.procurement_reference_number }}</td>
+                                <td *ngIf="winnerType === 'procurement'">{{ w.procurement_type }}</td>
+                                <td *ngIf="winnerType === 'procurement'">{{ w.budget_source }}</td>
+                                <td *ngIf="winnerType === 'procurement'">{{ w.budget_amount }}</td>
+                                <td *ngIf="winnerType === 'procurement'">{{ w.procurement_method }}</td>
+                                <td *ngIf="winnerType === 'disposal'">{{ w.disposal_method }}</td>
+                                <td>{{ w.total }}</td>
+                                <td>{{ w.advertisement_method }}</td>
+                                <td>{{ w.name }}</td>
+                                <td>{{ w.price }}</td>
+                                <td class="date">{{ w.date }}</td>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+                </table>
+                </div>
+                <div class="col-3 btn-cont" *ngIf="!winner">
+                    <button type="button" class="btn btn-success" (click)="back()" translate>Back</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

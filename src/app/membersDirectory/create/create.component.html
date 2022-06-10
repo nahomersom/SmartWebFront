@@ -1,0 +1,172 @@
+<div class="container">
+    <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-6">
+              <form [formGroup]="formgroup" (ngSubmit)="onSubmit()">
+                <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+                  <li [ngbNavItem]="1">
+                    <a ngbNavLink>
+                      <b translate>Basic</b>
+                    </a>
+                    <ng-template ngbNavContent>
+                      <div class="card">
+                        <div class="card-body">
+                            <p align="center">
+                              <img src="{{ memberService.original_url + '/' + photoUrl}}" style="width:175px;height:175px; border-radius: 50%;" class="img-thumbnail" *ngIf="!hideCreateButton" />
+                            </p>
+                            <p></p>
+                            <input type="text"  class="form-control" formControlName="fullName"  placeholder="{{'Full Name' | translate}}"
+                            [ngClass]="{'not-invalid' : invalidClass && formgroup.controls.fullName.invalid}" />
+                            <div *ngIf="getfullName.errors">
+                              <p *ngIf="formSubmitted && getfullName.hasError('required')" style="color:rgba(255, 0, 0, 0.671)"><font size="2" translate>* Full Name is required</font></p>
+                            </div>
+                            <p></p>
+                            <select class="form-control" formControlName="gender" [ngClass]="{'not-invalid' : invalidClass && formgroup.controls.gender.invalid}" >
+                                <option value="" disabled selected hidden translate>Gender</option>
+                                <option value="Female" translate>Female</option>
+                                <option value="Male" translate>Male</option>
+                            </select>
+                            <div *ngIf="getgender.errors">
+                                <p *ngIf="formSubmitted && getgender.hasError('required')" style="color:rgba(255, 0, 0, 0.671)"><font size="2" translate>* Gender is required</font></p>
+                            </div>
+                            <p></p>
+                
+                            <input type="text"  class="form-control" formControlName="email"  placeholder="{{'Email' | translate}}"
+                            [ngClass]="{'not-invalid' : invalidClass && formgroup.controls.email.invalid}" />
+                            <div *ngIf="getemail.errors">
+                              <p *ngIf="formSubmitted && getemail.hasError('required')" style="color:rgba(255, 0, 0, 0.671)"><font size="2" translate>* Email is required</font></p>
+                              <p *ngIf="formSubmitted && getemail.hasError('email')" style="color:rgba(255, 0, 0, 0.671)"><font size="2" translate>* Invalid Email</font></p>
+                            </div>
+                            <p></p>
+                            <input type="text"  class="form-control" formControlName="phone"  placeholder="{{'Phone' | translate}}" 
+                            [ngClass]="{'not-invalid' : invalidClass && formgroup.controls.phone.invalid}" />
+                            <div *ngIf="getphone.errors">
+                              <p *ngIf="formSubmitted && getphone.hasError('required')" style="color:rgba(255, 0, 0, 0.671)"><font size="2" translate>* Phone Number is required</font></p>
+                            </div>
+                            <p></p>
+                            <input type="text"  class="form-control" formControlName="website"  placeholder="{{'Website' | translate}}"
+                            [ngClass]="{'not-invalid' : invalidClass && formgroup.controls.website.invalid}" />
+                            <div *ngIf="getWebsite.errors">
+                              <p *ngIf="formSubmitted && getWebsite.hasError('required')" style="color:rgba(255, 0, 0, 0.671)"><font size="2" translate>* Website is required</font></p>
+                            </div>
+                            <p></p>
+                    
+                            <input type="password" class="form-control" formControlName="password"  placeholder="{{'Password' | translate}}"
+                            [ngClass]="{'not-invalid' : invalidClass && formgroup.controls.password.invalid  && hideCreateButton}" />
+                              <div *ngIf="getpassword.errors && hideCreateButton">
+                                <p *ngIf="formSubmitted && getpassword.hasError('required')" style="color:rgba(255, 0, 0, 0.671)"><font size="2" translate>* Password is required</font></p>
+                                <p *ngIf="formSubmitted && getpassword.hasError('minlength')" style="color:rgba(255, 0, 0, 0.671)"><font size="2" translate>* Password Should be atleast 5 character</font></p>
+                                <p *ngIf="formSubmitted && getpassword.hasError('maxlength')" style="color:rgba(255, 0, 0, 0.671)"><font size="2" translate>* Password Should be no more than 8 character</font></p>
+                              </div>
+                            <p></p>
+                            <input type="password"  class="form-control" formControlName="repassword" placeholder="{{'Confirm Password' | translate}}"
+                            [ngClass]="{'not-invalid' : invalidClass && formgroup.controls.repassword.invalid  && hideCreateButton}" />
+                            <div *ngIf="getrepassword.errors && hideCreateButton">
+                              <p *ngIf="formSubmitted && getrepassword.hasError('required')" style="color:rgba(255, 0, 0, 0.671)"><font size="2" translate>* Confirm Password is required</font></p>
+                            </div>
+                            <p *ngIf="formSubmitted && passwordMatchFail" style="color:rgba(255, 0, 0, 0.671)"><font size="2" translate>* Password is Not Match</font></p>                                    
+                            <p></p>  
+                
+                            <ejs-uploader 
+                              [autoUpload]='false' 
+                              id="photo" 
+                              name="photo" allowedExtensions = '.jpg,.jpeg,.png' 
+                              maxFileSize = 1e+7 
+                              [multiple]="false"
+                              (change)="onFileChangeIDCard(fileInput)" 
+                              (clearing)="getprofilephoto.setValue('')"
+                
+                            #fileInput>
+                          </ejs-uploader>
+                              <div *ngIf="getprofilephoto.errors && hideCreateButton">
+                                  <p *ngIf="formSubmitted && getprofilephoto.hasError('required')" style="color:rgba(255, 0, 0, 0.671)"><font size="2" translate>* Photo is required</font></p>
+                              </div>
+                          </div>
+                      </div>
+                    </ng-template>
+                  </li>
+                
+                  <li [ngbNavItem]="1">
+                    <a ngbNavLink>
+                      <b translate>Company Description</b>
+                    </a>
+                    <ng-template ngbNavContent>
+                      <div class="buttonBox">
+                        <button type="button"(click)="addBiography()" *ngIf="languages.length > selectedLanguage" class="btn btn-success">Add language</button>
+                      </div>                     
+                      <div formArrayName="biographys">                                             
+                        <div *ngFor="let otherLanguage of getBiographies.controls; let i = index">
+                            <div class="card">
+                                <div class="card-body">                                          
+                                    <div [formGroupName]="i">
+                                        <select class="form-control" formControlName="Language" [ngClass]="{'not-invalid' : getFormGroup(i).controls['Language'].invalid}">
+                                            <option value="" disabled selected hidden translate>language</option>
+                                            <option *ngFor="let language of languages" value={{language}} translate>{{language}}</option>
+                                        </select>
+                                        <div *ngIf="getFormGroup(i).controls['Language'].errors">
+                                          <p *ngIf="getFormGroup(i).controls['Language'].hasError('required')" style="color:rgba(255, 0, 0, 0.671)">
+                                            <font size="2" translate>* Select Language</font>
+                                          </p>
+                                        </div>
+                                        <p></p>
+                                        <input type="text"  class="form-control" formControlName="fullName"  placeholder="{{'Company Name by selected language' | translate}}" 
+                                        [ngClass]="{'not-invalid' : getFormGroup(i).controls['fullName'].invalid}" />               
+                                      <div *ngIf="getFormGroup(i).controls['fullName'].errors">
+                                        <p *ngIf="getFormGroup(i).controls['fullName'].hasError('required')" style="color:rgba(255, 0, 0, 0.671)">
+                                          <font size="2" translate>* Full Name is required</font>
+                                        </p>
+                                      </div>
+                                        <p></p>
+                                        <textarea class="form-control" formControlName="Biography" placeholder="{{'About the Company by selected language' | translate}}" 
+                                        [ngClass]="{'not-invalid' : getFormGroup(i).controls['Biography'].invalid}"></textarea> 
+                
+                                        <div *ngIf="getFormGroup(i).controls['Biography'].errors">
+                                          <p *ngIf="getFormGroup(i).controls['Biography'].hasError('required')" style="color:rgba(255, 0, 0, 0.671)">
+                                            <font size="2" translate>* Description is required</font>
+                                          </p>
+                                        </div>
+                                        <p></p>
+                                        <textarea class="form-control" formControlName="Address" placeholder="{{'Address by selected language' | translate}}"
+                                        [ngClass]="{'not-invalid' : getFormGroup(i).controls['Address'].invalid}"
+                                        ></textarea>
+                                        <div *ngIf="getFormGroup(i).controls['Address'].errors">
+                                          <p *ngIf="getFormGroup(i).controls['Address'].hasError('required')" style="color:rgba(255, 0, 0, 0.671)">
+                                            <font size="2" translate>* Address is required</font>
+                                          </p>
+                                        </div>                                            
+                                        <p></p>
+                                        <input type="text" class="form-control" formControlName="CompanyContactPerson" placeholder="{{'Company Contact Person Name by selected language' | translate}}" 
+                                        [ngClass]="{'not-invalid' : getFormGroup(i).controls['CompanyContactPerson'].invalid}" />               
+                                        <div *ngIf="getFormGroup(i).controls['CompanyContactPerson'].errors">
+                                          <p *ngIf="getFormGroup(i).controls['CompanyContactPerson'].hasError('required')" style="color:rgba(255, 0, 0, 0.671)">
+                                            <font size="2" translate>* Spokesperson Name is required</font>
+                                          </p>
+                                        </div>
+                                        <p></p>
+                                    </div>                                           
+                                    <p></p>                                         
+                                    <button type="button" (click)="RemoveBiography(i,IdsArray[i])" class="btn btn-secondary" translate>Remove</button>                                                                                           
+                                </div>                               
+                              </div>                              
+                        </div>
+                      </div>
+                      <hr />                             
+                      <p></p>
+                      <p *ngIf="getBiographies.length === 0 && formSubmitted" align="center">
+                        <font size="2" style="color: red">{{ CompanyDescRequiredMSG }}</font>
+                      </p>
+                      <button type="submit" class="btn btn-primary" *ngIf="hideCreateButton">Sign Up</button>
+                      <button type="submit" class="btn btn-primary" *ngIf="hideSaveChangesButton">Save Changes</button>
+                    </ng-template>
+                  </li>
+                    
+                </ul>  
+                
+                <div [ngbNavOutlet]="nav" class="mt-2"></div>  
+              </form>
+          </div>
+          <div class="col-md-2"></div>
+    </div>
+</div>      
+
+

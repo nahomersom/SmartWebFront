@@ -1,0 +1,58 @@
+<div class="container-fluid">
+    <br />
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <ngb-alert *ngIf="closeErrorAlert" type="danger" (close)="closeErrorAlert = false">
+                <font size="2" translate>message_alert</font>
+            </ngb-alert>
+            <ngb-alert *ngIf="closeAlert" type="success" (close)="closeAlert = false">
+                <font size="2" translate>message_success</font>
+            </ngb-alert>
+            <div class="card">
+                <div class="card-header">
+                    {{method === 'procurement' ? 'procurement' : 'disposal' | titlecase}} complain
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="formgroup" (ngSubmit)="onSubmit()">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <select class="form-control" formControlName="bid" name="bid">
+                                    <option value=""> Select bid </option>
+                                    <option *ngFor="let b of bids" value="{{ b.id }}">
+                                        {{ b.title }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        <label translate>Write your {{method === 'procurement' ? 'procurement' : 'disposal'}} complain</label>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <textarea rows="6" formControlName="feedback" placeholder="{{'Your Message' | translate}}"
+                                    class="form-control">
+                                </textarea>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- button -->
+                                <div class="d-flex justify-content-end lower">
+                                    <button type="submit"  class="btn btn-primary" [disabled]="disable">
+                                        {{'Submit' | translate}}
+                                        <i class="fas fa-spinner fa-spin fa-fw" *ngIf="disable"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+           
+        </div>
+
+        <div class="col-md-2"></div>
+    </div>
+</div>

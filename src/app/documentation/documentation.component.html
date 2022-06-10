@@ -1,0 +1,28 @@
+<div class="container">
+  <div *ngIf="!tableData?.length" class="no-record" translate>
+    <div class="fileIcon">
+      <i class="fa fa-file" aria-hidden="true"></i>
+      <div class="searchIcon">
+        <i class="fa fa-search"></i><br>
+      </div>
+      <p class="noRecord">No record found, Come back another time !</p>
+    </div>
+
+ 
+   
+  </div>
+  <div class="row">
+    <hr />
+    <div class="col-md-12" *ngIf="tableData">
+      <div class="res-card col-md-3 col-sm-6 col-xs-6" *ngFor="let data of tableData; let i = index">
+        <div class="card">
+          <p class="categ">{{data.categoryId}}</p>
+          <p class="card-title">{{data.title}}</p>
+          <p class="card-desc">{{data.desc}}</p>
+          <span class="download"><a href="{{ documentationService.original_url + data.document }}"
+              target="blank" translate>Download</a></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

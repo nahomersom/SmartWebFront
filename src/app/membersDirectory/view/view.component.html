@@ -1,0 +1,38 @@
+<div class="container">
+    <p align="center" *ngIf="!userId"><button class="btn btn-outline-primary" (click)="navigate('/members/create')" translate>
+        Become a Member College</button></p>
+    <p align="center"><b><h3><font style="color: rgb(6, 64, 112)" translate>Colleges Directory</font></h3></b></p>
+    <div class="row">
+        <div class="col-md-4 col-sm-12 search">
+            <p><input type="search" placeholder="{{'Search College ...' | translate}}" #search (keyup)="filiterMembers(search.value)" class="form-control" /></p>
+        </div>
+        <div class="col-md-8 col-sm-12 paging" *ngIf="showalphabets">
+            <ul>
+                <li class="item-page all"><span (click)="filiterMembersByFirstLetter()" class="page-link">All</span></li>
+                <li class="item-page" *ngFor="let number of alphabets; let i=index">
+                    <span class="page-link" (click)="filiterMembersByFirstLetter(alphabets[i])">{{ alphabets[i] }}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row members">
+        <div class="col-sm-4 col-md-3 col-lg-2" *ngFor="let member of filtredMembers">
+            <div class="card">
+                <div class="card-img">
+                    <img src="{{ memberService.original_url + '/' + member.photo }}" style="width:150px;height:150px; border-radius: 50%;" class="img-thumbnail" />
+                </div>
+                <div class="card-body">
+                    <h4>
+                        <p class="name">
+                            <font style="color:  rgb(6, 64, 112)" size="4" class="name">{{member.fullName | titlecase}}</font>
+                        </p>
+                    </h4>
+                    <p class="other-info">{{member.phone}}</p>
+                    <p class="other-info"><button class="btn btn-outline-primary my-2 my-sm-0" (click)="seemore(member)" translate>See More</button></p>
+                </div>
+            </div>
+            <br />
+        </div>
+    </div>
+</div>

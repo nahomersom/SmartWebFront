@@ -1,0 +1,735 @@
+<form [formGroup]="fg" (ngSubmit)="onSubmit()" *ngIf="!plan">
+    <div class="container-fluid">
+    <div class="row mb-2">
+        <div class="col-md-12">
+            <div class="card-header mt-2">
+                Disposal Request
+            </div>
+            <div class="card mt-2">
+         
+                <div class="card-body mainCard">
+                    <div class="form-header accordion mb-4" (click)="basicInfo.toggle()">
+                        <span translate>Basic Information</span>
+                        <span
+                        style="float: right !important; cursor: pointer; color: white"
+                        [attr.aria-expanded]="isBasicCollapsed"
+                        aria-controls="collapseExample"
+                        >
+                        <em class="fas fa-angle-down" *ngIf="isBasicCollapsed"></em>
+                        <em class="fas fa-angle-up" *ngIf="!isBasicCollapsed"></em>
+                        </span>
+                    </div>
+                    <div #basicInfo="ngbCollapse" class="mb-4" [(ngbCollapse)]="isBasicCollapsed">
+                        <div class="form-group mb-2">
+                            <ckeditor 
+                                [editor]="Editor" 
+                                [config]="{ toolbar: toolbar,placeholder: 'Write Your Description Here ...' }"
+                                id="descriptionEditor"
+                                formControlName="description"
+                            ></ckeditor>
+                            <span *ngIf="formSubmitted && fc('description').hasError('required') && !this.arrayData.length" class="error">
+                                <small> * description is required</small>
+                            </span>
+                        </div>
+                    </div>
+
+
+                    <div class="form-header accordion mb-4" (click)="ItemForm.toggle()">
+                        <span translate>Product Item</span>
+                        <span
+                        style="float: right !important; cursor: pointer; color: white"
+                        [attr.aria-expanded]="isItemFormCollapsed"
+                        aria-controls="collapseExample"
+                        >
+                        <em class="fas fa-angle-down" *ngIf="isItemFormCollapsed"></em>
+                        <em class="fas fa-angle-up" *ngIf="!isItemFormCollapsed"></em>
+                        </span>
+                    </div>
+                    <div #ItemForm="ngbCollapse" class="mb-4" [(ngbCollapse)]="isItemFormCollapsed" class="mainForm">
+                        <div class="">
+                            <div class="card-body" formArrayName="productArray">
+                                <div class="mb-2" 
+                                    *ngFor="let obj of productArray.controls; let i = index; let last = last"
+                                    [formGroup]="obj">
+                                    <div>
+                                        <div class="row mb-2">
+                                            <div class="pr-1 pl-1  mb-4 col-md-3 col-xs-12 col-sm-12">
+                                                <label translate>Select product category</label>
+                                                <select class="form-control form-control-sm" formControlName="category"
+                                                    (change)="loadProduct($event.target.value)">
+                                                    <option value="" style="color: gray;" translate> Select product
+                                                        category </option>
+                                                    <option *ngFor="let cat of categories" value="{{ cat.value }}">
+                                                        {{ cat.text }}
+                                                    </option>
+                                                </select>
+                                                <span *ngIf="formSubmitted && obj.controls.category.hasError('required') && !this.arrayData.length"
+                                                    class="error">
+                                                    <small translate> product category is required</small>
+                                                </span>
+                                            </div>
+                                            <div class="pr-1 pl-1  mb-4 col-md-3 col-xs-12 col-sm-12">
+                                                <label translate>Select product</label>
+                                                <select class="form-control form-control-sm" formControlName="product"
+                                                    (change)="onProductChange($event.target.value)">
+                                                    <option value="" style="color: gray;" translate=""> Select product
+                                                    </option>
+                                                    <option *ngFor="let pro of products" value="{{ pro.value }}">
+                                                        {{ pro.text }}
+                                                    </option>
+                                                    <!-- <option value="other">Other</option> -->
+                                                </select>
+                                                <span *ngIf="formSubmitted && obj.controls.product.hasError('required') && !this.arrayData.length"
+                                                    class="error">
+                                                    <small translate> product is required</small>
+                                                </span>
+                                            </div>                                      
+                                            <div *ngIf="unknownProduct" class="pr-1 pl-1  mb-4 col-md-3 col-xs-12 col-sm-12">
+                                                <label translate>Product name</label>
+                                                <input type="text" class="form-control form-control-sm" formControlName="productName" />
+                                                <span *ngIf="formSubmitted && obj.controls.productName.hasError('required') && !this.arrayData.length"
+                                                    class="error">
+                                                    <small translate> *product name is required</small>
+                                                </span>
+                                            </div>
+                                            <div class="pr-1 pl-1  mb-4 col-md-3 col-xs-12 col-sm-12">
+                                                <label translate>Quantity</label>
+                                                <input type="number" min="1" class="form-control form-control-sm"
+                                                    formControlName="quantity" />
+                                                <span *ngIf="formSubmitted && obj.controls.quantity.hasError('required') && !this.arrayData.length"
+                                                    class="error">
+                                                    <small translate> *quantity is required</small>
+                                                </span>
+                                            </div>
+                                            <div class="pr-1 pl-1 mb-4 col-md-3 col-xs-12 col-sm-12">
+                                                <label translate>Product code</label>
+                                                <input type="text" min="1" class="form-control form-control-sm" formControlName="code" />
+                                            </div>
+                                            <div class="pr-1 pl-1 mb-4 col-md-3 col-xs-12 col-sm-12" *ngIf="showUnit">
+                                                <label translate>Unit</label>
+                                                <select class="form-control form-control-sm" formControlName="unit">
+                                                    <option value="" style="color: gray;"> -- Unit --
+                                                    </option>
+                                                    <option *ngFor="let l of lookupData?.unit" value="{{ l.text }}">
+                                                        {{ l.text }}
+                                                    </option>
+                                                </select>
+                                                <span *ngIf="formSubmitted &&  obj.controls.unit.hasError('required') && !this.arrayData.length"
+                                                    class="error">
+                                                    <small translate> unit is required</small>
+                                                </span>
+                                            </div>
+                                            <div class="pr-1 pl-1 mb-4 col-md-3 col-xs-12 col-sm-12" *ngIf="!showUnit">
+                                                <label translate>Unit</label>
+                                                <div class="form-control">
+                                                  {{ obj.controls.unit.value }}
+                                                </div>
+                                            </div>
+                                            <div class="pr-1 pl-1 mb-4 col-md-3 col-xs-12 col-sm-12">
+                                                <label translate>Service status</label>
+                                                <select class="form-control form-control-sm" formControlName="serviceStatus"
+                                                    (change)="onSelectServiceStatus($event.target.value)">
+                                                    <option value="" style="color: gray;" translate> -- Service status --
+                                                    </option>
+                                                    <option *ngFor="let l of serviceStatuses" value="{{ l.value }}">
+                                                        {{ l.text }}
+                                                    </option>
+                                                </select>
+                                                <span
+                                                    *ngIf="formSubmitted &&  obj.controls.serviceStatus.hasError('required') && !this.arrayData.length"
+                                                    class="error">
+                                                    <small>service status is required</small>
+                                                </span>
+                                            </div>
+                                            <div class="pr-1 pl-1 mb-4 col-md-3 col-xs-12 col-sm-12">
+                                                <label translate>Desirability</label>
+                                                <select class="form-control form-control-sm" formControlName="desirability">
+                                                    <option value="" style="color: gray;"> -- Desirability --
+                                                    </option>
+                                                    <option *ngFor="let l of lookupData?.desirability" value="{{ l.text }}">
+                                                        {{ l.text }}
+                                                    </option>
+                                                </select>
+                                                <span
+                                                    *ngIf="formSubmitted &&  obj.controls.desirability.hasError('required') && !this.arrayData.length"
+                                                    class="error">
+                                                    <small translate> desirability is required</small>
+                                                </span>
+                                            </div>
+                                            <div class="pr-1 pl-1 mb-4 col-md-3 col-xs-12 col-sm-12">
+                                                <label translate>Property condition</label>
+                                                <select class="form-control form-control-sm" formControlName="propertyCondition">
+                                                    <option value="" style="color: gray;" translate> -- Property condition
+                                                        --
+                                                    </option>
+                                                    <option *ngFor="let l of lookupData?.property_condition"
+                                                        value="{{ l.text }}">
+                                                        {{ l.text }}
+                                                    </option>
+                                                </select>
+                                                <span
+                                                    *ngIf="formSubmitted &&  obj.controls.propertyCondition.hasError('required') && !this.arrayData.length"
+                                                    class="error">
+                                                    <small translate> property condition is required</small>
+                                                </span>
+                                            </div>
+                                            <div class="pr-1 pl-1 mb-4 col-md-3 col-xs-12 col-sm-12">
+                                                <label translate>Service year</label>
+                                                <input type="number" min="1" class="form-control form-control-sm"
+                                                    formControlName="serviceYear" placeholder="Service year" />
+                                                <span *ngIf="formSubmitted && obj.controls.serviceYear.hasError('required') && !this.arrayData.length"
+                                                    class="error">
+                                                    <small translate> Service year is required</small>
+                                                </span>
+                                            </div>
+                                            <div class="pr-1 pl-1 mb-4 col-md-3 col-xs-12 col-sm-12">
+                                                <label translate>Current approximate price</label>
+                                                <input type="number" min="1" class="form-control form-control-sm"
+                                                    formControlName="currentPrice" />
+                                                <span
+                                                    *ngIf="formSubmitted && obj.controls.currentPrice.hasError('required') && !this.arrayData.length"
+                                                    class="error">
+                                                    <small translate> current price is required</small>
+                                                </span>
+                                            </div>
+
+                                            <div class="pr-1 pl-1 mb-4 col-md-12 col-xs-12 col-sm-12">
+                                                <div class="form-header accordion mb-4" (click)="PropDesc.toggle()">
+                                                    <span translate>Property condition description</span>
+                                                    <span
+                                                    style="float: right !important; cursor: pointer; color: white"
+                                                    [attr.aria-expanded]="isPropDescCollapsed"
+                                                    aria-controls="collapseExample"
+                                                    >
+                                                    <em class="fas fa-angle-down" *ngIf="isPropDescCollapsed"></em>
+                                                    <em class="fas fa-angle-up" *ngIf="!isPropDescCollapsed"></em>
+                                                    </span>
+                                                </div>
+                                                <div #PropDesc="ngbCollapse" class="mb-4" [(ngbCollapse)]="isPropDescCollapsed">
+                                                    <ckeditor 
+                                                        [editor]="Editor" 
+                                                        [config]="{ toolbar: toolbar,placeholder: 'write property condition here ...' }"
+                                                        formControlName="conditionDesc"
+                                                    ></ckeditor>    
+                                                </div>
+                                            </div>
+
+                                            <!-- for vehicle & machinery -->
+                                            <div class="mb-4 col-md-12 col-lg-12 col-xs-12 col-sm-12 machine" *ngIf="isMachine">
+                                                <div class="form-header accordion" (click)="vehicle.toggle()" >
+                                                    <span>Vehicle or Machine Information</span>
+                                                    <span style="float: right !important; cursor: pointer; color: white;" 
+                                                    [attr.aria-expanded]="isvehicleCollapsed"
+                                                    aria-controls="collapseExample">
+                                                      <em class="fas fa-angle-down" *ngIf="isvehicleCollapsed"></em>
+                                                      <em class="fas fa-angle-up" *ngIf="!isvehicleCollapsed"></em>
+                                                    </span>
+                                                </div>
+                                      
+                                                <div #vehicle="ngbCollapse" [(ngbCollapse)]="isvehicleCollapsed" class="row">
+                                                    <div class="row mb-2 pl-5 pr-5">
+                                                        <div class="pr-1 pl-1  mb-4 col-md-3 col-xs-12 col-sm-12">
+                                                            <label translate>Serial number</label>
+                                                            <input type="text" class="form-control form-control-sm" formControlName="serial"
+                                                                placeholder="Serial number" />
+                                                        </div>
+                                                        <div class="pr-1 pl-1  mb-4 col-md-3 col-xs-12 col-sm-12">
+                                                            <label translate>Shansi</label>
+                                                            <input type="text" class="form-control form-control-sm" formControlName="shansi"
+                                                                placeholder="Shansi" />
+                                                        </div>
+                                                        <div class="pr-1 pl-1  mb-4 col-md-3 col-xs-12 col-sm-12">
+                                                            <label translate>Motor number</label>
+                                                            <input type="text" min="1" class="form-control form-control-sm"
+                                                                formControlName="motorNumber" placeholder="Motor number" />
+                                                            <span
+                                                                *ngIf="formSubmitted &&  obj.controls.motorNumber.hasError('required') && !this.arrayData.length"
+                                                                class="error">
+                                                                <small translate> Motor no is required</small>
+                                                            </span>
+                                                        </div>
+                                                        <div class="pr-1 pl-1  mb-4 col-md-3 col-xs-12 col-sm-12">
+                                                            <label translate>Libre</label>
+                                                            <select class="form-control form-control-sm" formControlName="hasLibre">
+                                                                <option *ngFor="let l of libreInfo" value="{{ l.value }}">
+                                                                    {{ l.text }}
+                                                                </option>
+                                                            </select>
+                                                            <span
+                                                                *ngIf="formSubmitted &&  obj.controls.hasLibre.hasError('required') && !this.arrayData.length"
+                                                                class="error">
+                                                                <small translate> Libre info is required</small>
+                                                            </span>
+                                                        </div>
+                                                        <div class="pr-1 pl-1  mb-4 col-md-3 col-xs-12 col-sm-12">
+                                                            <label translate>Declarasion</label>
+                                                            <select class="form-control form-control-sm" formControlName="hasDeclarasion">
+                                                                <option *ngFor="let l of declarasionInfo" value="{{ l.value }}">
+                                                                    {{ l.text }}
+                                                                </option>
+                                                            </select>
+                                                            <span
+                                                                *ngIf="formSubmitted &&  obj.controls.hasDeclarasion.hasError('required')"
+                                                                class="error">
+                                                                <small translate> Declarasion info is required</small>
+                                                            </span>
+                                                        </div>
+                                                        <div class="pr-1 pl-1  mb-4 col-md-3 col-xs-12 col-sm-12">
+                                                            <label translate>Year made</label>
+                                                            <input type="number" min='1' class="form-control form-control-sm"
+                                                                formControlName="yearMade" placeholder="Year made" />
+                                                            <span
+                                                                *ngIf="formSubmitted &&  obj.controls.yearMade.hasError('required') && !this.arrayData.length"
+                                                                class="error">
+                                                                <small translate> year made is required</small>
+                                                            </span>
+                                                        </div>
+                                                        <div class="pr-1 pl-1  mb-4 col-md-3 col-xs-12 col-sm-12">
+                                                            <label translate>Product type</label>
+                                                            <select class="form-control form-control-sm" formControlName="productType">
+                                                                <option *ngFor="let l of lookupData?.product_type"
+                                                                    value="{{ l.text }}">
+                                                                    {{ l.text }}
+                                                                </option>
+                                                            </select>
+                                                            <span
+                                                                *ngIf="formSubmitted &&  obj.controls.productType.hasError('required') && !this.arrayData.length"
+                                                                class="error">
+                                                                <small translate> Product type is required</small>
+                                                            </span>
+                                                        </div>
+                                                        <div class="pr-1 pl-1  mb-4 col-md-3 col-xs-12 col-sm-12">
+                                                            <label translate>Model</label>
+                                                            <select class="form-control form-control-sm" formControlName="model">
+                                                                <option *ngFor="let l of lookupData?.model"
+                                                                    value="{{ l.text }}">
+                                                                    {{ l.text }}
+                                                                </option>
+                                                            </select>
+                                                            <span
+                                                                *ngIf="formSubmitted &&  obj.controls.model.hasError('required') && !this.arrayData.length"
+                                                                class="error">
+                                                                <small translate> Model is required</small>
+                                                            </span>
+                                                        </div>
+                                                        <div class="pr-1 pl-1  mb-4 col-md-3 col-xs-12 col-sm-12">
+                                                            <label translate>Product status</label>
+                                                            <select class="form-control form-control-sm" formControlName="productStatus">
+                                                                <option *ngFor="let l of lookupData?.product_status"
+                                                                    value="{{ l.text }}">
+                                                                    {{ l.text }}
+                                                                </option>
+                                                            </select>
+                                                            <span
+                                                                *ngIf="formSubmitted &&  obj.controls.productStatus.hasError('required') && !this.arrayData.length"
+                                                                class="error">
+                                                                <small translate>Product status is required</small>
+                                                            </span>
+                                                        </div>
+                                                        <div class="pr-1 pl-1  mb-4 col-md-3 col-xs-12 col-sm-12">
+                                                            <label translate>Country made</label>
+                                                            <select class="form-control form-control-sm" formControlName="countryMade">
+                                                                <option *ngFor="let l of lookupData?.country"
+                                                                    value="{{ l.text }}">
+                                                                    {{ l.text }}
+                                                                </option>
+                                                            </select>
+                                                            <span
+                                                                *ngIf="formSubmitted &&  obj.controls.countryMade.hasError('required') && !this.arrayData.length"
+                                                                class="error">
+                                                                <small translate> Country made is required</small>
+                                                            </span>
+                                                        </div>
+                                                        <div class="pr-1 pl-1  mb-4 col-md-3 col-xs-12 col-sm-12">
+                                                            <label translate>Fuel</label>
+                                                            <select class="form-control form-control-sm" formControlName="fuel">
+                                                                <option *ngFor="let l of lookupData?.fuel" value="{{ l.text }}">
+                                                                    {{ l.text }}
+                                                                </option>
+                                                            </select>
+                                                            <span
+                                                                *ngIf="formSubmitted &&  obj.controls.fuel.hasError('required') && !this.arrayData.length"
+                                                                class="error">
+                                                                <small translate> Fuel is required</small>
+                                                            </span>
+                                                        </div>
+                                                        <div class="pr-1 pl-1  mb-4 col-md-3 col-xs-12 col-sm-12">
+                                                            <label translate>Motor status</label>
+                                                            <select class="form-control form-control-sm" formControlName="motorStatus">
+                                                                <option *ngFor="let l of lookupData?.motor_status"
+                                                                    value="{{ l.text }}">
+                                                                    {{ l.text }}
+                                                                </option>
+                                                            </select>
+                                                            <span
+                                                                *ngIf="formSubmitted &&  obj.controls.motorStatus.hasError('required') && !this.arrayData.length"
+                                                                class="error">
+                                                                <small translate>Motor status is required</small>
+                                                            </span>
+                                                        </div>
+                                                        <div class="pr-1 pl-1  mb-4 col-md-3 col-xs-12 col-sm-12">
+                                                            <label translate>VehicleMachineryType</label>
+                                                            <select class="form-control form-control-sm" formControlName="vehicleMachineryType">
+                                                                <option *ngFor="let l of lookupData?.vehicle_machinery_type"
+                                                                    value="{{ l.text }}">
+                                                                    {{ l.text }}
+                                                                </option>
+                                                            </select>
+                                                            <span
+                                                                *ngIf="formSubmitted &&  obj.controls.vehicleMachineryType.hasError('required') && !this.arrayData.length"
+                                                                class="error">
+                                                                <small translate>VehicleMachineryType is required</small>
+                                                            </span>
+                                                        </div>
+                                                        <div class="pr-1 pl-1  mb-4 col-md-3 col-xs-12 col-sm-12">
+                                                            <label translate>Plate number</label>
+                                                            <input type="text" min='1' class="form-control form-control-sm"
+                                                                formControlName="plateNumber" placeholder="Plate number" />
+                                                        </div>
+                                                        <div class="pr-1 pl-1  mb-4 col-md-3 col-xs-12 col-sm-12">
+                                                            <label translate>Manufacturer</label>
+                                                            <input type="text" class="form-control form-control-sm"
+                                                                formControlName="manufacturer" placeholder="Manufacturer" />
+                                                        </div>
+                                                        <div class="pr-1 pl-1  mb-4 col-md-3 col-xs-12 col-sm-12">
+                                                            <label translate>Purchased date</label>
+                                                            <input type="date" class="form-control form-control-sm"
+                                                                formControlName="dateOfPurchase" placeholder="Purchased date" />
+                                                        </div>
+                                                        <div class="pr-1 pl-1  mb-4 col-md-3 col-xs-12 col-sm-12">
+                                                            <label translate>Owner of vehicle</label>
+                                                            <input type="text" class="form-control form-control-sm"
+                                                                formControlName="ownerOfVehicle"
+                                                                placeholder="Owner of vehicle" />
+                                                        </div>
+                                                        <div class="pr-1 pl-1  mb-4 col-md-3 col-xs-12 col-sm-12">
+                                                            <label translate>VehicleMachineCurrentPlace</label>
+                                                            <input type="text" class="form-control form-control-sm"
+                                                                formControlName="vehicleCurrentPlace"
+                                                                placeholder="Vehicle's/Machine's current place" />
+                                                        </div>
+                                                    </div>
+                                                </div>                                         
+                                            </div>
+
+                                            <div class="pr-1 pl-1 mb-4 col-md-12 col-xs-12 col-sm-12">
+                                                <div class="form-header accordion mb-4" (click)="Spec.toggle()">
+                                                    <span translate>Specification</span>
+                                                    <span
+                                                    style="float: right !important; cursor: pointer; color: white"
+                                                    [attr.aria-expanded]="isSpecCollapsed"
+                                                    aria-controls="collapseExample"
+                                                    >
+                                                    <em class="fas fa-angle-down" *ngIf="isSpecCollapsed"></em>
+                                                    <em class="fas fa-angle-up" *ngIf="!isSpecCollapsed"></em>
+                                                    </span>
+                                                </div>
+                                                <div #Spec="ngbCollapse" class="mb-4" [(ngbCollapse)]="isSpecCollapsed">
+                                                    <ckeditor 
+                                                        [editor]="Editor" 
+                                                        [config]="{ toolbar: toolbar,placeholder: 'write specification here ...' }"
+                                                        formControlName="other"
+                                                    ></ckeditor>    
+                                                </div>
+
+                                                <span *ngIf="formSubmitted && obj.controls.other.hasError('required') && !this.arrayData.length"
+                                                    class="error">
+                                                    <small translate> specification is required</small>
+                                                </span>
+                                            </div>
+                                            
+                                            <div class="pr-1 pl-1 mb-4 col-md-12 col-xs-12 col-sm-12">
+                                                <div class="form-header accordion mb-4" (click)="Reason.toggle()">
+                                                    <span translate>Reason of disposal</span>
+                                                    <span
+                                                    style="float: right !important; cursor: pointer; color: white"
+                                                    [attr.aria-expanded]="isReasonCollapsed"
+                                                    aria-controls="collapseExample"
+                                                    >
+                                                    <em class="fas fa-angle-down" *ngIf="isReasonCollapsed"></em>
+                                                    <em class="fas fa-angle-up" *ngIf="!isReasonCollapsed"></em>
+                                                    </span>
+                                                </div>
+                                                <div #Reason="ngbCollapse" class="mb-4" [(ngbCollapse)]="isReasonCollapsed">
+                                                    <ckeditor 
+                                                        [editor]="Editor" 
+                                                        [config]="{ toolbar: toolbar,placeholder: 'Write Your reason Here ...' }"
+                                                        formControlName="reason"
+                                                    ></ckeditor>    
+                                                </div>
+                                            </div>
+                                        
+                                            <div class="pr-1 pl-1 col-md-12 col-xs-12 col-sm-12">
+                                                <label translate>Attachment</label>
+                                                <div class="row">
+                                                    <div class="col-md-8 col-xs-8 col-sm-12">
+                                                        <div class="custom-file">
+                                                            <input style="display: none;" type="text" class="custom-file-input"
+                                                                id="customFile" formControlName="attachment">
+                                                            <!-- this input text is for getting the file controller b/c can not set value on file type input -->
+                                                            <input type="file" accept="application/pdf"
+                                                                class="custom-file-input" id="customFile"
+                                                                (change)="fileChangeEvent($event.target.files, i)">
+                                                            <label class="custom-file-label"
+                                                                for="customFile">{{((fileInfo?.length > 0)) ?
+                                                                fileInfo[i]?.name : "Choose file"}} </label>
+                                                            <div *ngIf="fileInfo?.length > 0">
+                                                                <span *ngIf="fileInfo[i]">
+                                                                    <label class="file-info"> Size:
+                                                                        {{fileInfo[i].size.toString().length > 6 ?
+                                                                        fileInfo[i].size/1000000 + " mb" :
+                                                                        fileInfo[i].size/1000 + " kb" }}</label><br>
+                                                                    <label class="file-info">Type:
+                                                                        {{fileInfo[i].type}}</label>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <span *ngIf="obj.controls.attachment.value"> <a
+                                                            [attr.href]="baseUrl + '/' + obj.controls.attachment.value"
+                                                            target="_blank">Attached file</a>
+                                                        </span>
+                                                    </div>
+                                                    <div class="col-md-4 col-xs-12 col-sm-12 ary-btn">
+                                                        <div>
+                                                            <button *ngIf="(editing || editing === 0)"
+                                                                [disabled]="(!obj.valid)" id="add-button" type="button"
+                                                                class="multi btn btn-success" (click)="updateRow()">
+                                                                <i class="fas fa-pen-square" style="margin-right: 10px !important;"></i>Update
+                                                            </button>
+                                                            <button *ngIf="!editing"
+                                                                [disabled]="(!obj.valid && !editing)" id="add-button" type="button"
+                                                                class="multi btn btn-success" (click)="addRow()">
+                                                                <i class="fas fa-plus" style="margin-right: 10px !important;"></i> Add to List
+                                                            </button>
+                                                            <button *ngIf="arrayData.length" id="add-button" type="button"
+                                                                id="remove-button" class="multi btn btn-danger"
+                                                                (click)="deleteArray()">
+                                                                <i class="far fa-trash-alt" style="margin-right: 10px !important;"></i> Remove
+                                                            </button>
+                                                        </div>
+                                                    </div>    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-header accordion mb-4 mt-4" (click)="ItemList.toggle()">
+                        <span translate>Product List</span>
+                        <span
+                        style="float: right !important; cursor: pointer; color: white"
+                        [attr.aria-expanded]="isItemListCollapsed"
+                        aria-controls="collapseExample"
+                        >
+                        <em class="fas fa-angle-down" *ngIf="isItemListCollapsed"></em>
+                        <em class="fas fa-angle-up" *ngIf="!isItemListCollapsed"></em>
+                        </span>
+                    </div>
+                    <div #ItemList="ngbCollapse" class="mb-4" [(ngbCollapse)]="isItemListCollapsed">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="field-container">
+                                    <button
+                                        *ngIf="!productArray.controls.length"
+                                        type="button" class="btn btn-success" (click)="addArray()">
+                                        Add product
+                                    </button>
+                                </div>
+
+                                <div class="fixTableHead">
+                                    <table class="table table-striped table-striped width=100% table-bordered table-sm">
+                                        <thead>
+                                            <tr>
+                                                <th class="productID">#</th>
+                                                <th class="productCat" translate>Product category</th>
+                                                <th class="productInfo" translate>Product</th>
+                                                <th class="productQuantity" translate>Quantity</th>
+                                                <th class="productUnit" translate>Unit</th>
+                                                <th class="productCode" translate>Product code</th>                             
+                                                <th class="serviceYear" translate>Service year</th>
+                                                <th class="approxPrice" translate>Current approximate price</th>                                        
+                                                <th class="productType" translate>Product type</th>                                     
+                                                <th class="productAttachment" translate>Attachment</th>
+                                                <th class="action" translate>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody *ngIf="arrayData?.length" [ngClass]="arrayData.length?'height2':'height1'">
+                                            <tr *ngFor="let row of arrayData; let i = index"
+                                                [ngStyle]="i === editing ? {'background-color': '#13294833'} : null">
+                                                <th class="productID" scope="row">{{i + 1}}</th>
+                                                <td class="productCat">{{row.category}}</td>
+                                                <td class="productInfo" >{{row.product}}</td>
+                                                <td class="productQuantity">{{row.quantity}}</td>
+                                                <td class="productUnit" >{{row.unit}}</td>
+                                                <td  class="productCode" >{{row.code}}</td>
+                                                <td class="serviceYear" >{{row.service_year}}</td>
+                                                <td class="approxPrice" >{{row.current_price}}</td>                                   
+                                                <td class="productType">{{row.product_type}}</td>
+                                                <td class="productAttachment" translate>
+                                                    <ng-container *ngIf="row.document"> <a
+                                                            *ngIf="!row.document.includes('data:application/pdf;base64')"
+                                                            [attr.href]="baseUrl + '/' + row.document" target="_blank">Uploaded
+                                                            file</a>
+                                                        <b *ngIf="row.document.includes('data:application/pdf;base64')" translate>
+                                                            File attached </b>
+                                                    </ng-container>
+                                                </td>
+                                                <td class="action" >
+                                                    <em class="fas fa-edit" (click)="editRow(i)" ></em>
+                                                    <em class="fas fa-trash-alt" *ngIf="!requestStatus?.classified" 
+                                                    (click)="deleteRow(i)"></em>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <tbody *ngIf="!arrayData?.length">
+                                            <tr>
+                                                <td colspan="10">
+                                                   <span style="color: gray !important;">
+                                                        no record found
+                                                   </span> 
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="ID">
+                        <div class="form-header accordion mb-4" (click)="Comment.toggle()">
+                            <span translate>Comment</span>
+                            <span
+                            style="float: right !important; cursor: pointer; color: white"
+                            [attr.aria-expanded]="isCommentCollapsed"
+                            aria-controls="collapseExample"
+                            >
+                            <em class="fas fa-angle-down" *ngIf="isCommentCollapsed"></em>
+                            <em class="fas fa-angle-up" *ngIf="!isCommentCollapsed"></em>
+                            </span>
+                        </div>
+                        <div #Comment="ngbCollapse" class="mb-4" [(ngbCollapse)]="isCommentCollapsed">
+                            <label>
+                                {{ this.comment }}
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group mt-4">
+                        <button *ngIf="!requestStatus?.classified" type="submit" class="btn btn-primary mr-2"
+                            [disabled]="sending" translate>
+                            {{ !ID ? 'Submit' : 'Save Changes' | translate}}
+                            <i class="fas fa-spinner fa-spin fa-fw" *ngIf="sending"></i>
+                        </button>
+                        <button type="button" class="btn btn-danger" (click)="cancel()" translate>Cancel</button>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</form>
+
+
+
+
+<div class="container" *ngIf="plan && planData">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="col-12">
+                        <span class="plan-text"><u>Plan detail</u>
+                        </span>
+                    </div>
+                    <div class="col-12">
+                        <span class="plan-text">Procurement reference number : - {{
+                            planData.procurement_reference_number
+                            }}
+                        </span>
+                    </div>
+                    <div class="col-12">
+                        <span class="plan-text">Procurement method : - {{ planData.procurement_method }} </span>
+                    </div>
+                    <div class="col-12">
+                        <span class="plan-text">Product category : - {{ planData.category }} </span>
+                    </div>
+                    <div class="col-12">
+                        <span class="plan-text">Budget year : - {{ planData.budget_year }} </span>
+                    </div>
+                    <div class="col-12">
+                        <span class="plan-text">Bid preparation date : - {{ planData.bid_preparation_date }}
+                        </span>
+                    </div>
+                    <div class="col-12">
+                        <span class="plan-text">Bid announcement date : - {{ planData.bid_announcement_date }}
+                        </span>
+                    </div>
+                    <div class="col-12">
+                        <span class="plan-text">Bid approval data : - {{ planData.bid_approval_date }}
+                        </span>
+                    </div>
+                    <div class="col-12">
+                        <span class="plan-text">Bid opening date : - {{ planData.bid_opening_date }}
+                        </span>
+                    </div>
+                    <div class="col-12">
+                        <span class="plan-text">Bid closing date : - {{ planData.bid_closing_date }}
+                        </span>
+                    </div>
+                    <div class="col-12">
+                        <span class="plan-text">Bid evaluation report completion : - {{
+                            planData.bid_evaluation_report_completion
+                            }}
+
+                        </span>
+                    </div>
+                    <div class="col-12">
+                        <span class="plan-text">Bid evaluation report approval completion : - {{
+                            planData.bid_evaluation_report_approval_completion }}
+                        </span>
+                    </div>
+                    <div class="col-12">
+                        <span class="plan-text">Award notification disclosure date : - {{
+                            planData.award_notif_disclosure_date }}
+                        </span>
+                    </div>
+                    <div class="col-12">
+                        <span class="plan-text">Contract type : - {{ planData.type_of_contract }}
+                        </span>
+                    </div>
+                    <div class="col-12">
+                        <span class="plan-text">Contract signing date : - {{ planData.contract_signing_date }}
+                        </span>
+                    </div>
+                    <div class="col-12">
+                        <span class="plan-text">Contract end date : - {{ planData.contract_end_date }}
+                        </span>
+                    </div>
+                    <div class="col-12">
+                        <span class="plan-text">Purchase order start date : - {{ planData.purchase_order_start_date }}
+                        </span>
+                    </div>
+                    <div class="col-12">
+                        <span class="plan-text">Estimated delivery date : - {{ planData.estimated_delivery_date }}
+                        </span>
+                    </div>
+                    <div class="col-12">
+                        <span class="plan-text">Last payment date by receiving office : - {{
+                            planData.last_payment_date_by_the_receiving_office }}
+                        </span>
+                    </div>
+                    <div class="col-3 btn-cont">
+                        <button type="button" class="btn btn-success" (click)="cancel()" translate>Back</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

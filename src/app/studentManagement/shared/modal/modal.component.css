@@ -1,0 +1,33 @@
+.modal-header {
+  background: #004085;
+  color: white;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.modal-footer {
+  padding-top: 1%;
+  padding-bottom: 2%;
+}
+
+.modal-body {
+  background: #D4E6F122
+}
+
+.close {
+  color: #fff;
+  border: none;
+}
+
+.btn.btn-danger {
+  font-size: 14px;
+  font-family: sans-serif;
+  font-weight: 800;
+}
+
+
+@media screen and (max-width: 500px) {
+  .img-thumbnail {
+    height: 180px !important;
+  }
+}
